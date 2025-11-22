@@ -1,0 +1,9 @@
+Study,Phase,Region,Treatment,n,Metabolite_Ratio,Baseline_finding,Slope_per_month,p_value,Notes
+Young2014_Longitudinal,Baseline,PGM,Pre-ART,53,Cho/Cr,Low,0.0012,0.005,Increasing pre-ART (inflammation)
+Young2014_Longitudinal,Baseline,BG,Pre-ART,53,Glu/Cr,High,-0.0038,0.031,"Elevated at baseline, decreased with ART"
+Young2014_Longitudinal,Baseline,PGM,Pre-ART,53,MI/Cr,Low,0.0041,0.005,Increasing pre-ART (gliosis)
+Young2014_Longitudinal,Baseline,BG,Pre-ART,53,NAA/Cr,Normal,0.0024,0.030,NAA/Cr recovered during early infection
+Young2014_Longitudinal,12-month,PGM,Post-ART,53,Cho/Cr,,NS,NS,ART stopped increase
+Young2014_Longitudinal,12-month,BG,Post-ART,53,Glu/Cr,,Decreased,0.031,ART normalized Glu/Cr
+Young2014_Longitudinal,12-month,PGM,Post-ART,53,MI/Cr,,NS,NS,ART stopped increase
+Young2014_Longitudinal,12-month,BG,Post-ART,53,NAA/Cr,,NS,NS,NAA remained stable

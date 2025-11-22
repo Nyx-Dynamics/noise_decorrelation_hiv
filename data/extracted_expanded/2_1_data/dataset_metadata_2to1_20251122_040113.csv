@@ -1,0 +1,12 @@
+Category,Value
+Dataset,2:1 Acute/Chronic Test Dataset
+Acute Observations,18
+Chronic Observations,9
+Control Observations,8
+Total Observations,35
+Acute:Chronic Ratio,2.00:1
+Chronic Studies in Metadata,17
+Human Studies,15
+Cross-Species Studies,2
+Field Strengths Represented,"1.5, 3.0"
+Techniques Used,7

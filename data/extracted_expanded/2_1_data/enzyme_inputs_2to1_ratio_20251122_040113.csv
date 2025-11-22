@@ -1,0 +1,4 @@
+Study,Phase,NAA_mean,NAA_SE,n,xi_estimate
+Combined_2to1,Acute,1.2769,0.0297,828,0.61
+Combined_2to1,Chronic,0.8561,0.0255,186,0.81
+Combined_2to1,Control,0.9085,0.0294,142,1.0

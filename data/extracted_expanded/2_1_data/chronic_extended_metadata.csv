@@ -1,0 +1,18 @@
+Study,Year,Species,Group_Label,Stage,HIV_N,Control_N,Has_NAA_Cr,Has_Cho_Cr,Other_Measures,Field_T,Technique,Notes
+Wilkinson_1997,1997,Human,Asymptomatic_no_dementia,Chronic,84,77.0,Yes,Yes,"mI/Cr, absolute conc vs H2O",,Single-voxel 1H-MRS,"84 asymptomatic HIV+, 29 high-risk and 48 low-risk controls; multiple cortical/subcortical regions"
+Suwanwela_2000,2000,Human,Asymptomatic_normal_MRI,Chronic,30,13.0,Yes,Yes,"NAA/Cho, mI/Cr",1.5,Single-voxel PRESS,Centrum semiovale and thalamus; NAA/Cr and NAA/Cho reduced in HIV
+Tarasow_2003,2003,Human,Asymptomatic,Chronic,20,32.0,Yes,Yes,"mI/Cr, metabolite/H2O",1.5,Single-voxel PRESS,"Neurologically asymptomatic HIV+; NAA/Cr unchanged, Cho/Cr and mI/Cr increased"
+Marcus_1998_asym,1998,Human,Neuro-asymptomatic,Chronic,9,18.0,Yes,Yes,Glx/Cr,1.5,Multivoxel MRSI,No significant metabolite changes vs controls; same protocol as dementia arm
+Marcus_1998_dementia,1998,Human,HIV_dementia,Chronic,6,18.0,Yes,Yes,Glx/Cr,1.5,Multivoxel MRSI,NAA/Cr decreased and Cho/Cr increased in dementia
+Barker_1995_ADC,1995,Human,AIDS_dementia_complex,Chronic,7,7.0,Yes,Yes,Lac presence,1.5,MRSI,Diffuse WM NAA loss and Cho elevation; classic pre-cART ADC cohort
+Laubenberger_1996_asym,1996,Human,Asymptomatic,Chronic,11,10.0,Yes,Yes,"mI, absolute conc",1.5,Single-voxel short-TE,Metabolite changes intermediate between controls and ADC
+Laubenberger_1996_ADC,1996,Human,AIDS_dementia_complex,Chronic,12,10.0,Yes,Yes,"mI, absolute conc",1.5,Single-voxel short-TE,Marked NAA decrease and Cho/mI increase
+Tracey_1996_preADC,1996,Human,Pre-ADC_at-risk,Chronic,20,10.0,Yes,Yes,Cho elevation primary,1.5,MRSI,Cho/Cr markedly elevated before clinical ADC; NAA/Cr largely preserved
+Schuettfort_2014_cART,2014,Human,cART_asymptomatic,Chronic,13,13.0,Indirect (absolute NAA/Cr computable),Indirect (absolute Cho/Cr computable),31P metabolites,3.0,2D 1H-MRS + 3D 31P-MRS,Lower absolute NAA in frontal and parietal WM; modern cART-era cohort
+Bairwa_2016_asym,2016,Human,Asymptomatic_on_ART,Chronic,20,30.0,Indirect (tNAA/tCr available),Indirect (tCho/tCr available),"Glx, lipids",3.0,Single-voxel 1H-MRS,"Frontal WM and BG; absolute concentrations reported, not ratios"
+Bairwa_2016_CNS_lesion,2016,Human,HIV_with_CNS_lesions,Chronic,21,30.0,Indirect (tNAA/tCr),Indirect (tCho/tCr),"Glx, lipids",3.0,Single-voxel 1H-MRS,Same acquisition; more severe neuronal loss and glial markers
+Roc_2007_normal,2007,Human,HIV_neurocognitively_normal,Chronic,15,10.0,Yes,Yes,"Lac/Cr,(Lip+Lac)/Cr",,2D CSI,"Lenticular nuclei; NAA/Cr similar to controls, Cho/Cr mildly elevated"
+Roc_2007_mild,2007,Human,HIV_mild_impairment,Chronic,12,10.0,Yes,Yes,"Lac/Cr,(Lip+Lac)/Cr",,2D CSI,Similar NAA/Cr but inflammatory metabolites elevated
+Roc_2007_modsev,2007,Human,HIV_moderate_severe_impairment,Chronic,18,10.0,Yes,Yes,"Lac/Cr,(Lip+Lac)/Cr",,2D CSI,Marked Lac and (Lip+Lac)/Cr elevation; NAA/Cr relatively preserved
+Ratai_2009_preSIV,2009,Macaca_mulatta,Pre-infection_baseline,Pre-infection,18,,Yes,Yes,"mI/Cr, Glx/Cr, absolute conc",1.5,Single-voxel 1H-MRS,"Each animal serves as own control; frontal GM, centrum semiovale WM, putamen"
+Ratai_2009_acuteSIV,2009,Macaca_mulatta,Acute_SIV_2-4wpi,Acute,18,,Yes,Yes,"mI/Cr, Glx/Cr, absolute conc",1.5,Single-voxel 1H-MRS,Significant NAA decrease in frontal cortex; Cho and mI increase across regions

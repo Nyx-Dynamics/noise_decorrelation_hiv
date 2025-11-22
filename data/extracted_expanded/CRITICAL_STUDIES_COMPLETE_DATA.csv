@@ -1,0 +1,28 @@
+Study,First_Author,Year,Phase,Region,N,NAA_mean,NAA_SE,Units,NAA_SD,Notes,NAA_CI_lower,NAA_CI_upper
+Chang2002,Chang,2002,Control,Frontal_Gray,25,8.2,0.16,mmol/kg,,,7.886399999999999,8.513599999999999
+Chang2002,Chang,2002,Control,Frontal_WM,25,7.4,0.14,mmol/kg,,,7.1256,7.6744
+Chang2002,Chang,2002,Control,Basal_Ganglia,25,8.4,0.16,mmol/kg,,,8.086400000000001,8.7136
+Chang2002,Chang,2002,Chronic,Frontal_Gray,45,8.2,0.09,mmol/kg,,,8.0236,8.376399999999999
+Chang2002,Chang,2002,Chronic,Frontal_WM,45,7.2,0.11,mmol/kg,,,6.9844,7.4156
+Chang2002,Chang,2002,Chronic,Basal_Ganglia,45,8.5,0.14,mmol/kg,,,8.2256,8.7744
+Young2014_Spudich,Young,2014,Control,Frontal_WM,19,1.35,0.024,NAA/Cr,,,1.3029600000000001,1.39704
+Young2014_Spudich,Young,2014,Acute,Frontal_WM,53,1.35,0.01,NAA/Cr,,,1.3304,1.3696000000000002
+Young2014_Spudich,Young,2014,Chronic,Frontal_WM,18,1.15,0.013,NAA/Cr,,,1.12452,1.1754799999999999
+Young2014_Spudich,Young,2014,Control,Parietal_GM,19,1.4,0.02,NAA/Cr,,,1.3608,1.4391999999999998
+Young2014_Spudich,Young,2014,Acute,Parietal_GM,53,1.3,0.009,NAA/Cr,,,1.28236,1.3176400000000001
+Young2014_Spudich,Young,2014,Chronic,Parietal_GM,18,1.25,0.017,NAA/Cr,,,1.21668,1.28332
+Young2014_Spudich,Young,2014,Control,Basal_Ganglia,19,1.1,0.022,NAA/Cr,,,1.05688,1.1431200000000001
+Young2014_Spudich,Young,2014,Acute,Basal_Ganglia,53,1.15,0.01,NAA/Cr,,,1.1303999999999998,1.1696
+Young2014_Spudich,Young,2014,Chronic,Basal_Ganglia,18,1.05,0.014,NAA/Cr,,,1.0225600000000001,1.07744
+Young2014_Spudich,Young,2014,Control,Anterior_Cingulate,19,1.22,0.019,NAA/Cr,,,1.18276,1.25724
+Young2014_Spudich,Young,2014,Acute,Anterior_Cingulate,53,1.28,0.009,NAA/Cr,,,1.26236,1.2976400000000001
+Young2014_Spudich,Young,2014,Chronic,Anterior_Cingulate,18,1.1,0.023,NAA/Cr,,,1.05492,1.14508
+Sailasuta2012,Sailasuta,2012,Control,Basal_Ganglia,10,1.077,0.04110960958218893,relative,0.13,,0.9964251652189097,1.1575748347810904
+Sailasuta2012,Sailasuta,2012,Acute,Basal_Ganglia,31,1.134,0.02514474228374849,relative,0.14,,1.0847163051238529,1.183283694876147
+Sailasuta2012,Sailasuta,2012,Chronic,Basal_Ganglia,26,1.0,0.02745625891934577,relative,0.14,,0.9461857325180822,1.0538142674819178
+Sailasuta2016,Sailasuta,2016,Treatment_Naive,Frontal_WM,59,11.75,0.1510191367377557,mmol/kg,1.16,Baseline pre-ART,11.454002491993998,12.045997508006002
+Sailasuta2016,Sailasuta,2016,ART_12mo,Frontal_WM,50,11.54,0.17394826817189069,mmol/kg,1.23,12 months post-ART,11.199061394383094,11.880938605616905
+Sailasuta2016,Sailasuta,2016,Treatment_Naive,Basal_Ganglia,59,10.01,0.16664180605545456,mmol/kg,1.28,Baseline pre-ART,9.68338206013131,10.33661793986869
+Sailasuta2016,Sailasuta,2016,ART_12mo,Basal_Ganglia,50,9.33,0.1994041122946064,mmol/kg,1.41,12 months post-ART,8.939167939902571,9.720832060097429
+Sailasuta2016,Sailasuta,2016,Treatment_Naive,Frontal_Gray,59,9.03,0.1588304713966051,mmol/kg,1.22,Baseline pre-ART,8.718692276062653,9.341307723937346
+Sailasuta2016,Sailasuta,2016,ART_12mo,Frontal_Gray,50,9.33,0.13010764773832476,mmol/kg,0.92,12 months post-ART,9.074989010432883,9.585010989567117
