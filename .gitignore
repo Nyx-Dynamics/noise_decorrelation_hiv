@@ -25,6 +25,8 @@ wheels/
 venv/
 ENV/
 env/
+.waicenv/
+noiseenv/
 
 # IDEs
 .vscode/
@@ -53,12 +55,21 @@ commit_message.txt
 Thumbs.db
 
 
-# Results that can be regenerated (OPTIONAL - consider keeping these in git)
-# results/**/*.png
-# quantum/results/**/*.png
-# results/**/*.json
-
+# Results and outputs
+results/
+**/results/
+**/figures/*.png
+**/figures/*.pdf
+*.nc
+*.trace
+*.log
+.output.txt
+*.pdf
+*.png
 # Keep these important files
+!Figure*.png
+!Figure*.pdf
+!data/figures/*.png
 !results/bayesian_v3_6/summary.csv
 !results/bayesian_v3_6/posterior_predictive.csv
 !quantum/results/enzyme_v4/summary_v4.csv

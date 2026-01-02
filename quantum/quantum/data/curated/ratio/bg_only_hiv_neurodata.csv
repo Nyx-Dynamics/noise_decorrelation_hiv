@@ -1,0 +1,10 @@
+Study,HIV Phase,Brain Region,Metabolite,Value,SE/SD,n,Notes,SMD,95% CI,p_uncorrected,p_FDR
+Mohamed et al. 2010,Chronic,BG,NAA/Cr,1.0,SD=0.09,26,"Chronic HIV+, antiretroviral-naïve",,,,
+Mohamed et al. 2010,Control,BG,NAA/Cr,1.08,SD=0.11,18,HIV-negative controls,,,,
+Sailasuta et al. 2016,Acute,BG,NAA/Cr,1.13,SE=0.03,31,"BG values week 2–8, acute infection",,,,
+Sailasuta et al. 2016,Chronic,BG,NAA/Cr,1.0,SE=0.03,26,Chronically HIV+,,,,
+Dahmani et al. 2021,Acute,BG,NAA/Cr,,,120,"Marginally higher NAA in early HIV, 3 studies",0.35,0.04 to 0.67,0.03,0.12
+Dahmani et al. 2021,Acute,BG,Cho/Cr,,,120,Significant Cho elevation during early HIV,0.63,0.21 to 1.06,0.004,0.048
+Chelala et al. 2020,Chronic,BG,NAA/Cr,,,20,"No significant effect, 20 studies",-0.1,-0.39 to 0.18,0.48,
+Chelala et al. 2020,Chronic,BG,Cho/Cr,,,20,"Significant Cho elevation, 20 studies",0.27,0.05 to 0.49,0.015,
+Chelala et al. 2020,Chronic,BG,mI/Cr,,,16,"Strong effect, 16 studies",0.6,0.31 to 0.90,<0.001,

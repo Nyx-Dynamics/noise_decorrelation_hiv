@@ -1,0 +1,11 @@
+{
+  "P_CSF_detect_<=_7d": 0.5,
+  "P_CSF_detect_<=_14d": 0.5,
+  "P_CSF_detect_<=_28d": 0.5,
+  "n_subjects_with_detect": 2,
+  "median_time_to_detect_days": 84.0,
+  "iqr_time_to_detect_days": [
+    42.0,
+    126.0
+  ]
+}

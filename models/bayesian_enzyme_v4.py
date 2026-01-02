@@ -18,11 +18,24 @@ WORKFLOW:
 """
 
 import numpy as np
-import pymc as pm
-import arviz as az
 import pandas as pd
-import matplotlib.pyplot as plt
 from pathlib import Path
+import argparse
+from typing import Optional, List, Union, Dict
+
+# Optional heavy dependencies (allow importing this module just to use the loader)
+try:
+    import pymc as pm  # type: ignore
+except Exception:
+    pm = None  # type: ignore
+try:
+    import arviz as az  # type: ignore
+except Exception:
+    az = None  # type: ignore
+try:
+    import matplotlib.pyplot as plt  # type: ignore
+except Exception:
+    plt = None  # type: ignore
 
 # Import your enzyme kinetics module
 from enzyme_kinetics import (
@@ -43,10 +56,89 @@ CLINICAL_DATA = {
     'chronic': {'NAA': 1.005, 'Cho': 0.235}
 }
 
-# Convert to arrays for easier handling
+# Convert to arrays for easier handling (defaults; may be overridden by loader)
 CONDITIONS = ['healthy', 'acute', 'chronic']
 NAA_OBS = np.array([CLINICAL_DATA[c]['NAA'] for c in CONDITIONS])
 CHO_OBS = np.array([CLINICAL_DATA[c]['Cho'] for c in CONDITIONS])
+
+
+# =============================================================================
+# OPTIONAL: GROUP-LEVEL DATA LOADER (larger dataset)
+# =============================================================================
+
+def load_group_summary(
+    csv_path: Union[str, Path] = Path('data/extracted/CRITICAL_STUDIES_COMPLETE_DATA.csv'),
+    region: str = 'Basal_Ganglia',
+    studies: Optional[List[str]] = None,
+    phases: Optional[List[str]] = None,
+):
+    """
+    Load and summarize larger dataset to 3 phase means for NAA and Cho.
+
+    - Filters to Basal Ganglia by default (most reliable across studies)
+    - Uses ratio-based studies by default (Young2014_Spudich, Sailasuta2012)
+    - Returns per-phase means and pooled SEs along with counts.
+
+    Returns dict with keys: NAA_obs, Cho_obs, NAA_se, Cho_se, N
+    (each np.array of length 3 in order [Control, Acute, Chronic])
+    """
+    csv_path = Path(csv_path)
+    if not csv_path.exists():
+        raise FileNotFoundError(f"Group data CSV not found: {csv_path}")
+
+    df = pd.read_csv(csv_path)
+    df = df[df['Region'] == region].copy()
+
+    if studies is None:
+        # Restrict to ratio-based studies by default
+        studies = ['Young2014_Spudich', 'Sailasuta2012']
+    df = df[df['Study'].isin(studies)].copy()
+
+    if phases is None:
+        phases = ['Control', 'Acute', 'Chronic']
+    df = df[df['Phase'].isin(phases)].copy()
+
+    # Aggregate means and pooled SE for each phase
+    def _pool_se(x: pd.Series) -> float:
+        # Conservative: root-mean of squared SEs
+        x = pd.to_numeric(x, errors='coerce').dropna()
+        if len(x) == 0:
+            return np.nan
+        return float(np.sqrt(np.mean(np.square(x))))
+
+    agg_spec = {
+        'NAA_mean': 'mean',
+        'NAA_SE': _pool_se,
+        'N': 'sum'
+    }
+    has_cho_cols = 'Cho_mean' in df.columns and 'Cho_SE' in df.columns
+    if has_cho_cols:
+        agg_spec.update({'Cho_mean': 'mean', 'Cho_SE': _pool_se})
+    grp = df.groupby('Phase').agg(agg_spec)
+
+    # Ensure order
+    grp = grp.reindex(['Control', 'Acute', 'Chronic'])
+
+    NAA_obs = grp['NAA_mean'].to_numpy(dtype=float)
+    Cho_obs = (grp['Cho_mean'].to_numpy(dtype=float)
+               if 'Cho_mean' in grp.columns else None)
+    NAA_se = grp['NAA_SE'].to_numpy(dtype=float)
+    Cho_se = (grp['Cho_SE'].to_numpy(dtype=float)
+              if 'Cho_SE' in grp.columns else None)
+    N = grp['N'].fillna(0).to_numpy(dtype=int)
+
+    # Basic sanity: all three phases present
+    if len(NAA_obs) != 3 or np.any(~np.isfinite(NAA_obs)):
+        raise RuntimeError("Failed to build 3-phase NAA summary from group data.")
+
+    return {
+        'NAA_obs': NAA_obs,
+        'Cho_obs': Cho_obs,
+        'NAA_se': NAA_se,
+        'Cho_se': Cho_se,
+        'N': N,
+        'phases': ['Control', 'Acute', 'Chronic']
+    }
 
 
 # =============================================================================
@@ -148,7 +240,7 @@ def forward_model_enzyme(xi_acute, xi_chronic, beta_xi, gamma_coh,
 # BAYESIAN MODEL
 # =============================================================================
 
-def build_enzyme_model():
+def build_enzyme_model(observed_data: Optional[Dict] = None):
     """
     Build PyMC model with enzyme kinetics.
     
@@ -159,6 +251,8 @@ def build_enzyme_model():
     - viral_damage_*: Direct damage to enzymes
     - membrane_*: Membrane turnover rates
     """
+    if pm is None:
+        raise ImportError("pymc is required to build the model; install pymc>=5.")
     
     with pm.Model() as model:
         
@@ -250,23 +344,44 @@ def build_enzyme_model():
         # LIKELIHOOD
         # =====================================================================
         
-        # Observation noise (similar to v3.6)
-        sigma_NAA = pm.HalfNormal('sigma_NAA', sigma=0.06)
-        sigma_Cho = pm.HalfNormal('sigma_Cho', sigma=0.03)
-        
-        # Likelihood
+        if observed_data is None:
+            # Default: use clinical triplet with free noise scales
+            sigma_NAA = pm.HalfNormal('sigma_NAA', sigma=0.06)
+            sigma_Cho = pm.HalfNormal('sigma_Cho', sigma=0.03)
+            NAA_obs_vec = NAA_OBS
+            Cho_obs_vec = CHO_OBS
+        else:
+            # Use provided group-level summary; set weakly-informative noise around pooled SE
+            NAA_obs_vec = np.asarray(observed_data.get('NAA_obs'), dtype=float)
+            Cho_obs_vec = np.asarray(observed_data.get('Cho_obs'), dtype=float)
+            # Use mean(SE) as scale of HalfNormal prior; fallback to defaults if NaN
+            naa_se = observed_data.get('NAA_se')
+            cho_se = observed_data.get('Cho_se')
+            def _safe_scale(arr, default):
+                try:
+                    arr = np.asarray(arr, dtype=float)
+                    m = float(np.nanmean(arr))
+                    if np.isfinite(m) and m > 0:
+                        return m
+                except Exception:
+                    pass
+                return default
+            sigma_NAA = pm.HalfNormal('sigma_NAA', sigma=_safe_scale(naa_se, 0.06))
+            sigma_Cho = pm.HalfNormal('sigma_Cho', sigma=_safe_scale(cho_se, 0.03))
+
+        # Likelihood terms (vector of length 3)
         NAA_likelihood = pm.Normal(
             'NAA_obs',
             mu=NAA_pred,
             sigma=sigma_NAA,
-            observed=NAA_OBS
+            observed=NAA_obs_vec
         )
         
         Cho_likelihood = pm.Normal(
             'Cho_obs',
             mu=Cho_pred,
             sigma=sigma_Cho,
-            observed=CHO_OBS
+            observed=Cho_obs_vec
         )
         
         # =====================================================================
@@ -297,7 +412,7 @@ def build_enzyme_model():
 # SAMPLING
 # =============================================================================
 
-def run_inference(n_samples=2000, n_chains=4, target_accept=0.99):
+def run_inference(n_samples=2000, n_chains=4, target_accept=0.99, observed_data: Optional[Dict] = None):
     """
     Run Bayesian inference with enzyme model.
     
@@ -322,8 +437,10 @@ def run_inference(n_samples=2000, n_chains=4, target_accept=0.99):
     print()
     
     # Build model
+    if pm is None or az is None:
+        raise ImportError("pymc and arviz are required to run inference; please install them in your environment.")
     print("Building model...")
-    model = build_enzyme_model()
+    model = build_enzyme_model(observed_data=observed_data)
     
     # Sample
     print(f"Sampling: {n_samples} × {n_chains} chains...")
@@ -337,7 +454,8 @@ def run_inference(n_samples=2000, n_chains=4, target_accept=0.99):
             chains=n_chains,
             target_accept=target_accept,
             return_inferencedata=True,
-            random_seed=42
+            random_seed=42,
+            idata_kwargs={"log_likelihood": True}
         )
         
         # Posterior predictive
@@ -411,20 +529,46 @@ def analyze_results(idata):
     print(f"P(ξ_acute < ξ_chronic) = {p_acute_less:.4f}")
     print()
     
+    # Determine observed vectors from idata if available (supports larger dataset)
+    obs = getattr(idata, 'observed_data', None)
+    if obs is not None and 'NAA_obs' in obs:
+        naa_obs_vec = obs['NAA_obs'].values
+        # Flatten to 1D (length 3 expected)
+        naa_obs_vec = np.array(naa_obs_vec).ravel()
+    else:
+        naa_obs_vec = NAA_OBS
+    if obs is not None and 'Cho_obs' in obs:
+        cho_obs_vec = np.array(obs['Cho_obs'].values).ravel()
+    else:
+        cho_obs_vec = None
+
     # Prediction errors
     ppc = idata.posterior_predictive
     NAA_pred_mean = ppc['NAA_obs'].mean(dim=['chain', 'draw']).values
-    Cho_pred_mean = ppc['Cho_obs'].mean(dim=['chain', 'draw']).values
-    
-    NAA_errors = 100 * (NAA_pred_mean - NAA_OBS) / NAA_OBS
-    Cho_errors = 100 * (Cho_pred_mean - CHO_OBS) / CHO_OBS
-    
+    NAA_pred_mean = np.array(NAA_pred_mean).ravel()
+    NAA_errors = 100 * (NAA_pred_mean - naa_obs_vec) / naa_obs_vec
+
+    if 'Cho_obs' in ppc:
+        Cho_pred_mean = np.array(ppc['Cho_obs'].mean(dim=['chain', 'draw']).values).ravel()
+    else:
+        Cho_pred_mean = None
+
     print("Prediction Errors:")
-    print(f"  {'Condition':12s}  {'NAA Error':>12s}  {'Cho Error':>12s}")
-    print("  " + "-" * 40)
-    for i, cond in enumerate(CONDITIONS):
-        print(f"  {cond:12s}  {NAA_errors[i]:>11.2f}%  {Cho_errors[i]:>11.2f}%")
-    print()
+    if cho_obs_vec is not None and Cho_pred_mean is not None:
+        print(f"  {'Phase':12s}  {'NAA Error':>12s}  {'Cho Error':>12s}")
+        print("  " + "-" * 40)
+        phases = ['Control', 'Acute', 'Chronic']
+        Cho_errors = 100 * (Cho_pred_mean - cho_obs_vec) / cho_obs_vec
+        for i, ph in enumerate(phases):
+            print(f"  {ph:12s}  {NAA_errors[i]:>11.2f}%  {Cho_errors[i]:>11.2f}%")
+        print()
+    else:
+        print(f"  {'Phase':12s}  {'NAA Error':>12s}")
+        print("  " + "-" * 26)
+        phases = ['Control', 'Acute', 'Chronic']
+        for i, ph in enumerate(phases):
+            print(f"  {ph:12s}  {NAA_errors[i]:>11.2f}%")
+        print()
     
     # Comparison to v3.6
     print("\n" + "=" * 80)
@@ -443,7 +587,11 @@ def analyze_results(idata):
     print()
     
     # Model comparison
-    rms_error = np.sqrt(np.mean(NAA_errors**2 + Cho_errors**2))
+    if cho_obs_vec is not None and Cho_pred_mean is not None:
+        Cho_errors = 100 * (Cho_pred_mean - cho_obs_vec) / cho_obs_vec
+        rms_error = np.sqrt(np.mean(NAA_errors**2 + Cho_errors**2))
+    else:
+        rms_error = np.sqrt(np.mean(NAA_errors**2))
     print(f"RMS Error: {rms_error:.2f}%")
     print()
     
@@ -466,6 +614,8 @@ def plot_results(idata, output_dir='results/enzyme_v4'):
         Output directory for figures
     """
     
+    if plt is None:
+        raise ImportError("matplotlib is required for plotting; please install matplotlib.")
     output_path = Path(output_dir)
     output_path.mkdir(parents=True, exist_ok=True)
     
@@ -524,11 +674,45 @@ def plot_results(idata, output_dir='results/enzyme_v4'):
 # MAIN
 # =============================================================================
 
-def main():
-    """Run complete enzyme model inference."""
-    
+def main(argv: Optional[List[str]] = None):
+    """Run complete enzyme model inference.
+
+    CLI options:
+      --use-group-data       Use larger dataset (group summary) instead of fixed clinical triplet
+      --data-csv PATH        Path to CRITICAL_STUDIES_COMPLETE_DATA.csv
+      --region NAME          Brain region to filter (default: Basal_Ganglia)
+      --studies LIST         Comma-separated study names to include (default: Young2014_Spudich,Sailasuta2012)
+      --samples N            Samples per chain (default: 2000)
+      --chains N             Number of chains (default: 4)
+      --target-accept X      NUTS target accept (default: 0.99)
+    """
+
+    ap = argparse.ArgumentParser(description='v4 Enzyme model with optional larger dataset ingestion')
+    ap.add_argument('--use-group-data', action='store_true', help='Use group-level larger dataset (BG ratios)')
+    ap.add_argument('--data-csv', type=str, default=str(Path('data/extracted/CRITICAL_STUDIES_COMPLETE_DATA.csv')))
+    ap.add_argument('--region', type=str, default='Basal_Ganglia')
+    ap.add_argument('--studies', type=str, default='Young2014_Spudich,Sailasuta2012')
+    ap.add_argument('--samples', type=int, default=2000)
+    ap.add_argument('--chains', type=int, default=4)
+    ap.add_argument('--target-accept', type=float, default=0.99)
+    args = ap.parse_args(argv)
+
+    observed_data = None
+    if args.use_group_data:
+        studies = [s.strip() for s in args.studies.split(',') if s.strip()]
+        print("Loading group-level data:")
+        print(f"  CSV:     {args.data_csv}")
+        print(f"  Region:  {args.region}")
+        print(f"  Studies: {studies}")
+        observed_data = load_group_summary(args.data_csv, region=args.region, studies=studies)
+        # Report summary
+        print("Group summary (BG ratios):")
+        for i, ph in enumerate(['Control', 'Acute', 'Chronic']):
+            print(f"  {ph:<7}: NAA={observed_data['NAA_obs'][i]:.3f} (SE≈{observed_data['NAA_se'][i]:.3f}), "
+                  f"Cho={observed_data['Cho_obs'][i]:.3f} (SE≈{observed_data['Cho_se'][i]:.3f}), N={observed_data['N'][i]}")
+
     # Run inference
-    idata = run_inference(n_samples=2000, n_chains=4)
+    idata = run_inference(n_samples=args.samples, n_chains=args.chains, target_accept=args.target_accept, observed_data=observed_data)
     
     # Analyze results
     summary = analyze_results(idata)
@@ -537,8 +721,10 @@ def main():
     output_dir = Path('results/enzyme_v4')
     output_dir.mkdir(parents=True, exist_ok=True)
     
-    idata.to_netcdf(output_dir / 'trace_v4.nc')
-    summary.to_csv(output_dir / 'summary_v4.csv')
+    # Tag outputs if group data used
+    suffix = '_group' if observed_data is not None else ''
+    idata.to_netcdf(output_dir / f'trace_v4{suffix}.nc')
+    summary.to_csv(output_dir / f'summary_v4{suffix}.csv')
     
     # Plot results
     plot_results(idata, output_dir=str(output_dir))

@@ -1,225 +1,170 @@
-# Noise-Mediated Neuroprotection in Acute HIV
-
-
-**Computational Study suggests mechanism for the 40-year Acute Protective Paradox in HIV Neuroscience**
-
-## Overview
-
-This repository contains code, data, and analyses for demonstrating that quantum coherence mechanisms explain why 70-75% of acute HIV patients maintain normal cognition despite massive neuroinflammation, while chronic patients develop progressive decline.
-
-### Key Findings
-
-- **Main Analysis** (Bayesian v3.6): Definitive evidence that noise correlation length (ξ) differs between acute and chronic HIV (P > 0.999)
-- **External Validation** (Enzyme v4): Independent validation via direct enzyme kinetics
-- **Regional Analysis**: Evolutionary pattern showing older brain regions have optimal protection
-- **Clinical Impact**: First mechanistic explanation for well-established clinical paradox
-
-### Repository Structure
-
-📊 **quantum/** - External validation (enzyme kinetics, regional analysis)  
-📈 **results/** - Main Bayesian analysis (v3.6)  
-📁 **data/** - All input data (group-level + individual patient data)  
-
-**See [PROJECT_STRUCTURE.md](PROJECT_STRUCTURE.md) for complete details**
-
-## Quick Start
-
-See [QUICKSTART.md](QUICKSTART.md) for instructions to reproduce all analyses.
-
-## Citation
-
-[Manuscript in preparation for Nature Communications]
-
-## Technical Details
-
-Includes quantum coherence simulator for microtubular structures with stochastic Schrödinger equation (SSE) modeling of Tegmark-style dephasing as spatially-varying, cytokine-modulated noise.
-=======
 ![Python](https://img.shields.io/badge/python-3.9+-blue.svg)
 ![PyMC](https://img.shields.io/badge/PyMC-5.x-orange.svg)
 ![License](https://img.shields.io/badge/license-MIT-green.svg)
 
-**Computational Research Suggesting a Mechanistic Solution for the 40-year Acute Protective Paradox in HIV Neuroscience**
+# Noise-Mediated Neuroprotection in Acute HIV
+
+Computational research suggesting a mechanistic solution for the 40-year Acute Protective Paradox in HIV neuroscience.
 
 ## Overview
 
-This repository contains code, data, and analyses demonstrating that quantum coherence mechanisms explain why 70-75% of acute HIV patients maintain normal cognition despite massive neuroinflammation, while chronic patients develop progressive cognitive decline with lower inflammation levels.
+This repository contains code, data, and analyses demonstrating that quantum coherence mechanisms explain why 70–75% of acute HIV patients maintain normal cognition despite massive neuroinflammation, while chronic patients develop progressive cognitive decline with lower inflammation.
 
 ### The Paradox
 
-For 40 years, HIV neuroscience has documented a clinical paradox:
-- **Acute HIV** (highest viral loads, peak inflammation): 70-75% maintain normal cognition
-- **Chronic HIV** (lower inflammation, effective treatment): Progressive cognitive decline
-
-Despite extensive epidemiological data across 135+ studies and >5,000 patients, no mechanistic explanation existed until now.
+- Acute HIV (highest viral loads, peak inflammation): 70–75% maintain normal cognition
+- Chronic HIV (lower inflammation, effective treatment): Progressive cognitive decline
 
 ### Our Solution
 
-We propose that inflammatory **noise correlation length** (ξ) modulates neuronal metabolism through microtubule quantum coherence:
-- **Shorter correlation lengths** (acute HIV) → Paradoxically neuroprotective
-- **Longer correlation lengths** (chronic HIV) → Metabolic vulnerability
+Inflammatory noise correlation length (ξ) modulates neuronal metabolism via microtubule quantum coherence:
+- Shorter correlation lengths (acute HIV) → neuroprotective (noise decorrelation)
+- Longer correlation lengths (chronic HIV) → metabolic vulnerability (correlated noise)
 
 ### Key Findings
 
-1. **Main Analysis (Bayesian v3.6)**: 
-   - Definitive evidence: P(ξ_acute < ξ_chronic) > 0.999
-   - Protection exponent: β_ξ = 1.89 ± 0.25 (nonlinear mechanism)
-   - Model prediction accuracy: <2% error for NAA
+1. Main Analysis (Bayesian v3.6)
+   - P(ξ_acute < ξ_chronic) > 0.999
+   - Protection exponent β_ξ = 1.89 ± 0.25
+   - NAA error < 2%
+2. External Validation (Enzyme v4): independent enzyme kinetics approach confirms ξ
+3. Individual-Level Validation (Valcour 2015, n=62): significant acute NAA elevation
+4. Regional Analysis: evolution-consistent protection differences
 
-2. **External Validation (Enzyme v4)**:
-   - Independent enzyme kinetics approach
-   - Confirms ξ values within 5% of main model
-   - No shared model structure with v3.6
+---
 
-3. **Individual-Level Validation**:
-   - n=62 acute HIV patients (Valcour 2015)
-   - Statistically significant NAA elevation (+7.7%, p=0.0317)
-   - Validates paradox at individual patient level
+## Where is the code?
 
-4. **Regional/Evolutionary Analysis**:
-   - Older brain structures (500M years) show optimal protection
-   - Newer regions (frontal cortex) maximally vulnerable
-   - Suggests evolutionary-scale optimization
+Use these entry points depending on what you want to do:
 
-## Repository Structure
+- Publication figures (root):
+  - gen_fig2.py – Posterior distributions (needs RUN_DATA_DIR pointing to v3.6 runs)
+  - gen_fig3.py – Model fit to group constraints (BG)
+  - gen_fig4.py – WAIC/LOO comparison from traces (auto-discovers traces)
+  - gen_fig5.py – K-fold cross-validation (auto-discovers latest Valcour CV)
 
-```
-📦 noise_decorrelation_HIV/
-├── 📊 quantum/              # External validation & regional analyses
-│   └── results/
-│       ├── enzyme_v4/      # Independent enzyme kinetics validation
-│       ├── regional_v1/    # Evolutionary protection analysis
-│       └── model_comparison_*/ # Ablation studies
-│
-├── 📈 results/              # Main Bayesian inference
-│   └── bayesian_v3_6/      # PRIMARY RESULTS FOR MANUSCRIPT
-│
-└── 📁 data/
-    ├── extracted/          # Group-level MRS data (n=3 model inputs)
-    ├── individual/         # Patient-level validation data
-    └── raw/               # Original source materials
-```
+- Main Bayesian model (v3.6):
+  - quantum/quantum/bayesian_v3_6_corrected_local.py – primary script to reproduce results
+  - quantum/quantum/bayesian_v3_6_original.py – original BG-only variant
+  - Makefile targets: bayes-v36, bayes-v36-no-valcour, bayes-v36-regions-*, bayes-v36-loro-auto
 
-**See [PROJECT_STRUCTURE.md](PROJECT_STRUCTURE.md) for complete documentation.**
+- Model comparison utilities:
+  - quick_waic.py, quick_waic_loo.py – compute WAIC/PSIS-LOO over traces
+  - inspect_waic.py – inspect WAIC/LOO interactively
+
+- Calibrated mechanistic models (quantum → MRS):
+  - final_calibrated_model.py (root wrapper) → quantum/final_calibrated_model.py
+    - python -m final_calibrated_model (validation + ξ dependence plot)
+  - final_calibrated_model_v2.py (root and quantum/) – enhanced with compensation
+
+- Enzyme kinetics (external validation, mechanistic):
+  - models/bayesian_enzyme_v4.py – PyMC model using enzyme_kinetics forward model
+  - enzyme_kinetics.py (root) – lightweight API used by v4
+
+  Run v4 with the larger group-level dataset (BG ratios):
+
+  ```bash
+  # From repo root
+  python models/bayesian_enzyme_v4.py \
+      --use-group-data \
+      --data-csv data/extracted/CRITICAL_STUDIES_COMPLETE_DATA.csv \
+      --region Basal_Ganglia \
+      --studies Young2014_Spudich,Sailasuta2012 \
+      --samples 1000 --chains 4 --target-accept 0.99
+  ```
+  This ingests the larger dataset, builds the v4 enzyme model consistent with v2’s calibration, and saves results under results/enzyme_v4 (trace_v4_group.nc, summary_v4_group.csv). Cho is optional; if absent in the CSV, the model fits NAA-only.
+
+- Ratios comparison pipeline (NAA/Cr, Cho/Cr):
+  - quantum/quantum/pipeline_ratio.py – loads curated ratio datasets and produces results/summary
+
+- Data and results locations:
+  - data/extracted, data/individual, data/raw – inputs
+  - quantum/quantum/results_v3_6 – run artifacts (traces, summaries, figures)
+  - results/bayesian_v3_6 – consolidated outputs for quick viewing
+
+See PROJECT_STRUCTURE.md for a complete tree and descriptions.
+
+---
 
 ## Quick Start
 
-### Setup
+See QUICKSTART.md for full reproduction steps. Short version:
+
 ```bash
-git clone https://github.com/TheonlyqueenAC/noise_decorrelation_HIV.git
-cd noise_decorrelation_HIV
 python3 -m venv .venv
 source .venv/bin/activate
 pip install pymc arviz numpy scipy pandas matplotlib seaborn
 ```
 
-### View Main Results
+View main results:
+
 ```bash
-# Parameter estimates (Bayesian v3.6)
 cat results/bayesian_v3_6/summary.csv
-
-# Model predictions vs observations
 cat results/bayesian_v3_6/posterior_predictive.csv
-
-# Figures
-open results/ULTIMATE_COMPREHENSIVE_ANALYSIS.png
 ```
 
-### Run External Validation
+Run calibrated model(s):
+
 ```bash
-cd quantum/
-python bayesian_enzyme_v4.py
-# Outputs to quantum/results/enzyme_v4/
+python -m final_calibrated_model
+python final_calibrated_model_v2.py
 ```
 
-**See [QUICKSTART.md](QUICKSTART.md) for complete reproduction instructions.**
+Generate figures (requires RUN_DATA_DIR for v3.6 traces unless default layout is present):
 
-## Data Sources
-
-All data extracted from published studies:
-- **Sailasuta et al. 2012** - RV254 acute HIV cohort MRS
-- **Valcour et al. 2015** - SEARCH 010/011 longitudinal study
-- **Young et al. 2014** - Perinatal HIV exposure MRS
-- **Chang et al. 2002** - Chronic HIV neuroimaging
-- **Dahmani et al. 2021** - Meta-analysis (135+ studies)
-
-Complete data available in `data/` directory. See `data/README.md` for details.
-
-## Statistical Evidence
-
-### Primary Hypothesis Test
-- **H₀**: ξ_acute ≥ ξ_chronic (no protective mechanism)
-- **H₁**: ξ_acute < ξ_chronic (protective paradox)
-- **Evidence**: P(H₁ | data) > 0.999
-- **Bayes Factor**: BF₁₀ > 1000 (decisive evidence)
-
-### Effect Sizes
-- ξ_acute = 0.567 ± 0.068 nm
-- ξ_chronic = 0.785 ± 0.073 nm
-- Difference: 27.8% shorter in acute (95% HDI: 18.5% - 36.2%)
-- Protection exponent: β_ξ = 1.89 ± 0.25
-
-### Model Validation
-- NAA prediction error: <2% across all conditions
-- Posterior predictive checks: All observations within 94% HDI
-- External validation: Independent model confirms findings
-
-## Technical Implementation
-
-### Quantum Coherence Simulator
-- Stochastic Schrödinger equation (SSE) framework
-- Tegmark-style dephasing with spatially-varying noise
-- Cytokine-modulated correlation length
-- Microtubule structure modeling
-
-### Bayesian Inference
-- PyMC probabilistic programming
-- NUTS sampler (4 chains, 2000 draws)
-- Comprehensive convergence diagnostics (R̂ < 1.01)
-- ArviZ for posterior analysis
-
-### Enzyme Kinetics Integration
-- Direct coupling to aspartoacylase activity
-- No phenomenological compensation terms
-- Independent validation of quantum effects
-
-## Manuscript Status
-
-**Target Journal**: Nature Communications (Impact Factor: 16.6)
-
-**Positioning**: First mechanistic explanation for well-established 40-year clinical paradox, not speculative quantum biology.
-
-**Testable Predictions**: 5 experimental designs with specific costs and timelines.
-
-## Citation
-
-Manuscript in preparation for Nature Communications.
-
-If you use this code or data, please cite:
-```
-[Citation will be added upon publication]
+```bash
+export RUN_DATA_DIR="$(pwd)/quantum/quantum/results_v3_6"
+python gen_fig2.py
+python gen_fig4.py
+python gen_fig5.py
 ```
 
-## License
+v3.6 helper Make targets (run from repo root):
 
-MIT License - See LICENSE file for details.
-
-## Contact
-
-**A.C. Demidont, DO**  
-Nyx Dynamics LLC  
-Infectious Diseases Physician & Computational Researcher
-
-For questions or collaboration inquiries:
-- GitHub Issues: [Open an issue](https://github.com/TheonlyqueenAC/noise_decorrelation_HIV/issues)
-- Email: [Your email if you want to include it]
-
-## Acknowledgments
-
-Data from the RV254/SEARCH studies (Sailasuta, Valcour et al.)  
-Statistical methodology guidance from MIT MicroMasters program  
-Computational infrastructure: [Your institution/resources]
+```bash
+make bayes-v36
+make bayes-v36-no-valcour
+make bayes-v36-regions-bg
+make bayes-v36-regions-all
+make bayes-v36-loro-auto
+make bayes-v36-waic
+```
 
 ---
 
-*"Chaos can protect. Evolution discovered this 500 million years ago."*
->>>>>>> d68e1f5 (docs: Add comprehensive project documentation)
+## Last Successful Run (marker)
+
+The last successful v3.6 run establishing the evolutionary hypothesis as valid is:
+
+- Timestamp: 20251117_103400
+- Run name: with_valcour_BG_nopseudo
+- Marker file: quantum/quantum/results_v3_6/runs/LAST_SUCCESSFUL_RUN.json
+
+Most figure scripts will announce this marker on start when RUN_DATA_DIR points to quantum/quantum/results_v3_6 (default). If your artifacts live elsewhere, set:
+
+```bash
+export RUN_DATA_DIR="$(pwd)/quantum/quantum/results_v3_6"
+```
+
+## Data Sources
+
+Published studies include Sailasuta 2012, Valcour 2015, Young 2014, Chang 2002, and Dahmani 2021. See data/ for files and provenance.
+
+## Statistical Evidence (summary)
+
+- P(ξ_acute < ξ_chronic) > 0.999, β_ξ ≈ 1.89 ± 0.25
+- NAA error < 2%; PPC within ~94% HDI
+
+## License
+
+MIT License – see LICENSE.
+
+## Contact
+
+A.C. Demidont, DO — Nyx Dynamics LLC
+
+Open an issue on GitHub for questions.
+
+---
+
+“Chaos can protect. Evolution discovered this 500 million years ago.”

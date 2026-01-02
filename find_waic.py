@@ -1,0 +1,1 @@
+python -c "import arviz as az; t=az.from_netcdf('trace_with_valcour_waic.nc'); print('Divergences:', t.sample_stats.diverging.sum().values)"

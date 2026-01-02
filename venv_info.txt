@@ -5,6 +5,108 @@ Recommended: use the Makefile targets where possible. All commands below assume 
 Note: For output locations (datafiles/, figures/, results/ and Desktop mirrors), see the root README.md under "Outputs" — the "Where are outputs saved?" subsection.
 
 =================================================================================
+BAYESIAN v3.6 (BG ratios; VL‑free primary) — HOW TO RUN FROM TERMINAL
+=================================================================================
+
+Summary:
+- Primary model uses BG metabolite/Cr ratios; VL is fully removed from the core model.
+- Valcour auxiliary (time or time+VL) is fully decoupled and optional.
+- Outputs are saved to quantum/quantum/results_v3_6/runs/<run_id>/ with figures/ subfolder.
+
+Quick start (Makefile targets):
+
+1) With Valcour included (default acute pool):
+    make bayes-v36
+
+1b) PRESERVED ORIGINAL (O2): BG-only, no multi‑region augmentation, VL‑free primary
+    make bayes-v36-original
+
+    Notes (original O2 vs adjunctive):
+    - Scope: BG-only primary inputs (Valcour individuals + BG group means only)
+    - No multi‑region group constraints from meta CSVs
+    - VL is completely removed from the primary model (auxiliary Valcour plasma/CSF analyses remain decoupled)
+    - Historical behavior preserved, including pseudo‑observations for Young/Sailasuta Acute
+    - Outputs are saved under results_v3_6/runs/<run_id>/original/
+
+2) Excluding Valcour individuals (ablation):
+    make bayes-v36-no-valcour
+
+3) Validation only (Valcour manuscript style; p-values + Fig.2) and exit:
+    make bayes-v36-validate
+
+4) Valcour auxiliary (fully decoupled) — time-only:
+    make bayes-v36-aux-time
+
+5) Valcour auxiliary (fully decoupled) — time + VL covariate:
+    make bayes-v36-aux-time-vl
+
+6) Density overlay vs a prior run’s NetCDF trace (provide TRACE=…):
+    make bayes-v36-overlay TRACE=quantum/quantum/results_v3_6/runs/<run_no_valcour>/trace_no_valcour.nc
+
+7) WAIC/PSIS-LOO comparison for traces:
+    # Auto-discover the 5 most recent traces under results_v3_6/runs/
+    make bayes-v36-waic
+
+    # Or provide an explicit comma-separated list of .nc trace files
+    make bayes-v36-waic TRACE_LIST=quantum/quantum/results_v3_6/runs/<runA>/trace_with_valcour.nc,quantum/quantum/results_v3_6/runs/<runB>/trace_no_valcour.nc
+
+8) Leave-one-region-out (LORO) sweep for curated group constraints (adjunctive, multi-region):
+    # Regions prioritized in this order: BG, FWM, FGM, AC ("CG" maps to AC)
+    make bayes-v36-loro-auto
+
+    # Each run excludes one region via --exclude-region <REGION>
+    # Artifacts are tagged, e.g., _loro_BG, _loro_FWM, etc.
+
+Manual commands (if not using Makefile):
+
+From repo root:
+    python quantum/quantum/bayesian_v3_6_corrected_local.py \
+      --tag with_valcour \
+      --plot-densities --plots-extended
+
+Exclude Valcour:
+    python quantum/quantum/bayesian_v3_6_corrected_local.py \
+      --exclude-valcour \
+      --tag no_valcour \
+      --plot-densities --plots-extended
+
+Use a stable run folder (no timestamp):
+    python quantum/quantum/bayesian_v3_6_corrected_local.py \
+      --exclude-valcour \
+      --run-label ablation_no_valcour --no-timestamp \
+      --plot-densities --plots-extended
+
+Overlay densities (KDE) vs the ablation trace:
+    python quantum/quantum/bayesian_v3_6_corrected_local.py \
+      --tag with_valcour \
+      --plot-densities --plots-extended \
+      --compare-trace quantum/quantum/results_v3_6/runs/ablation_no_valcour/trace_no_valcour.nc
+
+Notes:
+- Always run from the repository root to avoid path duplication (do not prepend extra “quantum/” when already in that folder).
+- Key data files must exist under quantum/quantum/data/curated/… (Valcour xlsx, Chang csv, ratio csvs). See the script banner for detected paths.
+- Figures such as posterior KDEs, PPC bars, forest plots, and group constraints overlays are saved in the run’s figures/ directory.
+- Original vs Adjunctive at a glance:
+  - Original (make bayes-v36-original): BG-only, VL-free primary, no multi-region constraints, historical behavior; artifacts in runs/<run_id>/original/
+  - Adjunctive (make bayes-v36): VL-free primary with optional multi-region group constraints, decoupled Valcour auxiliary (plasma/CSF), extended audits/plots.
+
+Additional CLI switches and diagnostics:
+
+- Region scope and exclusion for curated constraints (adjunctive path):
+  - `--regions {BG,all}`: restrict to BG-only or include all regions (default all).
+  - `--exclude-region <REGION>`: exclude a specific region from curated constraints (case-insensitive). Common values: BG, FWM, FGM, AC (CG maps to AC).
+
+- Posterior predictive by bins (acute tails):
+  After each run, the script now saves a quartile-binned PPC diagnostic for acute NAA/Cr:
+  - CSV: `ppc_bins<tag>.csv`
+  - Figure: `figures/ppc_bins<tag>.png`
+  This checks that the Student‑t acute likelihood captures lower/upper tails.
+
+- WAIC/LOO helper:
+  The helper script `quantum/quantum/utils/waic_loo_helper.py` computes WAIC and PSIS‑LOO for one or more traces and saves:
+  - `waic_loo_per_model.csv`, `waic_compare.csv`, `loo_compare.csv` under the latest run folder (or CWD).
+
+=================================================================================
 ENHANCED MODEL v2.0 (NEW)
 =================================================================================
 

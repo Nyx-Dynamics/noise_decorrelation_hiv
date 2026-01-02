@@ -1,0 +1,49 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+authors:
+  - family-names: "Demidont"
+    given-names: "A.C."
+    orcid: "https://orcid.org/0000-0000-0000-0000"  # Replace with your actual ORCID if you have one
+    affiliation: "Nyx Dynamics LLC"
+title: "Noise-Mediated Neuroprotection in Acute HIV: A Quantum Coherence Framework"
+version: 1.0.0
+doi: 10.5281/zenodo.XXXXXXX  # Replace with actual Zenodo DOI after creating release
+date-released: 2024-11-15
+url: "https://github.com/TheonlyqueenAC/noise_decorrelation_HIV"
+repository-code: "https://github.com/TheonlyqueenAC/noise_decorrelation_HIV"
+license: MIT
+keywords:
+  - HIV
+  - neurocognitive disorders
+  - quantum coherence
+  - Bayesian inference
+  - neuroprotection
+  - noise correlation
+  - microtubules
+  - acute HIV
+abstract: >-
+  This repository contains complete code, data, and analyses demonstrating that 
+  quantum coherence mechanisms explain the 40-year "acute protective paradox" 
+  in HIV neuroscience. We show that inflammatory noise correlation length (ξ) 
+  modulates neuronal metabolism through microtubule quantum coherence, with 
+  shorter correlation lengths providing paradoxical neuroprotection during acute 
+  HIV infection. Includes Bayesian v3.6 analysis (primary results), independent 
+  enzyme kinetics validation, regional evolutionary analysis, and complete MRS 
+  data from published studies.
+references:
+  - type: article
+    authors:
+      - family-names: "Sailasuta"
+        given-names: "N."
+      - family-names: "Valcour"
+        given-names: "V."
+    title: "Neuroinflammation and Metabolite Changes in Acute HIV Infection"
+    year: 2012
+    journal: "Journal of Neuroimmune Pharmacology"
+  - type: article
+    authors:
+      - family-names: "Valcour"
+        given-names: "V."
+    title: "Central Nervous System Viral Invasion and Inflammation During Acute HIV Infection"
+    year: 2015
+    journal: "The Journal of Infectious Diseases"

@@ -1,9 +1,28 @@
-.PHONY: help run-local run-corr validate smoke tegmark-compare phase-sweep demo-config demo-run viz-coherence viz-summary viz-phase-sweep viz-kernel viz-latest-coherence viz-latest-summary viz-latest-kernel viz-geometry compare-geometry mc-run mc-viz interpret-run interpret-phase interpret-mc mc-smoke bayes-v2-run bayes-v2-smoke bayes-v2-validate model-v2-validate model-v2-viz
+.PHONY: help run-local run-corr validate smoke tegmark-compare phase-sweep demo-config demo-run viz-coherence viz-summary viz-phase-sweep viz-kernel viz-latest-coherence viz-latest-summary viz-latest-kernel viz-geometry compare-geometry mc-run mc-viz interpret-run interpret-phase interpret-mc mc-smoke bayes-v2-run bayes-v2-smoke bayes-v2-validate model-v2-validate model-v2-viz bayes-v36 bayes-v36-original bayes-v36-no-valcour bayes-v36-validate bayes-v36-aux-time bayes-v36-aux-time-vl bayes-v36-aux-plasma bayes-v36-aux-csf bayes-v36-aux-both bayes-v36-overlay bayes-v36-regions-bg bayes-v36-regions-all bayes-v36-waic bayes-v36-loro-auto bayes-v36-ic-compare bayes-v36-loso bayes-v36-valcour-cv
 
 PY=python
 
 help:
 	@echo "Microtubule_Simulation — terminal commands"
+	@echo ""
+	@echo "=== BAYESIAN v3.6 (BG ratios; VL-free primary) ==="
+	@echo "  make bayes-v36                 # Run v3.6 with Valcour included (timestamped run folder)"
+	@echo "  make bayes-v36-original       # Run preserved ORIGINAL v3.6 (BG-only; no multi-region; VL-free primary)"
+	@echo "  make bayes-v36-no-valcour      # Run v3.6 excluding Valcour acute individuals"
+	@echo "  make bayes-v36-overlay TRACE=path  # Re-run v3.6 and overlay densities vs a given NetCDF trace"
+	@echo "  make bayes-v36-validate        # Validation (p-values + Fig.2) and exit"
+	@echo "  make bayes-v36-regions-bg      # Run v3.6 with curated group constraints restricted to BG only (--regions BG)"
+	@echo "  make bayes-v36-regions-all     # Run v3.6 with curated group constraints from all regions (--regions all)"
+	@echo "  make bayes-v36-waic            # Compute WAIC/LOO for traces (TRACE_LIST=path1.nc,path2.nc or auto)"
+	@echo "  make bayes-v36-loro-auto       # Leave-one-region-out sweep (BG,FWM,FGM,AC) on curated constraints"
+	@echo "  make bayes-v36-ic-compare TRACE_WITH=... TRACE_NO=...  # Compare IC with SE (core, harmonized)"
+	@echo "  make bayes-v36-loso            # Leave-one-source-out IC sweep (curated sources)"
+	@echo "  make bayes-v36-valcour-cv K=5  # K-fold CV on Valcour acute (predictive alignment)"
+	@echo "  make bayes-v36-aux-time        # Run Valcour auxiliary (time-only), decoupled"
+	@echo "  make bayes-v36-aux-time-vl     # Run Valcour auxiliary (time+VL), decoupled"
+	@echo "  make bayes-v36-aux-plasma      # Run Valcour auxiliary (plasma VL arm), decoupled"
+	@echo "  make bayes-v36-aux-csf         # Run Valcour auxiliary (CSF VL arm), decoupled"
+	@echo "  make bayes-v36-aux-both        # Run Valcour auxiliary (plasma+CSF arms), decoupled"
 	@echo ""
 	@echo "=== ENHANCED MODEL v2.0 (NEW) ==="
 	@echo "  make bayes-v2-run              # Run enhanced Bayesian inference (3000 samples)"
@@ -51,6 +70,142 @@ help:
 	@echo "  make commit-msg         # Generate git commit message"
 	@echo "  make pip-freeze         # Export exact package versions"
 	@echo "  make clean-venv         # Remove virtual environment"
+
+# =============================================================================
+# BAYESIAN v3.6 (BG RATIOS; VL-FREE PRIMARY) — NEW
+# =============================================================================
+
+V36_SCRIPT=quantum/quantum/bayesian_v3_6_corrected_local.py
+V36_ORIGINAL=quantum/quantum/bayesian_v3_6_original.py
+WAIC_HELPER=quantum/quantum/utils/waic_loo_helper.py
+IC_COMPARE=compare_ic_with_se.py
+LOSO_HELPER=quantum/quantum/utils/loso_ic.py
+VALCOUR_CV=quantum/quantum/utils/valcour_kfold_cv.py
+
+# Default run with Valcour included (Acute pool includes Valcour 0/4/12/24)
+bayes-v36:
+	$(PY) $(V36_SCRIPT) \
+		--tag with_valcour \
+		--plot-densities --plots-extended
+
+# Preserved ORIGINAL (O2): BG-only, no multi-region augmentation, VL-free primary
+bayes-v36-original:
+	$(PY) $(V36_ORIGINAL) \
+		--tag original \
+		--plot-densities --plots-extended
+
+# Ablation: exclude Valcour individuals from Acute pool
+bayes-v36-no-valcour:
+	$(PY) $(V36_SCRIPT) \
+		--exclude-valcour \
+		--tag no_valcour \
+		--plot-densities --plots-extended
+
+# Regions scope: restrict curated group constraints to BG only
+bayes-v36-regions-bg:
+	$(PY) $(V36_SCRIPT) \
+		--regions BG \
+		--tag regions_bg \
+		--plot-densities --plots-extended
+
+# Regions scope: include curated group constraints from all regions (default)
+bayes-v36-regions-all:
+	$(PY) $(V36_SCRIPT) \
+		--regions all \
+		--tag regions_all \
+		--plot-densities --plots-extended
+
+# Compute WAIC/LOO from one or more trace NetCDF files.
+# Usage:
+#   make bayes-v36-waic TRACE_LIST=path1.nc,path2.nc[,path3.nc]
+# If TRACE_LIST is empty, auto-discovers up to the 5 most recent traces under results_v3_6/runs/.
+bayes-v36-waic:
+	@if [ -z "$(TRACE_LIST)" ]; then \
+		$(PY) $(WAIC_HELPER) --auto 5; \
+	else \
+		$(PY) $(WAIC_HELPER) --traces $(TRACE_LIST); \
+	fi
+
+# IC compare with SE (harmonized core)
+# Usage:
+#   make bayes-v36-ic-compare TRACE_WITH=path/to/with.nc TRACE_NO=path/to/no.nc
+bayes-v36-ic-compare:
+	@if [ -z "$(TRACE_WITH)" ] || [ -z "$(TRACE_NO)" ]; then \
+		echo "ERROR: Provide TRACE_WITH=... and TRACE_NO=..."; exit 1; \
+	fi
+	$(PY) $(IC_COMPARE) --with-trace $(TRACE_WITH) --no-trace $(TRACE_NO)
+
+# Leave-one-source-out (curated sources) — orchestrates runs and IC comparison
+bayes-v36-loso:
+	$(PY) $(LOSO_HELPER)
+
+# Valcour K-fold CV (acute hold-out predictive alignment)
+# Usage: make bayes-v36-valcour-cv K=5 SEED=123
+K?=5
+SEED?=42
+bayes-v36-valcour-cv:
+	$(PY) $(VALCOUR_CV) --kfold $(K) --seed $(SEED)
+
+# Leave-one-region-out sweep for curated group constraints (adjunctive, multi-region):
+# Regions in priority order: BG, FWM, FGM, AC (CG maps to AC in code)
+bayes-v36-loro-auto:
+	@for R in BG FWM FGM AC; do \
+		echo "[LORO] Excluding region $$R"; \
+		$(PY) $(V36_SCRIPT) \
+			--regions all \
+			--exclude-region $$R \
+			--tag loro_$$R \
+			--plot-densities --plots-extended; \
+	done
+
+# Validation pass (non-Bayesian): p-values and Fig.2-style plots, then exit
+bayes-v36-validate:
+	$(PY) $(V36_SCRIPT) \
+		--validate-valcour --fig2 --week-pvals \
+		--tag valcour_validation
+
+# Auxiliary model (fully decoupled), time-only
+bayes-v36-aux-time:
+	$(PY) $(V36_SCRIPT) \
+		--tag valcour_time \
+		--valcour-aux time
+
+# Auxiliary model (fully decoupled), time+VL (falls back to time if VL unavailable)
+bayes-v36-aux-time-vl:
+	$(PY) $(V36_SCRIPT) \
+		--tag valcour_time_vl \
+		--valcour-aux time+vl
+
+# Auxiliary model (fully decoupled), plasma VL arm
+bayes-v36-aux-plasma:
+	$(PY) $(V36_SCRIPT) \
+		--tag valcour_plasma \
+		--valcour-aux plasma
+
+# Auxiliary model (fully decoupled), CSF VL arm
+bayes-v36-aux-csf:
+	$(PY) $(V36_SCRIPT) \
+		--tag valcour_csf \
+		--valcour-aux csf
+
+# Auxiliary model (fully decoupled), plasma + CSF arms
+bayes-v36-aux-both:
+	$(PY) $(V36_SCRIPT) \
+		--tag valcour_both \
+		--valcour-aux both
+
+# Re-run v3.6 (with Valcour) and overlay densities vs a provided NetCDF trace
+# Usage: make bayes-v36-overlay TRACE=quantum/quantum/results_v3_6/runs/<run_no_valcour>/trace_no_valcour.nc
+bayes-v36-overlay:
+	@if [ -z "$(TRACE)" ]; then \
+		echo "Usage: make bayes-v36-overlay TRACE=path/to/trace_no_valcour.nc"; \
+		echo "Hint: run 'make bayes-v36-no-valcour' first to generate the ablation trace."; \
+		exit 2; \
+	fi
+	$(PY) $(V36_SCRIPT) \
+		--tag with_valcour \
+		--plot-densities --plots-extended \
+		--compare-trace $(TRACE)
 
 # =============================================================================
 # ENHANCED MODEL v2.0 TARGETS (NEW)
