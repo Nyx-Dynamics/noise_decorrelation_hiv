@@ -1,4 +1,4 @@
-# Noise Correlation Length Distinguishes Acute from Chronic HIV Infection
+# Environmental Noise Structure Predicts Neurometabolic Preservation in HIV Infection
 
 ![Python](https://img.shields.io/badge/python-3.9+-blue.svg)
 ![PyMC](https://img.shields.io/badge/PyMC-5.12-orange.svg)

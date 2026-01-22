@@ -1,0 +1,27 @@
+{
+  "metadata": {
+    "title": "Data for: Environmental noise correlation as an evolutionary mechanism for neuroprotection during acute HIV infection",
+    "upload_type": "dataset",
+    "description": "Comprehensive data package supporting manuscript on noise-mediated neuroprotection in acute HIV infection using Bayesian inference on basal ganglia MRS data.",
+    "creators": [
+      {
+        "name": "Demidont, A.C.",
+        "affiliation": "Nyx Dynamics, LLC",
+        "orcid": "0000-0002-9216-8569"
+      }
+    ],
+    "keywords": [
+      "HIV neuroprotection",
+      "noise correlation",
+      "Bayesian inference",
+      "basal ganglia",
+      "magnetic resonance spectroscopy",
+      "NAA metabolism",
+      "evolutionary mechanisms"
+    ],
+    "access_right": "open",
+    "license": "CC-BY-4.0",
+    "version": "v2.8",
+    "language": "eng"
+  }
+}

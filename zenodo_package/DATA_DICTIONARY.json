@@ -1,0 +1,51 @@
+{
+  "summary_*.csv": {
+    "description": "Parameter summaries from Bayesian inference",
+    "columns": {
+      "parameter": "Model parameter name",
+      "mean": "Posterior mean",
+      "sd": "Posterior standard deviation",
+      "hdi_3%": "3% highest density interval",
+      "hdi_97%": "97% highest density interval",
+      "mcse_mean": "Monte Carlo standard error of mean",
+      "mcse_sd": "Monte Carlo standard error of SD",
+      "ess_bulk": "Bulk effective sample size",
+      "ess_tail": "Tail effective sample size",
+      "r_hat": "Gelman-Rubin convergence diagnostic"
+    }
+  },
+  "group_inputs_*.csv": {
+    "description": "Input data for each analysis group",
+    "columns": {
+      "group": "HIV infection phase (control/acute/chronic)",
+      "NAA_Cr_mean": "Mean NAA/Cr ratio",
+      "NAA_Cr_sd": "Standard deviation of NAA/Cr",
+      "Cho_Cr_mean": "Mean Cho/Cr ratio",
+      "Cho_Cr_sd": "Standard deviation of Cho/Cr",
+      "n": "Sample size",
+      "source": "Data source study"
+    }
+  },
+  "posterior_predictive_*.csv": {
+    "description": "Posterior predictive check results",
+    "columns": {
+      "group": "HIV infection phase",
+      "observed": "Observed NAA/Cr value",
+      "predicted_mean": "Predicted mean from model",
+      "predicted_sd": "Predicted standard deviation",
+      "error_percent": "Percentage prediction error",
+      "ppc_pvalue": "Posterior predictive p-value"
+    }
+  },
+  "valcour_*.csv": {
+    "description": "Valcour cohort specific analyses",
+    "columns": {
+      "patient_id": "Anonymized patient identifier",
+      "week": "Weeks since infection",
+      "NAA_Cr": "NAA/Cr ratio measurement",
+      "viral_load": "Plasma viral load (copies/mL)",
+      "cd4_count": "CD4+ T-cell count",
+      "art_status": "Antiretroviral therapy status"
+    }
+  }
+}

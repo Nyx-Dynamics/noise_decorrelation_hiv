@@ -1,0 +1,6 @@
+Study,Phase,Group,n,Region,NAA_value,NAA_SE,Units,Measurement_type
+Chang2002,Early,HIV+,45,BG,8.5,0.14,mM/kg,Absolute
+Chang2002,Control,Control,25,BG,8.4,0.16,mM/kg,Absolute
+Young2014,Acute,PHI,53,BG,1.15,0.01,NAA/Cr_ratio,Ratio
+Young2014,Chronic,CHI,18,BG,1.05,0.014,NAA/Cr_ratio,Ratio
+Young2014,Control,HIV-,19,BG,1.1,0.022,NAA/Cr_ratio,Ratio
