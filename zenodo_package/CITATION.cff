@@ -1,5 +1,5 @@
 cff-version: 1.2.0
-title: Data for: Environmental noise correlation as an evolutionary mechanism for neuroprotection during acute HIV infection
+title: "Environmental Noise Structure Predicts Neurometabolic Preservation in HIV Infection"
 message: If you use this dataset, please cite it as below.
 type: dataset
 authors:
@@ -10,6 +10,6 @@ authors:
     orcid: 'https://orcid.org/0000-0002-9216-8569'
 identifiers:
   - type: doi
-    value: 10.5281/zenodo.17512732
-version: v2.8
-date-released: '2024-11-20'
+    value: 10.5281/zenodo.XXXXXXX
+version: v3.6
+date-released: '2025-01-22'

@@ -25,10 +25,9 @@ All code and data needed to reproduce the analysis are included.
 See 06_code/README.md for installation and usage instructions.
 
 ## License
-CC-BY-4.0
+MIT
 
 ## Citation
 If you use this data, please cite:
-Demidont AC (2024). Data for: Environmental noise correlation as an 
-evolutionary mechanism for neuroprotection during acute HIV infection. 
-Zenodo. https://doi.org/10.5281/zenodo.17512732
+Demidont AC (2025). Environmental Noise Structure Predicts Neurometabolic
+Preservation in HIV Infection. Zenodo. https://doi.org/10.5281/zenodo.XXXXXXX

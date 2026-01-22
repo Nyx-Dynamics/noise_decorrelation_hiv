@@ -120,8 +120,8 @@ All data extracted from published peer-reviewed studies:
 
 ```bibtex
 @article{demidont2025noise,
-  title={Noise Correlation Length Distinguishes Acute from Chronic HIV Infection:
-         A Bayesian Analysis of Neurometabolic Preservation},
+  title={Environmental Noise Structure Predicts Neurometabolic Preservation
+         in HIV Infection},
   author={Demidont, A.C.},
   journal={Nature Communications},
   year={2025},
