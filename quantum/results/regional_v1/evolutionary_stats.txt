@@ -1,0 +1,11 @@
+================================================================================
+ EVOLUTIONARY CORRELATION ANALYSIS
+================================================================================
+
+Pearson correlation:  r = -0.766, p = 0.2340
+Spearman correlation: ρ = -0.800, p = 0.2000
+
+✓ NEGATIVE correlation confirmed:
+  Older brain regions have lower ξ_acute (better protection)
+
+Exponential fit: ξ = 0.53 + 0.13 × exp(-0.0057 × age)

@@ -1,0 +1,17 @@
+{
+  "key_probability": 0.9995,
+  "xi_floor_nm": 0.418,
+  "xi_ceiling_nm": 0.799,
+  "xi_acute_mean": 0.5,
+  "xi_chronic_mean": 0.711,
+  "naa_acute": 1.142,
+  "naa_chronic": 0.939,
+  "astrocyte_compensation": 1.183,
+  "coherence_exponent": 2.061,
+  "model_errors_percent": {
+    "healthy_NAA": -2.85,
+    "acute_NAA": 0.59,
+    "chronic_NAA": -6.54
+  },
+  "interpretation": "Lower coherence in acute HIV creates protective quantum noise"
+}

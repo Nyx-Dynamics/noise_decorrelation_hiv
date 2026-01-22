@@ -1,0 +1,127 @@
+"""
+Regional Hierarchical Bayesian Model
+====================================
+
+This script implements a hierarchical Bayesian model to test the 
+Regional Sensitivity Mapping of the Noise-Mediated Neuroprotection hypothesis.
+
+It uses multi-regional data from Valcour 2015 (BG, FWM, FGM, PGM) 
+to determine if the protection factor (beta_xi) or the noise structure (xi) 
+varies across brain regions.
+"""
+
+import numpy as np
+import pandas as pd
+import pymc as pm
+import arviz as az
+from pathlib import Path
+
+def load_data():
+    base_path = Path(__file__).resolve().parent.parent
+    ind_path = base_path / 'data/individual/VALCOUR_2015_INDIVIDUAL_PATIENTS.csv'
+    
+    if not ind_path.exists():
+        raise FileNotFoundError(f"Missing data file: {ind_path}")
+        
+    df = pd.read_csv(ind_path)
+    
+    # Brain regions mentioned in Valcour 2015
+    regions = {
+        'BG': 'BGNAA',
+        'FWM': 'FWMNAA',
+        'FGM': 'FGMNAA',
+        'PGM': 'PGMNAA'
+    }
+    
+    # References for normalization (from DATA_INVENTORY / Valcour 2015 contexts)
+    # Healthy references: BG ~ 8.76, others assumed similar or from general MRS literature
+    # We use 8.76 as a global reference to match ratios if others aren't specified.
+    ref_naa = 8.76
+    
+    rows = []
+    for _, patient in df.iterrows():
+        p_id = _
+        for reg_code, col in regions.items():
+            if col in df.columns and pd.notna(patient[col]):
+                rows.append({
+                    'patient_id': p_id,
+                    'region': reg_code,
+                    'NAA_ratio': patient[col] / ref_naa,
+                    'phase': 'acute' # Valcour 2015 is an acute cohort
+                })
+    
+    df_long = pd.DataFrame(rows)
+    return df_long
+
+def build_regional_model(df):
+    regions = sorted(df['region'].unique())
+    region_map = {r: i for i, r in enumerate(regions)}
+    region_idx = df['region'].map(region_map).values
+    
+    unique_patients = sorted(df['patient_id'].unique())
+    patient_map = {p: i for i, p in enumerate(unique_patients)}
+    patient_idx = df['patient_id'].map(patient_map).values
+    n_patients = len(unique_patients)
+    
+    with pm.Model() as model:
+        # Global mechanism prior
+        beta_xi_global = pm.Normal('beta_xi_global', mu=1.8, sigma=0.2)
+        
+        # Region-specific effects on beta_xi (is protection stronger in some regions?)
+        beta_xi_offset = pm.Normal('beta_xi_offset', mu=0, sigma=0.2, shape=len(regions))
+        beta_xi_region = pm.Deterministic('beta_xi_region', beta_xi_global + beta_xi_offset)
+        
+        # Noise structure per region (latent xi)
+        # Acute phase xi is generally ~0.55-0.70 nm
+        xi_acute_region = pm.TruncatedNormal('xi_acute_region', mu=0.6, sigma=0.1, lower=0.3, upper=0.9, shape=len(regions))
+        
+        # Reference xi
+        xi_ref = 0.80
+        
+        # Hierarchical patient baseline (accounting for individual differences in NAA)
+        patient_baseline = pm.Normal('patient_baseline', mu=1.0, sigma=0.1, shape=n_patients)
+        
+        # Model error
+        sigma = pm.HalfNormal('sigma', sigma=0.1)
+        
+        # Expected NAA ratio
+        # mu = patient_baseline * (xi_ref / xi_acute_region[region])^beta_xi_region[region]
+        pi_region = (xi_ref / xi_acute_region[region_idx])**beta_xi_region[region_idx]
+        mu = patient_baseline[patient_idx] * pi_region
+        
+        # Likelihood
+        pm.Normal('obs', mu=mu, sigma=sigma, observed=df['NAA_ratio'].values)
+        
+    return model
+
+def main():
+    print("Loading regional data from Valcour 2015...")
+    df = load_data()
+    print(f"Loaded {len(df)} observations across {len(df['region'].unique())} regions.")
+    
+    print("Building regional hierarchical model...")
+    model = build_regional_model(df)
+    
+    print("Sampling...")
+    with model:
+        idata = pm.sample(draws=1000, tune=1000, chains=4, target_accept=0.95, random_seed=42)
+    
+    print("\n--- REGIONAL RESULTS ---")
+    summary = az.summary(idata, var_names=['beta_xi_region', 'xi_acute_region'])
+    print(summary)
+    
+    # Identify region names for clarity
+    regions = sorted(df['region'].unique())
+    for i, region in enumerate(regions):
+        print(f"Index {i}: {region}")
+    
+    # Save results
+    base_path = Path(__file__).resolve().parent.parent
+    out_dir = base_path / 'results/regional_hierarchical_v1'
+    out_dir.mkdir(parents=True, exist_ok=True)
+    az.to_netcdf(idata, str(out_dir / 'trace.nc'))
+    summary.to_csv(out_dir / 'summary.csv')
+    print(f"\nResults saved to {out_dir}")
+
+if __name__ == '__main__':
+    main()

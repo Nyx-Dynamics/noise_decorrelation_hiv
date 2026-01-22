@@ -1,0 +1,20 @@
+================================================================================
+ ENHANCED MODEL WITH COMPENSATORY MECHANISMS - RESULTS
+================================================================================
+
+P(ξ_acute < ξ_chronic) = 0.9995
+
+Posterior Medians:
+  coh_exp: 2.061
+  xi_exp: 0.369
+  deloc_exp: 0.205
+  NAA_base: 1.190
+  k_turnover: 0.023
+  astrocyte_comp: 1.183
+  xi_floor: 0.418 nm
+  xi_ceiling: 0.799 nm
+
+  condition  NAA_pred  Cho_pred  NAA_obs  Cho_obs  error_NAA_%  error_Cho_%
+    healthy  1.073532  0.230224    1.105    0.225    -2.847745     2.321894
+  acute_HIV  1.141683  0.243285    1.135    0.245     0.588780    -0.700035
+chronic_HIV  0.939250  0.231792    1.005    0.235    -6.542289    -1.365302

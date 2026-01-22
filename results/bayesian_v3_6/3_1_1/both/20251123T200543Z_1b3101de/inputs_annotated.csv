@@ -1,0 +1,14 @@
+Study,Phase,Region,Metabolite,NAA_mean,NAA_SE,n,SourceFile,publication_year,art_era,art_era_idx,study,study_id
+Young_2014,Acute,AC,NAA/Cr,1.28,0.009,53,YOUNG_2014_CROSS_SECTIONAL_DATA.csv,,unknown,-1,Young_2014,3
+Young_2014,Acute,BG,NAA/Cr,1.15,0.01,53,YOUNG_2014_CROSS_SECTIONAL_DATA.csv,,unknown,-1,Young_2014,3
+Young_2014,Acute,FWM,NAA/Cr,1.35,0.01,53,YOUNG_2014_CROSS_SECTIONAL_DATA.csv,,unknown,-1,Young_2014,3
+Sailasuta et al. 2016,Acute,BG,NAA/Cr,1.13,0.03,31,bg_combined_with_winston_dahmani.csv,,unknown,-1,Sailasuta et al. 2016,1
+Young_2014,Acute,PGM,NAA/Cr,1.3,0.009,53,YOUNG_2014_CROSS_SECTIONAL_DATA.csv,,unknown,-1,Young_2014,3
+Sailasuta et al. 2016,Chronic,BG,NAA/Cr,1.0,0.03,26,bg_combined_with_winston_dahmani.csv,,unknown,-1,Sailasuta et al. 2016,1
+Mohamed et al. 2010,Chronic,BG,NAA/Cr,1.0,0.09,26,bg_combined_with_winston_dahmani.csv,,unknown,-1,Mohamed et al. 2010,0
+Sailasuta_2012,Chronic,OGM,NAA/Cr,1.415,0.023533936216582,26,Sailasuta_2012.csv,,unknown,-1,Sailasuta_2012,2
+Young_2014,Chronic,FWM,NAA/Cr,1.15,0.013,18,YOUNG_2014_CROSS_SECTIONAL_DATA.csv,,unknown,-1,Young_2014,3
+Young_2014,Control,FWM,NAA/Cr,1.35,0.024,19,YOUNG_2014_CROSS_SECTIONAL_DATA.csv,,unknown,-1,Young_2014,3
+Young_2014,Control,AC,NAA/Cr,1.22,0.019,19,YOUNG_2014_CROSS_SECTIONAL_DATA.csv,,unknown,-1,Young_2014,3
+Mohamed et al. 2010,Control,BG,NAA/Cr,1.08,0.11,18,bg_combined_with_winston_dahmani.csv,,unknown,-1,Mohamed et al. 2010,0
+Sailasuta_2012,Control,OGM,NAA/Cr,1.428,0.0379473319220205,10,Sailasuta_2012.csv,,unknown,-1,Sailasuta_2012,2

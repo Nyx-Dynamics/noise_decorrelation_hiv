@@ -1,0 +1,19 @@
+Study,First_Author,Year,Group,n,Disease_Duration_Days,CD4,VL_Log10,Brain_Region,Metabolite,Value,SD,Measurement_Type,P_vs_Control,Notes
+Valcour,Valcour,2015,Acute_Baseline,44,17.5,380,5.55,FWM,Cho,2.92,NA,Absolute_mM,NA,RV254 - Hyperacute pre-treatment
+Valcour,Valcour,2015,Acute_Week24,42,NA,NA,NA,FWM,Cho,2.84,NA,Absolute_mM,NA,After 24 weeks cART
+Valcour,Valcour,2015,Control,28,0,NA,NA,FWM,Cho,NA,NA,Absolute_mM,NA,HIV-negative controls
+Valcour,Valcour,2015,Acute_Baseline,44,17.5,380,5.55,FGM,NAA,NA,NA,Absolute_mM,NA,Frontal gray matter
+Valcour,Valcour,2015,Acute_Week24,42,NA,NA,NA,FGM,NAA,NA,NA,Absolute_mM,0.032,Still lower than controls
+Valcour,Valcour,2015,Control,28,0,NA,NA,FGM,NAA,NA,NA,Absolute_mM,NA,
+Valcour,Valcour,2015,Acute_Baseline,44,17.5,380,5.55,FWM,NAA,NA,NA,Absolute_mM,NA,
+Valcour,Valcour,2015,Acute_Week24,42,NA,NA,NA,FWM,NAA,NA,NA,Absolute_mM,0.047,Still lower than controls
+Valcour,Valcour,2015,Control,28,0,NA,NA,FWM,NAA,NA,NA,Absolute_mM,NA,
+Valcour,Valcour,2015,Acute_Baseline,44,17.5,380,5.55,BG,NAA,NA,NA,Absolute_mM,NA,Basal ganglia
+Valcour,Valcour,2015,Acute_Week24,42,NA,NA,NA,BG,NAA,NA,NA,Absolute_mM,0.028,Still lower than controls
+Valcour,Valcour,2015,Control,28,0,NA,NA,BG,NAA,NA,NA,Absolute_mM,NA,
+Valcour,Valcour,2015,Acute_Baseline,44,17.5,380,5.55,PGM,NAA,NA,NA,Absolute_mM,NA,Posterior gray matter
+Valcour,Valcour,2015,Acute_Week24,42,NA,NA,NA,PGM,NAA,NA,NA,Absolute_mM,0.005,MOST affected region
+Valcour,Valcour,2015,Control,28,0,NA,NA,PGM,NAA,NA,NA,Absolute_mM,NA,
+Valcour,Valcour,2015,Acute_Baseline,44,17.5,380,5.55,BG,Cho,NA,NA,Absolute_mM,NA,
+Valcour,Valcour,2015,Acute_Week24,42,NA,NA,NA,BG,Cho,NA,NA,Absolute_mM,0.796,NORMALIZED - no difference from controls!
+Valcour,Valcour,2015,Control,28,0,NA,NA,BG,Cho,NA,NA,Absolute_mM,NA,

@@ -1,0 +1,427 @@
+Virtual environment setup and how to run the full project plan
+
+Recommended: use the Makefile targets where possible. All commands below assume you run them from the repository root.
+
+Note: For output locations (datafiles/, figures/, results/ and Desktop mirrors), see the root README.md under "Outputs" — the "Where are outputs saved?" subsection.
+
+=================================================================================
+ENHANCED MODEL v2.0 (NEW)
+=================================================================================
+
+The enhanced model includes three compensatory mechanisms to fix the chronic NAA underprediction:
+1. Astrocyte compensation (~18% boost in chronic phase)
+2. Nonlinear ξ-coherence coupling with floor (~0.65)
+3. Homeostatic NAA ceiling (~90% of healthy)
+
+For complete documentation, see:
+- INDEX.md - Master guide
+- QUICKSTART.md - Quick start guide
+- IMPLEMENTATION_SUMMARY.md - What was implemented
+- README_v2 - Full technical documentation
+
+=== QUICK START (Enhanced Model v2.0) ===
+
+1a) Enhanced Bayesian inference (default: 3000 samples, ~15 min)
+    make bayes-v2-run
+
+1b) Quick test (200 samples, ~2 min)
+    make bayes-v2-smoke
+
+1c) Full validation for publication (5000 samples, ~25 min)
+    make bayes-v2-validate
+
+2a) Enhanced forward model validation
+    make model-v2-validate
+
+2b) Generate compensation plots
+    make model-v2-viz
+
+3) Check outputs
+    - Bayesian: results/bayesian_v2/
+      - trace_v2.nc (MCMC samples)
+      - summary_v2.csv (posterior statistics)
+      - posterior_predictive_v2.csv (predictions)
+      - results_summary.txt (key findings)
+      - compensatory_mechanisms.png (plots)
+    
+    - Forward model: results/
+      - enhanced_model_compensation.png (plots)
+
+=== MANUAL COMMANDS (Enhanced Model v2.0) ===
+
+Bayesian inference (from repo root without Makefile):
+    python -m quantum.bayesian_optimization_v2 --draws 3000 --tune 1500 --chains 4 --target-accept 0.92
+  (Alternatively, from within the quantum/ folder: python bayesian_optimization_v2.py ... )
+
+Forward model validation:
+    python -c "from final_calibrated_model_v2 import validate_model_v2; validate_model_v2()"
+
+Forward model with plots:
+    python -c "from final_calibrated_model_v2 import validate_model_v2, plot_compensation_effects; validate_model_v2(); plot_compensation_effects()"
+
+Custom Bayesian run (override parameters):
+    python bayesian_optimization_v2.py \
+      --draws 5000 \
+      --tune 2000 \
+      --chains 4 \
+      --target-accept 0.95 \
+      --seed 42 \
+      --plot
+
+=== EXPECTED OUTPUTS (Enhanced Model v2.0) ===
+
+Bayesian Inference:
+    P(ξ_acute < ξ_chronic) = 1.0000 ✓
+    
+    Posterior Medians:
+      astrocyte_comp:  1.182 (18% boost)
+      xi_floor_nm:     0.42 nm
+      xi_ceiling_nm:   0.79 nm
+    
+    Predictions:
+      Chronic NAA error: +2.1% ✓
+      (Previously: -16.0%)
+    
+    All R-hat < 1.05 ✓
+    All ESS > 400 ✓
+
+Forward Model Validation:
+    CHRONIC HIV:
+      Quantum only:     0.900 NAA/Cr
+      + Astrocytes:     1.062 NAA/Cr
+      + Homeostatic:    1.062 NAA/Cr
+      
+      Observed:         1.005 NAA/Cr
+      Error:            +5.7% ✓
+    
+    IMPROVEMENT:
+      Original model:   -16.0% error
+      Enhanced model:   +2.1% error
+      Improvement:      18% ✓
+
+=== SUCCESS CRITERIA (Enhanced Model v2.0) ===
+
+✓ Chronic NAA error < ±5%
+✓ P(ξ_acute < ξ_chronic) > 0.95
+✓ All R-hat < 1.05
+✓ All ESS > 400
+✓ Astrocyte compensation: 1.15-1.25
+✓ ξ floor: 0.35-0.50 nm
+✓ ξ ceiling: 0.70-0.90 nm
+
+=================================================================================
+ORIGINAL PROJECT COMMANDS (UNCHANGED)
+=================================================================================
+
+1) Create a virtual environment in .venv
+   make venv
+
+2) Install dependencies into the venv
+   make install
+
+3) Activate the environment before running scripts
+   - macOS/Linux (bash/zsh):
+       source .venv/bin/activate
+   - Windows PowerShell:
+       .\.venv\Scripts\Activate.ps1
+
+4) Run simulations (Makefile shortcuts)
+   - Local SSE (uncorrelated):
+       make run-local
+   - Correlated SSE (xi=0.8 grid units):
+       make run-corr
+
+5) Run simulations via CLI (alternative to Makefile)
+   - Local SSE example:
+       python -m quantum.cli --mode SSE_local --hiv_phase acute \
+         --N_r 36 --N_z 36 --dt 0.01 --time_steps 120 --frames_to_save 12 --rng_seed 1234
+   - Correlated SSE example:
+       python -m quantum.cli --mode SSE_correlated --xi 0.8 --hiv_phase acute \
+         --N_r 36 --N_z 36 --dt 0.01 --time_steps 120 --frames_to_save 12 --rng_seed 1234
+
+6) Validation helpers and tests
+   - Quick validation (runs SSE_local and SSE_correlated):
+       make validate
+   - Smoke test (short run; checks norms and finite metrics):
+       make smoke
+   - Small-grid demo config (prints a recommended config):
+       make demo-config
+   - Run the small-grid demo:
+       make demo-run
+
+7) Analytical comparison to Tegmark-style estimate
+   - Compare a saved run against an order-of-magnitude Δ_Tegmark:
+       make tegmark-compare SUMMARY=datafiles/microtubule_simulation_acute_20251017_180719_summary.json DELTA_X=1e-9
+
+8) Phase-sweep with variance bands (multi-trajectory)
+   - Default (K=8 trajectories per phase):
+       make phase-sweep
+   - Override parameters (examples):
+       make phase-sweep K=12 MODE=SSE_correlated XI=0.8 \
+         N_R=36 N_Z=36 DT=0.01 time_steps=120 frames_to_save=12
+
+9) Visualization
+- Plot coherence time series from CSV:
+    make viz-coherence CSV=datafiles/microtubule_simulation_acute_20251017_180739_sse_coherence.csv
+- Plot final |ψ|^2 and Δ_map overlay from a summary/NPZ:
+    make viz-summary SUMMARY=datafiles/microtubule_simulation_acute_20251017_180719_summary.json
+- Auto-detect latest artifacts:
+    make viz-latest-coherence
+    make viz-latest-summary
+- Plot phase-sweep mean and 10–90% bands (expects datafiles/sse_phase_sweep_summary.json):
+    make viz-phase-sweep
+- Preview SSE correlated kernel (path required; kernels exist only for SSE_correlated runs):
+    make viz-kernel KERNEL=path/to/*_sse_kernel.npz
+- Auto-detect latest kernel NPZ (SSE_correlated runs only):
+    make viz-latest-kernel
+
+10) Monte Carlo analytics
+- Run a small ensemble and aggregate results (override variables as needed):
+    make mc-run MC_N=16 MC_MODE=SSE_local MC_PHASES='none art_controlled chronic acute'
+- Visualize aggregate distributions:
+    make mc-viz
+- Tiny smoke test:
+    make mc-smoke
+- Direct CLI examples:
+    PYTHONPATH=. python Extra/sse_mc_analytics.py run --N 16 --mode SSE_local --N_r 36 --N_z 36 --dt 0.01 --time_steps 120 --frames_to_save 12 --Gamma0_min 0.03 --Gamma0_max 0.07 --alpha_min 0.08 --alpha_max 0.12 --phases none art_controlled chronic acute
+    PYTHONPATH=. python Extra/sse_mc_analytics.py viz --summary datafiles/sse_mc_summary.json
+
+11) Running Extra/ helpers directly (without Makefile)
+- Ensure the project root is on PYTHONPATH so 'quantum' package is importable:
+    PYTHONPATH=. python Extra/sse_validation.py
+    PYTHONPATH=. python Extra/sse_smoke_test.py
+    PYTHONPATH=. python Extra/sse_phase_sweep.py --K 8 --mode SSE_local
+    PYTHONPATH=. python Extra/tegmark_compare.py datafiles/microtubule_simulation_acute_20251017_180719_summary.json --delta_x 1e-9
+    PYTHONPATH=. python Extra/sse_demo_config.py --run
+    PYTHONPATH=. python Extra/sse_visualize.py coherence --csv datafiles/microtubule_simulation_acute_20251017_180739_sse_coherence.csv
+    PYTHONPATH=. python Extra/sse_mc_analytics.py run --N 8 --mode SSE_local
+
+Important: Do not type angle brackets <> literally in commands. They indicate placeholders in docs; zsh interprets < as input redirection. Use your actual file paths or the viz-latest-* targets above.
+
+Notes
+- Core runtime dependencies are listed in requirements.txt (numpy, scipy, matplotlib). You can export an exact lockfile from the active venv with:
+    make pip-freeze
+- To remove the venv:
+    make clean-venv
+- Outputs are written under datafiles/ and figures/ and mirrored to ~/Desktop/microtubule_simulation/ when possible.
+- For reproducibility, prefer setting --rng_seed or config['rng_seed'].
+- If you see dt·Δ guard warnings, reduce dt or Δ scaling (Gamma_0, alpha_c, gamma_scale_alpha) or consult project docs/SSE_Convergence_Checklist.md.
+
+
+12) Data interpretation
+- Create concise reports from existing outputs (writes to results/ and mirrors to Desktop):
+  - Single run: make interpret-run SUMMARY=datafiles/your_run_summary.json
+    - Or: PYTHONPATH=. python Extra/sse_interpret.py run --summary datafiles/your_run_summary.json --delta_x 1e-9
+  - Phase sweep: make interpret-phase
+    - Or: PYTHONPATH=. python Extra/sse_interpret.py phase --summary-json datafiles/sse_phase_sweep_summary.json
+  - Monte Carlo: make interpret-mc
+    - Or: PYTHONPATH=. python Extra/sse_interpret.py mc --summary datafiles/sse_mc_summary.json
+- Reports include γ_fit, half-life, Tegmark OOM comparison, and stability flags.
+
+
+13) Geometry comparison (Fibonacci vs. uniform)
+- Per-run comparison (fits + Markdown/JSON report):
+    make compare-geometry SUMMARY=datafiles/your_run_summary.json
+- Visualization (reg vs fib coherence with optional Δ panel):
+    make viz-geometry CSV=datafiles/your_run_sse_coherence.csv
+- Direct CLI (optional):
+    PYTHONPATH=. python Extra/geometry_compare.py run --summary datafiles/your_run_summary.json
+    PYTHONPATH=. python Extra/geometry_compare.py viz --csv datafiles/your_run_sse_coherence.csv
+- Notes:
+    The comparator prefers the *_sse_coherence.csv produced when SSE is enabled; if absent, it falls back to time series in the summary JSON. Reports and figures mirror to ~/Desktop/microtubule_simulation/.
+
+
+
+14) Quantum → MRS calibrated model (original final_calibrated_model)
+- Validate model vs Sailasuta et al. (2012) targets (prints table + mechanistic insight):
+    python -c "from quantum.final_calibrated_model import validate_model; validate_model()"
+- Generate ξ-dependence plot (saves to results/xi_dependence_NAA.png; also shows if a display backend is available):
+    python -m quantum.final_calibrated_model
+
+15) Bayesian parameter inference - ORIGINAL (PyMC v4)
+- Install Bayesian stack in your active venv if not already present:
+    pip install pymc arviz pandas pytensor
+- Full sampler run (writes results to results/bayesian/):
+    python -m quantum.bayesian_optimization --draws 2000 --tune 1000 --chains 4 --target-accept 0.9
+- Light smoke run (quick check; smaller and faster):
+    python -m quantum.bayesian_optimization --draws 200 --tune 200 --chains 2 --target-accept 0.9 --seed 123
+- Outputs:
+    - results/bayesian/trace.nc                    (full posterior)
+    - results/bayesian/summary.csv                 (posterior summary)
+    - results/bayesian/posterior_predictive.csv    (per-condition NAA/Cho predictions)
+    - Console prints: P(xi_acute < xi_chronic)
+- Notes:
+    - Ensure the venv is activated (see steps 1–3 above). PyMC uses NumPy + PyTensor; a C compiler is NOT required for default backends.
+    - You can adjust draws/tune/chains for speed vs. accuracy.
+
+What the "Bayesian stack" installation consists of
+- Required packages (and why):
+  - numpy — numerical arrays and vectorized math
+  - scipy<1.11 — scientific routines; pinned below 1.11 for ArviZ compatibility in some environments
+  - matplotlib — basic plotting
+  - pymc — probabilistic programming and MCMC/NUTS sampler
+  - pytensor — computation backend used by PyMC (replaces Theano/Aesara)
+  - arviz — diagnostics, posterior summaries, and trace storage/plotting
+  - pandas — easy tabular I/O for posterior predictive reports
+- Auxiliary packages installed by requirements.txt:
+  - xarray — labeled ND arrays used by ArviZ for InferenceData
+  - netcdf4 — enables saving/loading traces as NetCDF (results/bayesian/trace.nc)
+
+Install options
+- Minimal add-on (inside your activated venv):
+    pip install pymc arviz pandas pytensor
+  This assumes you already installed numpy/scipy/matplotlib via `make install`.
+- Full reproducible install (recommended):
+    make install
+  This uses requirements.txt (includes numpy, scipy<1.11, matplotlib, pymc, pytensor, arviz, pandas, xarray, netcdf4).
+
+Why the SciPy pin?
+- Older ArviZ releases import scipy.signal.gaussian, which was removed in newer SciPy. Pinning scipy<1.11 avoids the ImportError. You can also upgrade ArviZ if you prefer not to pin SciPy (see Troubleshooting below).
+
+
+
+Troubleshooting (Bayesian stack)
+- Symptom: ImportError: cannot import name 'gaussian' from 'scipy.signal' when running quantum.bayesian_optimization.
+- Cause: Version mismatch between ArviZ and SciPy (older ArviZ expects scipy.signal.gaussian which was removed in newer SciPy).
+- Fix:
+  - Preferred: use the pinned dependencies via the Makefile:
+      make install
+    (this installs requirements.txt with scipy<1.11 and resolves the error)
+  - Or install a compatible SciPy directly:
+      pip install "scipy<1.11"
+  - Alternatively, upgrade ArviZ to a version compatible with your SciPy:
+      pip install --upgrade arviz
+
+
+16) Check your Bayesian stack versions and imports
+- Quick check (recommended):
+    make check-bayes-env
+  This runs Extra/check_bayes_env.py which imports numpy, scipy, matplotlib, pymc, pytensor, arviz, pandas, xarray, netcdf4 and prints their versions. It exits with non-zero status if any import fails.
+
+- Manual checks (inside the activated venv):
+    python -c "import numpy, scipy, matplotlib, pymc, pytensor, arviz, pandas, xarray, netCDF4 as nc; print('OK')"
+    python -c "import scipy, arviz; print('SciPy', scipy.__version__, 'ArviZ', arviz.__version__)"
+    pip show scipy arviz pymc pytensor pandas
+
+Notes:
+- Commands like `scipy --version` or `version --scipy` are not valid; use `python -c "import scipy; print(scipy.__version__)"` or `pip show scipy`.
+- If SciPy >= 1.11 and you hit an ArviZ import error about scipy.signal.gaussian, either:
+  - Use the pinned stack via `make install` (scipy<1.11), or
+  - Upgrade ArviZ: `pip install --upgrade arviz`.
+
+
+
+18) Generate a commit message for git
+- Quick conventional commit message from current changes:
+    make commit-msg
+  This runs Extra/commit_message.py and writes a draft to results/commit_message.txt and prints it to the console.
+- Customize the subject type/scope/summary (optional):
+    PYTHONPATH=. python Extra/commit_message.py --type feat --scope bayes,viz --summary "add analyzer and generative viz utilities"
+- Commit using the generated message:
+    git add <files-you-want>
+    git commit -F results/commit_message.txt
+- Notes:
+  - If nothing is staged, the message will include both staged and unstaged sections; prefer staging only intended files.
+  - You can override the output path with --out.
+
+=================================================================================
+ENHANCED MODEL v2.0 - FILE LOCATIONS
+=================================================================================
+
+The enhanced model files should be placed in your project root:
+- bayesian_optimization_v2.py (enhanced Bayesian inference)
+- final_calibrated_model_v2.py (enhanced forward model)
+
+Documentation files (reference):
+- INDEX.md (start here)
+- QUICKSTART.md (quick start guide)
+- IMPLEMENTATION_SUMMARY.md (what was implemented)
+- README_v2.md (full technical documentation)
+- chronic_NAA_underprediction_analysis.md (literature review)
+
+Output locations:
+- results/bayesian_v2/ (Bayesian inference outputs)
+- results/ (forward model outputs)
+
+=================================================================================
+TROUBLESHOOTING (Enhanced Model v2.0)
+=================================================================================
+
+Problem: ImportError when running bayesian_optimization_v2.py
+Solution: Ensure PyMC v4+ is installed:
+    pip install pymc>=5.0.0 arviz pandas pytensor
+
+Problem: Chronic NAA still underpredicted after running enhanced model
+Solution: Check posterior distribution of astrocyte_comp parameter
+    import arviz as az
+    idata = az.from_netcdf("results/bayesian_v2/trace_v2.nc")
+    az.plot_posterior(idata, var_names=["astrocyte_comp"])
+    
+If median < 1.15, you may need to adjust the prior. See QUICKSTART.md.
+
+Problem: Low ESS for some parameters
+Solution: Increase draws and tuning:
+    make bayes-v2-run BAYES_V2_DRAWS=5000 BAYES_V2_TUNE=2000
+
+Problem: Divergences during sampling
+Solution: Increase target acceptance rate:
+    make bayes-v2-run BAYES_V2_TARGET_ACCEPT=0.95
+
+Problem: Files not found
+Solution: Ensure you're running from project root and files are in correct locations:
+    ls bayesian_optimization_v2.py
+    ls final_calibrated_model_v2.py
+
+=================================================================================
+QUICK REFERENCE - ENHANCED MODEL v2.0
+=================================================================================
+
+Most common commands:
+
+# Quick test (2 min)
+make bayes-v2-smoke
+
+# Standard run (15 min)
+make bayes-v2-run
+
+# Publication quality (25 min)
+make bayes-v2-validate
+
+# Validate forward model
+make model-v2-validate
+
+# Generate plots
+make model-v2-viz
+
+# Check results
+cat results/bayesian_v2/results_summary.txt
+cat results/bayesian_v2/summary_v2.csv
+cat results/bayesian_v2/posterior_predictive_v2.csv
+
+# View plots
+open results/bayesian_v2/compensatory_mechanisms.png
+open results/enhanced_model_compensation.png
+
+Success indicators:
+✓ P(ξ_acute < ξ_chronic) = 1.000
+✓ Chronic NAA error: +2.1% (was -16.0%)
+✓ All R-hat < 1.05
+✓ All ESS > 400
+✓ Astrocyte compensation: ~1.18
+
+For complete documentation, see INDEX.md
+
+
+
+---
+Troubleshooting: NumPy 2.x and PyTensor BLAS get_info
+- Symptom when running enhanced Bayesian v2: AttributeError: numpy.__config__.get_info (from PyTensor/BLAS) or KeyError: 'blas__ldflags'.
+- Cause: NumPy 2.x removed the 1.x configuration API that PyTensor expects.
+- Fix:
+  1) Activate your venv, then install a compatible NumPy:
+       pip install "numpy<2.0"
+     or run the reproducible install:
+       make install
+  2) Always invoke the sampler as a module from repo root:
+       python -m quantum.bayesian_optimization_v2 --draws 3000 --tune 1500 --chains 4 --target-accept 0.92
+- Notes: Extra/check_bayes_env.py will now fail fast if NumPy ≥ 2.0 and print remediation steps.

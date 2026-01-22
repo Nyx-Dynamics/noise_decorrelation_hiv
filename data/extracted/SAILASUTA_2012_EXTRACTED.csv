@@ -1,0 +1,25 @@
+Study,Group,n,Brain_Region,Metabolite,Mean,SD,P_value_vs_control,P_value_acute_vs_chronic,Notes
+Sailasuta2012,Acute,31,BG,MI,0.580,0.13,0.898,0.449,Infection duration 14 days median
+Sailasuta2012,Acute,31,BG,NAA,1.134,0.14,0.552,0.005,PRESERVED vs control - CRITICAL PARADOX EVIDENCE
+Sailasuta2012,Acute,31,BG,tCHO,0.249,0.02,0.002,0.002,Elevated in acute
+Sailasuta2012,Acute,31,BG,GLX,1.963,0.34,0.062,NA,
+Sailasuta2012,Chronic,26,BG,MI,0.560,0.12,0.689,0.449,
+Sailasuta2012,Chronic,26,BG,NAA,1.000,0.14,0.014,0.005,DECREASED vs control - shows decline
+Sailasuta2012,Chronic,26,BG,tCHO,0.233,0.02,0.001,0.002,
+Sailasuta2012,Chronic,26,BG,GLX,1.807,0.23,0.146,NA,
+Sailasuta2012,Control,10,BG,MI,0.589,0.09,NA,NA,
+Sailasuta2012,Control,10,BG,NAA,1.077,0.13,NA,NA,Baseline reference
+Sailasuta2012,Control,10,BG,tCHO,0.227,0.01,NA,NA,
+Sailasuta2012,Control,10,BG,GLX,1.812,0.22,NA,NA,
+Sailasuta2012,Acute,31,OGM,MI,0.765,0.08,0.707,NA,Occipital Gray Matter
+Sailasuta2012,Acute,31,OGM,NAA,1.416,0.13,0.958,NA,Also preserved in OGM
+Sailasuta2012,Acute,31,OGM,tCHO,0.176,0.02,0.162,NA,
+Sailasuta2012,Acute,31,OGM,GLX,1.980,0.21,0.004,NA,
+Sailasuta2012,Chronic,26,OGM,MI,0.773,0.09,0.353,NA,
+Sailasuta2012,Chronic,26,OGM,NAA,1.415,0.12,0.123,NA,
+Sailasuta2012,Chronic,26,OGM,tCHO,0.168,0.02,0.001,NA,
+Sailasuta2012,Chronic,26,OGM,GLX,1.763,0.34,0.052,NA,
+Sailasuta2012,Control,10,OGM,MI,0.751,0.10,NA,NA,
+Sailasuta2012,Control,10,OGM,NAA,1.428,0.12,NA,NA,
+Sailasuta2012,Control,10,OGM,tCHO,0.153,0.02,NA,NA,
+Sailasuta2012,Control,10,OGM,GLX,1.841,0.23,NA,NA,

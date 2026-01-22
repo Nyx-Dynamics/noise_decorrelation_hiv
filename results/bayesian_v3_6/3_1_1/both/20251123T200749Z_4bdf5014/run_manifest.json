@@ -1,0 +1,51 @@
+{
+  "run_id": "20251123T200749Z_4bdf5014",
+  "timestamp_utc": "20251123T200749Z",
+  "model_variant": "bayesian_v3_6",
+  "ratio": "3_1_1",
+  "era": "both",
+  "input_files": {
+    "bayesian_inputs": "data/extracted_expanded/data_ratios_comparison/bayesian_inputs_3_1_1.csv"
+  },
+  "cli_args": {
+    "draws": "1500",
+    "tune": "1000",
+    "chains": "4",
+    "seed": "2025",
+    "beta_xi_mean": "1.89",
+    "beta_xi_sd": "0.25",
+    "xi_baseline_nm": "0.66",
+    "baseline_naacr": "2.2",
+    "run_notes": ""
+  },
+  "mechanism": {
+    "beta_xi_mean": 1.89,
+    "beta_xi_sd": 0.25,
+    "xi_baseline_nm": 0.66
+  },
+  "data_summary": {
+    "n_rows": 13,
+    "n_studies": 4,
+    "n_phases": 3,
+    "n_unknown_era": 13
+  },
+  "environment": {
+    "python": "3.12.12",
+    "numpy": "2.3.5",
+    "scipy": "1.16.3",
+    "git_commit": "fccdb6f9c43cea24e9f1f772e52b5e6263b4fa20",
+    "git_branch": "main",
+    "git_dirty": "1"
+  },
+  "outputs": {
+    "trace_netcdf": "results/bayesian_v3_6/3_1_1/both/20251123T200749Z_4bdf5014/trace_v3_6.nc",
+    "posterior_predictive_csv": "results/bayesian_v3_6/3_1_1/both/20251123T200749Z_4bdf5014/posterior_predictive.csv",
+    "inputs_annotated_csv": "results/bayesian_v3_6/3_1_1/both/20251123T200749Z_4bdf5014/inputs_annotated.csv"
+  },
+  "validation_notes": {
+    "primary_parameter": "xi_estimate_nm (mechanistic) \u2014 not overridden by era",
+    "derived_parameter": "Pi_xi from xi via beta_xi",
+    "era_handling": "categorical covariate (additive), unknown era retained as 0-effect",
+    "enzyme_activity_fold": "retained in data (if present) for validation only; not used in model"
+  }
+}

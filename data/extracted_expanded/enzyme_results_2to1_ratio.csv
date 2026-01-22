@@ -1,0 +1,4 @@
+Phase,N_samples,NAA_mean,NAA_SE,xi_nm,Enzyme_Activity
+Acute,828,1.2769,0.0297,0.61,2.6874496103198067
+Chronic,186,0.8561,0.0255,0.81,1.5241579027587255
+Control,142,0.9085,0.0294,1.0,1.0

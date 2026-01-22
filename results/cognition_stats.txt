@@ -1,0 +1,26 @@
+Correlation (NAA Ratio vs NPZ4): 0.0882
+                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:                   NPZ4   R-squared:                       0.008
+Model:                            OLS   Adj. R-squared:                 -0.022
+Method:                 Least Squares   F-statistic:                    0.2587
+Date:                Sat, 17 Jan 2026   Prob (F-statistic):              0.614
+Time:                        00:50:58   Log-Likelihood:                -40.325
+No. Observations:                  35   AIC:                             84.65
+Df Residuals:                      33   BIC:                             87.76
+Df Model:                           1                                         
+Covariance Type:            nonrobust                                         
+==============================================================================
+                 coef    std err          t      P>|t|      [0.025      0.975]
+------------------------------------------------------------------------------
+const         -0.7228      0.912     -0.792      0.434      -2.579       1.133
+NAA_ratio      0.3837      0.754      0.509      0.614      -1.151       1.918
+==============================================================================
+Omnibus:                       20.535   Durbin-Watson:                   1.916
+Prob(Omnibus):                  0.000   Jarque-Bera (JB):               29.770
+Skew:                          -1.581   Prob(JB):                     3.43e-07
+Kurtosis:                       6.227   Cond. No.                         13.9
+==============================================================================
+
+Notes:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.

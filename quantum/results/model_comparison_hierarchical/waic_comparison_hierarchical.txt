@@ -1,0 +1,20 @@
+================================================================================
+ HIERARCHICAL WAIC MODEL COMPARISON
+ Expanded Evidence Base: n=143 patients, 8 study groups
+================================================================================
+
+1. No ξ Coupling
+   WAIC: -467.91
+   Δ: 0.00
+   p_waic: 5.41
+
+2. Linear ξ (β≈1.0)
+   WAIC: -459.96
+   Δ: 7.95
+   p_waic: 9.52
+
+3. Full Model (β≈1.9)
+   WAIC: -453.76
+   Δ: 14.15
+   p_waic: 11.43
+

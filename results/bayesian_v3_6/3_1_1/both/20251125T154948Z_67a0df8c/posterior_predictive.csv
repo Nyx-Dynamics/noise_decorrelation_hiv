@@ -1,0 +1,14 @@
+Phase,study,art_era,NAA_mean_observed,NAA_SE_observed,NAA_mean_predicted
+Acute,Young_2014,post_modern,1.28,0.009,1.2722763633927754
+Acute,Young_2014,post_modern,1.15,0.01,1.2725886098930652
+Acute,Young_2014,post_modern,1.35,0.01,1.2725648670612595
+Acute,Sailasuta et al. 2016,post_modern,1.13,0.03,1.1267840298620226
+Acute,Young_2014,post_modern,1.3,0.009,1.2723100472002589
+Chronic,Sailasuta et al. 2016,post_modern,1.0,0.03,1.0246637190142356
+Chronic,Mohamed et al. 2010,post_modern,1.0,0.09,1.0735755181803575
+Chronic,Sailasuta_2012,post_modern,1.415,0.023533936216582,1.3754712942576337
+Chronic,Young_2014,post_modern,1.15,0.013,1.1578513810868267
+Control,Young_2014,post_modern,1.35,0.024,1.2585392134723279
+Control,Young_2014,post_modern,1.22,0.019,1.2583467190914952
+Control,Mohamed et al. 2010,post_modern,1.08,0.11,1.1631770890661643
+Control,Sailasuta_2012,post_modern,1.428,0.0379473319220205,1.4936525295444874

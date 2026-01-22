@@ -1,0 +1,33 @@
+{
+  "source": "datafiles/sse_phase_sweep_summary.json",
+  "per_phase": {
+    "none": {
+      "gamma_mean": 1.3000838901966365,
+      "gamma_std": 0.13619621389709657,
+      "t_half_mean": 0.5382647103050909,
+      "t_half_std": 0.04885416774615384,
+      "n_trajs": 12
+    },
+    "art_controlled": {
+      "gamma_mean": 1.308242593305019,
+      "gamma_std": 0.13294032998110508,
+      "t_half_mean": 0.5346218106372447,
+      "t_half_std": 0.04722634441284322,
+      "n_trajs": 12
+    },
+    "chronic": {
+      "gamma_mean": 1.307356242741622,
+      "gamma_std": 0.13234121381989034,
+      "t_half_mean": 0.5349406273640732,
+      "t_half_std": 0.047020055596529865,
+      "n_trajs": 12
+    },
+    "acute": {
+      "gamma_mean": 1.2443552804368145,
+      "gamma_std": 0.13035148664236265,
+      "t_half_mean": 0.5625144947028771,
+      "t_half_std": 0.052413040798817256,
+      "n_trajs": 12
+    }
+  }
+}

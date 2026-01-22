@@ -1,0 +1,2 @@
+Study,Phase,Region,Metabolite,NAA_mean,NAA_SE,n,SourceFile,publication_year,art_era,art_era_idx,study,study_id
+Chang,Acute,BG,NAA,7.96,0.2349609896699166,15,MASTER_HIV_MRS_DATABASE_v2.csv,2002.0,pre_modern,0,Chang,0

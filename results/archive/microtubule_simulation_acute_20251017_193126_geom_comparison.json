@@ -1,0 +1,51 @@
+{
+  "source_summary": "/Users/acdmbpmax/PycharmProjects/Microtubule_Simulation/datafiles/microtubule_simulation_acute_20251017_193126_summary.json",
+  "config": {
+    "hbar": 1.0,
+    "m": 1.0,
+    "L": 10.0,
+    "R_inner": 7.0,
+    "R_outer": 12.5,
+    "N_r": 24,
+    "N_z": 24,
+    "dt": 0.01,
+    "time_steps": 60,
+    "frames_to_save": 6,
+    "V_0": 5.0,
+    "Gamma_0": 0.054593148941456074,
+    "alpha_c": 0.11545549531679093,
+    "D_c": 0.1,
+    "kappa_c": 0.01,
+    "hiv_phase": "acute",
+    "output_dir": "results",
+    "figures_dir": "figures",
+    "data_dir": "datafiles",
+    "cmap_quantum": "quantum",
+    "cmap_cytokine": "cytokine",
+    "dephasing_model": "SSE_local",
+    "temperature_K": 310.0,
+    "ionic_strength_M": 0.15,
+    "dielectric_rel": 80.0,
+    "gamma_scale_alpha": 1.0,
+    "corr_length_xi": 0.0,
+    "rng_seed": 3003,
+    "dt_gamma_guard_max": 0.2
+  },
+  "fits": {
+    "gamma_reg": 0.7947434707363503,
+    "gamma_fib": 2.7042650896636884,
+    "t_half_reg": 0.8721646746184987,
+    "t_half_fib": 0.25631628467538564,
+    "gamma_diff_fib_minus_reg": 1.909521618927338,
+    "gamma_ratio_fib_over_reg": 3.4026892818107926,
+    "t_half_diff_fib_minus_reg": -0.6158483899431131,
+    "t_half_ratio_fib_over_reg": 0.2938851940862008
+  },
+  "delta_stats": {
+    "delta_mean": -0.42475434909858023,
+    "delta_ci95": [
+      -0.5370444694843843,
+      -0.27928546559452155
+    ]
+  }
+}

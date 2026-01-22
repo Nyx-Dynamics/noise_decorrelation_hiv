@@ -1,0 +1,4 @@
+Phase,NAA_mean,NAA_SE,n,xi_estimate_nm,enzyme_activity_fold
+Acute,1.2769,0.0297,828,0.61,2.687449610319807
+Chronic,0.8425,0.0295,132,0.81,1.524157902758726
+Control,0.9297,0.0348,104,1.0,1.0

@@ -1,0 +1,23 @@
+ZENODO DATA COLLECTION REPORT
+Generated: 2025-11-20 17:32:21.900046
+==================================================
+
+FOUND FILES (5):
+  /Users/acdmbpmax/PycharmProjects/noise_decorrelation_HIV/noise_v2_8_main.pdf → 01_manuscript/
+  /Users/acdmbpmax/PycharmProjects/noise_decorrelation_HIV/noise_v2_8_supplemental.pdf → 01_manuscript/
+  /Users/acdmbpmax/Downloads/noise_v2_7_main.pdf → 01_manuscript/
+  /Users/acdmbpmax/Downloads/reproduciblecode.ipynb → 06_code/
+  /Users/acdmbpmax/Downloads/reproduciblecode copy.ipynb → 06_code/
+
+MISSING FILES (3):
+  - noise_v2_7_supplemental.pdf
+  - noise_v2_1_main.tex
+  - noise_v2_1_supplemental.tex
+
+SEARCH LOCATIONS:
+  ✓ /Users/acdmbpmax/PycharmProjects/noise_decorrelation_HIV
+  ✓ /Users/acdmbpmax/Documents/GitHub/noise_decorrelation_HIV
+  ✓ /Users/acdmbpmax/Desktop
+  ✓ /Users/acdmbpmax/Downloads
+  ✓ /Users/acdmbpmax/Library/Mobile Documents/com~apple~CloudDocs
+  ✓ /Volumes

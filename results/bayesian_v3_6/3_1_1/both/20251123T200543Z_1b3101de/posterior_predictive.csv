@@ -1,0 +1,14 @@
+Phase,study,art_era,NAA_mean_observed,NAA_SE_observed,NAA_mean_predicted
+Acute,Young_2014,unknown,1.28,0.009,1.2728348447714148
+Acute,Young_2014,unknown,1.15,0.01,1.2726530555083768
+Acute,Young_2014,unknown,1.35,0.01,1.2725229660688515
+Acute,Sailasuta et al. 2016,unknown,1.13,0.03,1.1279975921249383
+Acute,Young_2014,unknown,1.3,0.009,1.2726079086191142
+Chronic,Sailasuta et al. 2016,unknown,1.0,0.03,1.0260127373272359
+Chronic,Mohamed et al. 2010,unknown,1.0,0.09,1.0821969069948971
+Chronic,Sailasuta_2012,unknown,1.415,0.023533936216582,1.3760780965278396
+Chronic,Young_2014,unknown,1.15,0.013,1.1574851040529162
+Control,Young_2014,unknown,1.35,0.024,1.2581068834313185
+Control,Young_2014,unknown,1.22,0.019,1.2594584530768957
+Control,Mohamed et al. 2010,unknown,1.08,0.11,1.1747695535707297
+Control,Sailasuta_2012,unknown,1.428,0.0379473319220205,1.4964341328025987
