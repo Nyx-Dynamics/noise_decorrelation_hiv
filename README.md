@@ -25,7 +25,7 @@ We propose that **noise correlation structure**, not amplitude, determines neuro
 |----------|---------|----------|
 | **Primary Bayesian (v3.6)** | ξ_acute < ξ_chronic | P > 99.9%, Cohen's d = 5.63 |
 | **Enzyme Kinetics (v4)** | Independent confirmation | P > 99% |
-| **Individual Patients (v2)** | Pattern holds at patient level | P = 92.4%, n=176 |
+| **Individual Patients (v1)** | Pattern holds at patient level | P = 95%, n=62 |
 | **Cross-Cohort** | Replicates across 3 studies | 2 continents |
 
 ### Parameter Estimates
@@ -44,7 +44,8 @@ noise_decorrelation_HIV/
 ├── quantum/                 # Analysis scripts & external validation
 │   ├── bayesian_v3_6_runner.py
 │   ├── bayesian_enzyme_v4.py
-│   ├── hierarchical_individual_v2_runner.py
+│   ├── hierarchical_individual_v1_runner.py
+│   ├── regional_hierarchical_v1.py
 │   └── results/
 │       ├── enzyme_v4/       # Enzyme kinetics validation
 │       └── regional_v1/     # Regional analysis
@@ -60,7 +61,12 @@ noise_decorrelation_HIV/
 │   ├── individual/          # Patient-level data (n=62)
 │   └── documentation/       # Data extraction methodology
 │
-├── zenodo_package/          # Prepared for Zenodo deposition
+├── archive/                 # Legacy materials (Structured)
+│   ├── code/                # Superseded experimental scripts
+│   ├── data/                # Old data snapshots
+│   ├── docs/                # Previous manuscript drafts
+│   ├── releases/            # Zenodo packages
+│   └── results/             # Archived outputs
 │
 ├── requirements.txt
 ├── LICENSE

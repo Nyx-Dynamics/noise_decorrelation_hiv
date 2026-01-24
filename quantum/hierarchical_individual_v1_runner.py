@@ -53,6 +53,7 @@ except ImportError:
     print("Run: pip install arviz")
     sys.exit(1)
 
+import argparse
 import os
 
 # --- 1. Load Data ---
@@ -166,7 +167,17 @@ def build_model(df_agg, df_ind):
 
 # --- 3. Run ---
 
+def parse_args():
+    p = argparse.ArgumentParser(description='Hierarchical Individual-Level Model Runner')
+    p.add_argument('--draws', type=int, default=2000)
+    p.add_argument('--tune', type=int, default=1000)
+    p.add_argument('--chains', type=int, default=4)
+    p.add_argument('--target-accept', type=float, default=0.95)
+    p.add_argument('--seed', type=int, default=42)
+    return p.parse_args()
+
 def main():
+    args = parse_args()
     print("="*60)
     print("Hierarchical Individual-Level Model Runner (v1)")
     print("="*60)
@@ -186,7 +197,14 @@ def main():
     
     print("\nSampling (this may take several minutes)...")
     with model:
-        idata = pm.sample(draws=2000, tune=1000, chains=4, target_accept=0.95, random_seed=42)
+        idata = pm.sample(
+            draws=args.draws,
+            tune=args.tune,
+            chains=args.chains,
+            target_accept=args.target_accept,
+            random_seed=args.seed,
+            return_inferencedata=True
+        )
         
     # Analysis
     print("\n--- RESULTS ---")

@@ -1,0 +1,217 @@
+\begin{thebibliography}{10}
+\expandafter\ifx\csname url\endcsname\relax
+  \def\url#1{\texttt{#1}}\fi
+\expandafter\ifx\csname urlprefix\endcsname\relax\def\urlprefix{URL }\fi
+\providecommand{\bibinfo}[2]{#2}
+\providecommand{\eprint}[2][]{\url{#2}}
+
+\bibitem{valcour2012}
+\bibinfo{author}{Valcour, V.} \emph{et~al.}
+\newblock \bibinfo{title}{Central nervous system viral invasion and
+  inflammation during acute {HIV} infection}.
+\newblock \emph{\bibinfo{journal}{J. Infect. Dis.}}
+  \textbf{\bibinfo{volume}{206}}, \bibinfo{pages}{275--282}
+  (\bibinfo{year}{2012}).
+
+\bibitem{nath2002}
+\bibinfo{author}{Nath, A.} \emph{et~al.}
+\newblock \bibinfo{title}{Molecular basis for interactions of {HIV} and drugs
+  of abuse}.
+\newblock \emph{\bibinfo{journal}{J. Acquir. Immune Defic. Syndr.}}
+  \textbf{\bibinfo{volume}{31}}, \bibinfo{pages}{S62--S69}
+  (\bibinfo{year}{2002}).
+
+\bibitem{kaul1999}
+\bibinfo{author}{Kaul, M.} \& \bibinfo{author}{Lipton, S.~A.}
+\newblock \bibinfo{title}{Chemokines and activated macrophages in {HIV}
+  gp120-induced neuronal apoptosis}.
+\newblock \emph{\bibinfo{journal}{Proc. Natl. Acad. Sci. USA}}
+  \textbf{\bibinfo{volume}{96}}, \bibinfo{pages}{8212--8216}
+  (\bibinfo{year}{1999}).
+
+\bibitem{stacey2009}
+\bibinfo{author}{Stacey, A.~R.} \emph{et~al.}
+\newblock \bibinfo{title}{Induction of a striking systemic cytokine cascade
+  prior to peak viremia in acute {HIV} type 1 infection}.
+\newblock \emph{\bibinfo{journal}{J. Virol.}} \textbf{\bibinfo{volume}{83}},
+  \bibinfo{pages}{3719--3733} (\bibinfo{year}{2009}).
+
+\bibitem{muema2020}
+\bibinfo{author}{Muema, D.} \emph{et~al.}
+\newblock \bibinfo{title}{Association between the cytokine storm, immune cell
+  dynamics, and viral replicative capacity in hyperacute {HIV} infection}.
+\newblock \emph{\bibinfo{journal}{BMC Med.}} \textbf{\bibinfo{volume}{18}},
+  \bibinfo{pages}{1--17} (\bibinfo{year}{2020}).
+
+\bibitem{aranda2012}
+\bibinfo{author}{Aranda-Anzaldo, A.}
+\newblock \bibinfo{title}{The post-mitotic state in neurons correlates with a
+  stable nuclear higher-order structure}.
+\newblock \emph{\bibinfo{journal}{Commun. Integr. Biol.}}
+  \textbf{\bibinfo{volume}{5}}, \bibinfo{pages}{134--139}
+  (\bibinfo{year}{2012}).
+
+\bibitem{herrup2007}
+\bibinfo{author}{Herrup, K.} \& \bibinfo{author}{Yang, Y.}
+\newblock \bibinfo{title}{Cell cycle regulation in the postmitotic neuron:
+  oxymoron or new biology?}
+\newblock \emph{\bibinfo{journal}{Nat. Rev. Neurosci.}}
+  \textbf{\bibinfo{volume}{8}}, \bibinfo{pages}{368--378}
+  (\bibinfo{year}{2007}).
+
+\bibitem{cheret2025}
+\bibinfo{author}{Ch\'{e}ret, A.}
+\newblock \bibinfo{title}{Acute {HIV}-1 infection: paradigm and singularity}.
+\newblock \emph{\bibinfo{journal}{Viruses}} \textbf{\bibinfo{volume}{17}},
+  \bibinfo{pages}{366--389} (\bibinfo{year}{2025}).
+
+\bibitem{moore2011}
+\bibinfo{author}{Moore, D.~J.} \emph{et~al.}
+\newblock \bibinfo{title}{Neurocognitive functioning in acute or early {HIV}
+  infection}.
+\newblock \emph{\bibinfo{journal}{J. Neurovirol.}}
+  \textbf{\bibinfo{volume}{17}}, \bibinfo{pages}{50--57}
+  (\bibinfo{year}{2011}).
+
+\bibitem{cohen2010}
+\bibinfo{author}{Cohen, M.~S.} \emph{et~al.}
+\newblock \bibinfo{title}{The detection of acute {HIV} infection}.
+\newblock \emph{\bibinfo{journal}{J. Infect. Dis.}}
+  \textbf{\bibinfo{volume}{202}}, \bibinfo{pages}{S270--S277}
+  (\bibinfo{year}{2010}).
+
+\bibitem{schacker1996}
+\bibinfo{author}{Schacker, T.} \emph{et~al.}
+\newblock \bibinfo{title}{Clinical and epidemiologic features of primary {HIV}
+  infection}.
+\newblock \emph{\bibinfo{journal}{Ann. Intern. Med.}}
+  \textbf{\bibinfo{volume}{125}}, \bibinfo{pages}{257--264}
+  (\bibinfo{year}{1996}).
+
+\bibitem{sailasuta2012}
+\bibinfo{author}{Sailasuta, N.} \emph{et~al.}
+\newblock \bibinfo{title}{Change in brain magnetic resonance spectroscopy after
+  treatment during acute {HIV} infection}.
+\newblock \emph{\bibinfo{journal}{PLoS ONE}} \textbf{\bibinfo{volume}{7}},
+  \bibinfo{pages}{e49272} (\bibinfo{year}{2012}).
+
+\bibitem{thompson2024}
+\bibinfo{author}{Thompson, L. J.~P.} \emph{et~al.}
+\newblock \bibinfo{title}{{HIV}-associated neurocognitive disorder: a look into
+  cellular and molecular pathology}.
+\newblock \emph{\bibinfo{journal}{Int. J. Mol. Sci.}}
+  \textbf{\bibinfo{volume}{25}}, \bibinfo{pages}{4697--4717}
+  (\bibinfo{year}{2024}).
+
+\bibitem{carson2006}
+\bibinfo{author}{Carson, M.~J.} \emph{et~al.}
+\newblock \bibinfo{title}{{CNS} immune privilege: hiding in plain sight}.
+\newblock \emph{\bibinfo{journal}{Immunol. Rev.}}
+  \textbf{\bibinfo{volume}{213}}, \bibinfo{pages}{48--65}
+  (\bibinfo{year}{2006}).
+
+\bibitem{banks2006}
+\bibinfo{author}{Banks, W.~A.}, \bibinfo{author}{Ercal, N.} \&
+  \bibinfo{author}{Price, T.~O.}
+\newblock \bibinfo{title}{The blood-brain barrier in {neuroAIDS}}.
+\newblock \emph{\bibinfo{journal}{Curr. HIV Res.}}
+  \textbf{\bibinfo{volume}{4}}, \bibinfo{pages}{259--266}
+  (\bibinfo{year}{2006}).
+
+\bibitem{joseph2019}
+\bibinfo{author}{Joseph, S.~B.} \emph{et~al.}
+\newblock \bibinfo{title}{{HIV}-1 {RNA} detected in the {CNS} after years of
+  suppressive {ART} can originate from a replicating {CNS} reservoir or
+  clonally expanded cells}.
+\newblock \emph{\bibinfo{journal}{Clin. Infect. Dis.}}
+  \textbf{\bibinfo{volume}{69}}, \bibinfo{pages}{1345--1352}
+  (\bibinfo{year}{2019}).
+
+\bibitem{rahimy2015}
+\bibinfo{author}{Rahimy, E.} \emph{et~al.}
+\newblock \bibinfo{title}{Blood-brain barrier disruption is initiated during
+  primary {HIV} infection and not rapidly altered by antiretroviral therapy}.
+\newblock \emph{\bibinfo{journal}{J. Infect. Dis.}}
+  \textbf{\bibinfo{volume}{212}}, \bibinfo{pages}{1308--1316}
+  (\bibinfo{year}{2015}).
+
+\bibitem{craddock2017}
+\bibinfo{author}{Craddock, T. J.~A.} \emph{et~al.}
+\newblock \bibinfo{title}{Anesthetic alterations of collective terahertz
+  oscillations in tubulin correlate with clinical potency}.
+\newblock \emph{\bibinfo{journal}{Sci. Rep.}} \textbf{\bibinfo{volume}{7}},
+  \bibinfo{pages}{9877} (\bibinfo{year}{2017}).
+
+\bibitem{engel2007}
+\bibinfo{author}{Engel, G.~S.} \emph{et~al.}
+\newblock \bibinfo{title}{Evidence for wavelike energy transfer through quantum
+  coherence in photosynthetic systems}.
+\newblock \emph{\bibinfo{journal}{Nature}} \textbf{\bibinfo{volume}{446}},
+  \bibinfo{pages}{782--786} (\bibinfo{year}{2007}).
+
+\bibitem{lambert2013}
+\bibinfo{author}{Lambert, N.} \emph{et~al.}
+\newblock \bibinfo{title}{Quantum biology}.
+\newblock \emph{\bibinfo{journal}{Nat. Phys.}} \textbf{\bibinfo{volume}{9}},
+  \bibinfo{pages}{10--18} (\bibinfo{year}{2013}).
+
+\bibitem{huelga2013}
+\bibinfo{author}{Huelga, S.~F.} \& \bibinfo{author}{Plenio, M.~B.}
+\newblock \bibinfo{title}{Vibrations, quanta and biology}.
+\newblock \emph{\bibinfo{journal}{Contemp. Phys.}}
+  \textbf{\bibinfo{volume}{54}}, \bibinfo{pages}{181--207}
+  (\bibinfo{year}{2013}).
+
+\bibitem{young2014}
+\bibinfo{author}{Young, A.~C.} \emph{et~al.}
+\newblock \bibinfo{title}{Cerebral metabolite changes prior to and after
+  antiretroviral therapy in primary {HIV} infection}.
+\newblock \emph{\bibinfo{journal}{Neurology}} \textbf{\bibinfo{volume}{83}},
+  \bibinfo{pages}{1592--1600} (\bibinfo{year}{2014}).
+
+\bibitem{sailasuta2016}
+\bibinfo{author}{Sailasuta, N.} \emph{et~al.}
+\newblock \bibinfo{title}{Neuronal-glia markers by magnetic resonance
+  spectroscopy in {HIV} before and after combination antiretroviral therapy}.
+\newblock \emph{\bibinfo{journal}{J. Acquir. Immune Defic. Syndr.}}
+  \textbf{\bibinfo{volume}{71}}, \bibinfo{pages}{24--30}
+  (\bibinfo{year}{2016}).
+
+\bibitem{valcour2013}
+\bibinfo{author}{Valcour, V.~G.} \emph{et~al.}
+\newblock \bibinfo{title}{{HIV} {DNA} reservoir increases risk for cognitive
+  disorders in {cART}-naive patients}.
+\newblock \emph{\bibinfo{journal}{PLoS ONE}} \textbf{\bibinfo{volume}{8}},
+  \bibinfo{pages}{e70164} (\bibinfo{year}{2013}).
+
+\bibitem{palella1998}
+\bibinfo{author}{Palella, F.~J.} \emph{et~al.}
+\newblock \bibinfo{title}{Declining morbidity and mortality among patients with
+  advanced {HIV} infection}.
+\newblock \emph{\bibinfo{journal}{N. Engl. J. Med.}}
+  \textbf{\bibinfo{volume}{338}}, \bibinfo{pages}{853--860}
+  (\bibinfo{year}{1998}).
+
+\bibitem{abril2023}
+\bibinfo{author}{Abril-Pla, O.} \emph{et~al.}
+\newblock \bibinfo{title}{{PyMC}: a modern and comprehensive probabilistic
+  programming framework in {Python}}.
+\newblock \emph{\bibinfo{journal}{PeerJ Comput. Sci.}}
+  \textbf{\bibinfo{volume}{9}}, \bibinfo{pages}{e1516} (\bibinfo{year}{2023}).
+
+\bibitem{hoffman2014}
+\bibinfo{author}{Hoffman, M.~D.} \& \bibinfo{author}{Gelman, A.}
+\newblock \bibinfo{title}{The {No-U-Turn} sampler: adaptively setting path
+  lengths in {Hamiltonian Monte Carlo}}.
+\newblock \emph{\bibinfo{journal}{J. Mach. Learn. Res.}}
+  \textbf{\bibinfo{volume}{15}}, \bibinfo{pages}{1593--1623}
+  (\bibinfo{year}{2014}).
+
+\bibitem{kass1995}
+\bibinfo{author}{Kass, R.~E.} \& \bibinfo{author}{Raftery, A.~E.}
+\newblock \bibinfo{title}{Bayes factors}.
+\newblock \emph{\bibinfo{journal}{J. Am. Stat. Assoc.}}
+  \textbf{\bibinfo{volume}{90}}, \bibinfo{pages}{773--795}
+  (\bibinfo{year}{1995}).
+
+\end{thebibliography}

@@ -7,14 +7,15 @@ This is the calibrated version that matches Sailasuta et al. (2012) data.
 KEY RESULT: Demonstrates noise decorrelation hypothesis.
 """
 
-from typing import Dict
-
-import matplotlib.pyplot as plt
 import numpy as np
-
-from .coupling_functions import (
+import matplotlib.pyplot as plt
+from typing import Dict
+from coupling_functions import (
+    BiophysicalConstants, 
     CONST,
+    cytokines_to_xi,
     choline_dynamics,
+    NAA_synthesis_rate
 )
 
 
@@ -267,9 +268,8 @@ def plot_xi_dependence():
     plt.grid(True, alpha=0.3)
     plt.tight_layout()
     
-    output_path = 'results/xi_dependence_NAA.png'
-    plt.savefig(output_path, dpi=300, bbox_inches='tight')
-    print(f"\nPlot saved to: {output_path}")
+    plt.savefig('/mnt/user-data/outputs/xi_dependence_NAA.png', dpi=300, bbox_inches='tight')
+    print("\nPlot saved to: /mnt/user-data/outputs/xi_dependence_NAA.png")
     
     return plt
 

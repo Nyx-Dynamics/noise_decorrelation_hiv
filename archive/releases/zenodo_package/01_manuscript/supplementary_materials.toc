@@ -1,0 +1,31 @@
+\contentsline {section}{\numberline {1}Extended Methods}{3}{section.1}%
+\contentsline {subsection}{\numberline {1.1}Hierarchical Bayesian Model Specification}{3}{subsection.1.1}%
+\contentsline {subsubsection}{\numberline {1.1.1}Likelihood}{3}{subsubsection.1.1.1}%
+\contentsline {subsubsection}{\numberline {1.1.2}Expected Value}{3}{subsubsection.1.1.2}%
+\contentsline {subsubsection}{\numberline {1.1.3}Protection Factor}{3}{subsubsection.1.1.3}%
+\contentsline {subsubsection}{\numberline {1.1.4}Prior Specifications}{3}{subsubsection.1.1.4}%
+\contentsline {subsection}{\numberline {1.2}MCMC Sampling Procedure}{4}{subsection.1.2}%
+\contentsline {subsection}{\numberline {1.3}Convergence Diagnostics}{4}{subsection.1.3}%
+\contentsline {subsection}{\numberline {1.4}ART Era Classification}{4}{subsection.1.4}%
+\contentsline {section}{\numberline {2}Sensitivity Analyses}{5}{section.2}%
+\contentsline {subsection}{\numberline {2.1}Prior Sensitivity Analysis}{5}{subsection.2.1}%
+\contentsline {subsection}{\numberline {2.2}Leave-One-Study-Out Analysis}{5}{subsection.2.2}%
+\contentsline {subsection}{\numberline {2.3}Subgroup Analysis by Brain Region}{5}{subsection.2.3}%
+\contentsline {subsection}{\numberline {2.4}Model Comparison (WAIC)}{6}{subsection.2.4}%
+\contentsline {section}{\numberline {3}Supplementary Figures}{7}{section.3}%
+\contentsline {subsection}{\numberline {3.1}Prior Sensitivity Analysis}{7}{subsection.3.1}%
+\contentsline {subsection}{\numberline {3.2}Power Analysis}{7}{subsection.3.2}%
+\contentsline {subsection}{\numberline {3.3}Leave-One-Study-Out Analysis}{7}{subsection.3.3}%
+\contentsline {subsection}{\numberline {3.4}Subgroup Analysis by Brain Region}{7}{subsection.3.4}%
+\contentsline {subsection}{\numberline {3.5}Model Version Comparison}{7}{subsection.3.5}%
+\contentsline {section}{\numberline {4}Complete Data Tables}{8}{section.4}%
+\contentsline {subsection}{\numberline {4.1}Full Study Cohort Characteristics}{8}{subsection.4.1}%
+\contentsline {subsection}{\numberline {4.2}Complete Posterior Parameter Estimates}{9}{subsection.4.2}%
+\contentsline {subsection}{\numberline {4.3}Enhanced Statistical Summary}{9}{subsection.4.3}%
+\contentsline {section}{\numberline {5}Code Repository}{10}{section.5}%
+\contentsline {subsection}{\numberline {5.1}Core Bayesian Model (v3.6)}{10}{subsection.5.1}%
+\contentsline {subsection}{\numberline {5.2}Enzyme Kinetics Validation Model (v4.0)}{13}{subsection.5.2}%
+\contentsline {subsection}{\numberline {5.3}Statistical Improvements Module}{16}{subsection.5.3}%
+\contentsline {subsection}{\numberline {5.4}Data Loader Utilities}{18}{subsection.5.4}%
+\contentsline {subsection}{\numberline {5.5}Software Environment}{21}{subsection.5.5}%
+\contentsline {subsection}{\numberline {5.6}Reproducibility}{21}{subsection.5.6}%

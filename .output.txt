@@ -1,0 +1,338 @@
+On branch main
+Your branch is up to date with 'origin/main'.
+Changes not staged for commit:
+  (use "git add/rm <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+        deleted:    Figure1_paradox_overview.pdf
+        deleted:    Figure1_paradox_overview.png
+        deleted:    HIV-Associated Neurocognitive Disorders: Evidence for the Acute Phase Protective Paradox.pdf
+        modified:   Makefile
+        deleted:    Neuroprotection_Manuscript_and_Notes/EVOLUTIONARY_FRAMEWORK copy.md
+        deleted:    Neuroprotection_Manuscript_and_Notes/EVOLUTIONARY_FRAMEWORK.md
+        deleted:    Neuroprotection_Manuscript_and_Notes/EXECUTIVE_BRIEFING_FINAL.md
+        deleted:    Neuroprotection_Manuscript_and_Notes/FINAL_INTEGRATED_REPORT.md
+        deleted:    Neuroprotection_Manuscript_and_Notes/FINAL_MASTER_SUMMARY.md
+        deleted:    Neuroprotection_Manuscript_and_Notes/IMPLEMENTATION_SUMMARY copy.md
+        deleted:    Neuroprotection_Manuscript_and_Notes/IMPLEMENTATION_SUMMARY.md
+        deleted:    Neuroprotection_Manuscript_and_Notes/MASTER_INDEX.md
+        deleted:    Neuroprotection_Manuscript_and_Notes/Noise_Mediated_Neuroprotection-3.pdf
+        deleted:    Neuroprotection_Manuscript_and_Notes/Noise_Mediated_Neuroprotection_Manuscript.pdf
+        deleted:    Neuroprotection_Manuscript_and_Notes/QUICKSTART.md
+        deleted:    Neuroprotection_Manuscript_and_Notes/QUICK_REFERENCE.md
+        deleted:    Neuroprotection_Manuscript_and_Notes/README_v2 copy.md
+        deleted:    Neuroprotection_Manuscript_and_Notes/README_v2.md
+        deleted:    Neuroprotection_Manuscript_and_Notes/chronic_NAA_underprediction_analysis copy.md
+        deleted:    Neuroprotection_Manuscript_and_Notes/chronic_NAA_underprediction_analysis.md
+        modified:   PROJECT_STRUCTURE.md
+        modified:   QUICKSTART.md
+        modified:   README.md
+        deleted:    archive/files-4/MASTER_INDEX.md
+        deleted:    archive/files-4/executive_summary.md
+        deleted:    archive/files-5/EXECUTIVE_BRIEFING_FINAL.md
+        deleted:    archive/files-5/ULTIMATE_COMPREHENSIVE_ANALYSIS.png
+        deleted:    archive/files-7/IMPLEMENTATION_SUMMARY.md
+        deleted:    archive/files-7/INDEX.md
+        deleted:    archive/files-7/README_v2.md
+        deleted:    archive/files-7/bayesian_optimization_v2.py
+        deleted:    archive/files-7/chronic_NAA_underprediction_analysis.md
+        deleted:    archive/files-7/final_calibrated_model_v2.py
+        deleted:    archive/noise_decorrelation_HIV_20251125T145301Z.tar.gz
+        deleted:    archive/venv_info.txt
+        deleted:    bayesian_v3_6/posterior_predictive_v3_6.csv
+        deleted:    bayesian_v3_6/ppc_v3_6.nc
+        deleted:    bayesian_v3_6/results_summary_v3_6.txt
+        deleted:    bayesian_v3_6/summary_v3_6.csv
+        deleted:    bayesian_v3_6/trace_v3_6.nc
+        deleted:    main.py
+        deleted:    manuscript_redlines_v2_9_1.md
+        deleted:    noise_v2_8_supplemental.pdf
+        deleted:    quantum/Figure1_paradox_overview.pdf
+        deleted:    quantum/Figure1_paradox_overview.png
+        deleted:    quantum/WAIC_test.py
+        deleted:    quantum/analyze_hierarchical.py
+        deleted:    quantum/build_figures_manifest.py
+        deleted:    quantum/build_tables.py
+        deleted:    quantum/check_bayes_env.py
+        deleted:    quantum/check_data_paths.py
+        deleted:    quantum/check_downloads.py
+        deleted:    quantum/cohort_reports.py
+        deleted:    quantum/commit_message.py
+        deleted:    quantum/convergent_data.py
+        deleted:    quantum/coupling_functions.py
+        deleted:    quantum/data_loaders.py
+        deleted:    quantum/diagnose_naa_floor.py
+        deleted:    quantum/diagnostics_two.py
+        deleted:    quantum/dti_quantum_simulation.py
+        deleted:    quantum/dti_simulation_results.json
+        deleted:    quantum/fig2_gen.py
+        deleted:    quantum/figures_manifest.json
+        deleted:    quantum/final_calibrated_model.py
+        deleted:    quantum/generate_figures.py
+        deleted:    quantum/geometry_compare.py
+        deleted:    quantum/geometry_compare_smoke_test.py
+        deleted:    quantum/harmonize_pipeline.py
+        deleted:    quantum/hierarchical_1.py
+        deleted:    quantum/hierarchical_bayes_effects.py
+        deleted:    quantum/hierarchical_fig_1.py
+        deleted:    quantum/hierarchical_fig_2_5.py
+        modified:   quantum/hierarchical_individual_v1_runner.py
+        deleted:    quantum/hierarchical_individual_v2_runner.py
+        deleted:    quantum/hierarchical_statistical_analysis.py
+        modified:   quantum/legacy/final_calibrated_model.py
+        deleted:    quantum/make_figures_from_run.py
+        deleted:    quantum/microtubule_quantum_coherence_full_simulation.py
+        deleted:    quantum/model_comparison_hierarchical_v1.py
+        deleted:    quantum/open_systems.py
+        deleted:    quantum/organize_from_downloads_v2.py
+        deleted:    quantum/organize_pipeline_data.py
+        deleted:    quantum/organize_project_data.py
+        deleted:    quantum/organize_project_files.py
+        deleted:    quantum/plot_posteriors_multipanel.py
+        deleted:    quantum/quantum_bayesian_results.json
+        modified:   quantum/regional_hierarchical_v1.py
+        modified:   quantum/results/enzyme_v4/summary_v4.csv
+        modified:   quantum/results/enzyme_v4/trace_v4.nc
+        modified:   quantum/results/enzyme_v4/v4_posteriors.pdf
+        modified:   quantum/results/enzyme_v4/v4_pred_vs_obs.pdf
+        deleted:    quantum/run_enzyme_v3.py
+        deleted:    quantum/shims.py
+        deleted:    quantum/sse_demo_config.py
+        deleted:    quantum/sse_interpret.py
+        deleted:    quantum/sse_interpret_smoke_test.py
+        deleted:    quantum/sse_mc_analytics.py
+        deleted:    quantum/sse_mc_smoke_test.py
+        deleted:    quantum/sse_phase_sweep.py
+        deleted:    quantum/sse_smoke_test.py
+        deleted:    quantum/sse_validation.py
+        deleted:    quantum/sse_visualize.py
+        deleted:    quantum/valcour_prepare.py
+        deleted:    quantum/venv_info.txt
+        deleted:    quantum/verify_imports.py
+        deleted:    results/TEGMARK_SCALE_ANALYSIS.png
+        deleted:    results/ULTIMATE_COMPREHENSIVE_ANALYSIS.png
+        deleted:    results/archive/hiv_phase_comparison.png
+        deleted:    results/archive/spatial_quantum_dynamics.png
+        deleted:    results/archive/xi_dependence_NAA.png
+        deleted:    results/cognition_correlation.png
+        modified:   results/hierarchical_individual_v1/trace.nc
+        deleted:    scripts/analyze_cognition.py
+        deleted:    scripts/diagnostics/divergence_diagnostic.py
+        deleted:    scripts/diagnostics/divergences.py
+        deleted:    scripts/empirical_data_report.py
+        deleted:    scripts/empirical_validation_runner.py
+        deleted:    scripts/legacy/5_fold_expanded.py
+        deleted:    scripts/legacy/ODE_phase_figure.py
+        deleted:    scripts/legacy/arm64.py
+        deleted:    scripts/legacy/arm64_2.py
+        deleted:    scripts/legacy/confirm.py
+        deleted:    scripts/legacy/data_search.py
+        deleted:    scripts/legacy/expanded_diagnostics.py
+        deleted:    scripts/legacy/expanded_figures.py
+        deleted:    scripts/legacy/extract_headline.py
+        deleted:    scripts/legacy/extract_headline_2.py
+        deleted:    scripts/legacy/netcdf_expanded.py
+        deleted:    scripts/legacy/pre_post_data_year.py
+        deleted:    scripts/legacy/pre_post_diagnostic.py
+        deleted:    scripts/legacy/quantum_bayesian_analysis.py
+        deleted:    scripts/legacy/summarize_netcdf_arviz.py
+        deleted:    scripts/legacy/verify.py
+        deleted:    scripts/statistical_improvements.py
+        deleted:    scripts/update_github.sh
+        deleted:    scripts/zenodo/organize_zenodo.py
+        deleted:    scripts/zenodo/zenodo.py
+        deleted:    scripts/zenodo/zenodo_2.py
+        deleted:    scripts/zenodo/zenodo_collection_report.txt
+        deleted:    supplemental_methods.md
+        deleted:    zenodo_package/01_manuscript/Figure1_paradox_overview.pdf
+        deleted:    zenodo_package/01_manuscript/HIV-Associated Neurocognitive Disorders: Evidence for the Acute Phase Protective Paradox.pdf
+        deleted:    zenodo_package/01_manuscript/README.md
+        deleted:    zenodo_package/01_manuscript/cover_letter.pdf
+        deleted:    zenodo_package/01_manuscript/cover_letter.tex
+        deleted:    zenodo_package/01_manuscript/figure_table_captions.md
+        deleted:    zenodo_package/01_manuscript/figures
+        deleted:    zenodo_package/01_manuscript/manuscript_v3.6_bibtex.tex
+        deleted:    zenodo_package/01_manuscript/manuscript_v3.6_nature_comm.aux
+        deleted:    zenodo_package/01_manuscript/manuscript_v3.6_nature_comm.out
+        deleted:    zenodo_package/01_manuscript/manuscript_v3.6_nature_comm.pdf
+        deleted:    zenodo_package/01_manuscript/manuscript_v3.6_nature_comm.tex
+        deleted:    zenodo_package/01_manuscript/noise_v2_8_supplemental.pdf
+        deleted:    zenodo_package/01_manuscript/references.bib
+        deleted:    zenodo_package/01_manuscript/supplementary_materials.pdf
+        deleted:    zenodo_package/01_manuscript/supplementary_materials.tex
+        deleted:    zenodo_package/02_data_raw/CHANG_2002_EXTRACTED.csv
+        deleted:    zenodo_package/02_data_raw/CRITICAL_STUDIES_COMPLETE_DATA.csv
+        deleted:    zenodo_package/02_data_raw/README.md
+        deleted:    zenodo_package/02_data_raw/SAILASUTA_2012_ACUTE_DATA.csv
+        deleted:    zenodo_package/02_data_raw/SAILASUTA_2012_EXTRACTED.csv
+        deleted:    zenodo_package/02_data_raw/SAILASUTA_2016_LONGITUDINAL.csv
+        deleted:    zenodo_package/02_data_raw/VALCOUR_2015_REGIONAL_SUMMARY.csv
+        deleted:    zenodo_package/02_data_raw/YOUNG_2014_CROSS_SECTIONAL_DATA.csv
+        deleted:    zenodo_package/02_data_raw/YOUNG_2014_LONGITUDINAL.csv
+        deleted:    zenodo_package/03_data_processed/MASTER_HIV_MRS_DATABASE_v2.csv
+        deleted:    zenodo_package/03_data_processed/MODEL_TRACES_README.md
+        deleted:    zenodo_package/03_data_processed/NAA_DATA_FOR_MODEL.csv
+        deleted:    zenodo_package/03_data_processed/README.md
+        deleted:    zenodo_package/03_data_processed/README_v2 copy.md
+        deleted:    zenodo_package/03_data_processed/README_v2.md
+        deleted:    zenodo_package/03_data_processed/VALCOUR_2015_ACUTE_DATA.csv
+        deleted:    zenodo_package/03_data_processed/VALCOUR_2015_DATA_FOR_MASTER.csv
+        deleted:    zenodo_package/03_data_processed/VALCOUR_2015_INDIVIDUAL_PATIENTS.csv
+        deleted:    zenodo_package/03_data_processed/hierarchical_v2_comprehensive.png
+        deleted:    zenodo_package/03_data_processed/hierarchical_v2_regional_effects.csv
+        deleted:    zenodo_package/03_data_processed/hierarchical_v2_summary.csv
+        deleted:    zenodo_package/03_data_processed/hierarchical_v2_trace.nc
+        deleted:    zenodo_package/03_data_processed/manuscript_redlines_v2_9_1.md
+        deleted:    zenodo_package/03_data_processed/noise_v2_9_1_supplemental.tex
+        deleted:    zenodo_package/03_data_processed/summary_v2.csv
+        deleted:    zenodo_package/04_model_outputs/README.md
+        deleted:    zenodo_package/04_model_outputs/bayesian_v3_6/posterior_predictive.csv
+        deleted:    zenodo_package/04_model_outputs/bayesian_v3_6/summary.csv
+        deleted:    zenodo_package/04_model_outputs/bayesian_v3_6_runner.py
+        deleted:    zenodo_package/04_model_outputs/cpu_neon_vfpv4.c
+        deleted:    zenodo_package/04_model_outputs/era_effect_violin_3_1_1_both_v3_6.png
+        deleted:    zenodo_package/04_model_outputs/posterior_predictive.csv
+        deleted:    zenodo_package/04_model_outputs/posterior_predictive_for_fig3.csv
+        deleted:    zenodo_package/04_model_outputs/posterior_predictive_v2.csv
+        deleted:    zenodo_package/04_model_outputs/ppd_overlay_3_1_1_both_v3_6.png
+        deleted:    zenodo_package/05_figures/Figure1_conceptual_overview.png
+        deleted:    zenodo_package/05_figures/Figure2_posteriors.png
+        deleted:    zenodo_package/05_figures/Figure3_model_fit.png
+        deleted:    zenodo_package/05_figures/Figure4_protection_factor.png
+        deleted:    zenodo_package/05_figures/Figure5_diagnostics.png
+        deleted:    zenodo_package/05_figures/README.md
+        deleted:    zenodo_package/05_figures/convergent_evidence_figure.png
+        deleted:    zenodo_package/05_figures/legacy/Figure1_paradox_overview.png
+        deleted:    zenodo_package/05_figures/legacy/Hierarchical_v2_Summary.png
+        deleted:    zenodo_package/05_figures/legacy/Integrated_Dual_Model_Analysis.png
+        deleted:    zenodo_package/05_figures/legacy/SuppFig_loso_analysis.png
+        deleted:    zenodo_package/05_figures/legacy/SuppFig_power_analysis.png
+        deleted:    zenodo_package/05_figures/legacy/SuppFig_prior_sensitivity.png
+        deleted:    zenodo_package/05_figures/legacy/SuppFig_subgroup_analysis.png
+        deleted:    zenodo_package/05_figures/legacy/Version_Comparison_v28_vs_v36.png
+        deleted:    zenodo_package/06_code/Makefile
+        deleted:    zenodo_package/06_code/Neuroprotection_Manuscript_and_Notes/EVOLUTIONARY_FRAMEWORK copy.md
+        deleted:    zenodo_package/06_code/Neuroprotection_Manuscript_and_Notes/EVOLUTIONARY_FRAMEWORK.md
+        deleted:    zenodo_package/06_code/Neuroprotection_Manuscript_and_Notes/EXECUTIVE_BRIEFING_FINAL.md
+        deleted:    zenodo_package/06_code/Neuroprotection_Manuscript_and_Notes/FINAL_INTEGRATED_REPORT.md
+        deleted:    zenodo_package/06_code/Neuroprotection_Manuscript_and_Notes/FINAL_MASTER_SUMMARY.md
+        deleted:    zenodo_package/06_code/Neuroprotection_Manuscript_and_Notes/IMPLEMENTATION_SUMMARY copy.md
+        deleted:    zenodo_package/06_code/Neuroprotection_Manuscript_and_Notes/IMPLEMENTATION_SUMMARY.md
+        deleted:    zenodo_package/06_code/Neuroprotection_Manuscript_and_Notes/MASTER_INDEX.md
+        deleted:    zenodo_package/06_code/Neuroprotection_Manuscript_and_Notes/QUICKSTART.md
+        deleted:    zenodo_package/06_code/Neuroprotection_Manuscript_and_Notes/QUICK_REFERENCE.md
+        deleted:    zenodo_package/06_code/Neuroprotection_Manuscript_and_Notes/README_v2 copy.md
+        deleted:    zenodo_package/06_code/Neuroprotection_Manuscript_and_Notes/README_v2.md
+        deleted:    zenodo_package/06_code/Neuroprotection_Manuscript_and_Notes/chronic_NAA_underprediction_analysis copy.md
+        deleted:    zenodo_package/06_code/Neuroprotection_Manuscript_and_Notes/chronic_NAA_underprediction_analysis.md
+        deleted:    zenodo_package/06_code/PROJECT_STRUCTURE.md
+        deleted:    zenodo_package/06_code/QUICKSTART.md
+        deleted:    zenodo_package/06_code/README.md
+        deleted:    zenodo_package/06_code/data/DATA_INVENTORY.md
+        deleted:    zenodo_package/06_code/data/README.md
+        deleted:    zenodo_package/06_code/data/documentation/ACUTE_HIV_MRS_PAPERS_ANALYSIS.md
+        deleted:    zenodo_package/06_code/data/documentation/COMPLETE_EVIDENCE_BASE_SUMMARY.md
+        deleted:    zenodo_package/06_code/data/documentation/COMPLETE_LITERATURE_SYNTHESIS.md
+        deleted:    zenodo_package/06_code/data/documentation/COUPLING_FUNCTIONS_SUMMARY.md
+        deleted:    zenodo_package/06_code/data/documentation/DATA_EXTRACTION_INDEX.md
+        deleted:    zenodo_package/06_code/data/documentation/INTEGRATED_MASTER_EXTRACTION_V3.md
+        deleted:    zenodo_package/06_code/data/documentation/INTEGRATED_MRS_DATA_EXTRACTION.md
+        deleted:    zenodo_package/06_code/data/documentation/MANUSCRIPT_DATA_EXTRACTION_MASTER.md
+        deleted:    zenodo_package/06_code/data/documentation/MASTER_DATA_INVENTORY.md
+        deleted:    zenodo_package/06_code/data/documentation/MOHAMED_2010_CHRONIC_HIV_ANALYSIS.md
+        deleted:    zenodo_package/06_code/data/documentation/NEW_AUTHOR_EXTRACTIONS_SUMMARY.md
+        deleted:    zenodo_package/06_code/data/documentation/SAILASUTA_2012_COMPLETE_EXTRACTION.md
+        deleted:    zenodo_package/06_code/data/documentation/VALCOUR_2015_COMPLETE_EXTRACTION.md
+        deleted:    zenodo_package/06_code/data/documentation/VALCOUR_S1_DATASET_ANALYSIS.md
+        deleted:    zenodo_package/06_code/data/documentation/WAIC_ANALYSIS_SUMMARY.md
+        deleted:    zenodo_package/06_code/data/documentation/WORKFLOW_GUIDE.md
+        deleted:    zenodo_package/06_code/data/documentation/YOUNG_2014_FIGURES_DETAILED_ANALYSIS.md
+        deleted:    zenodo_package/06_code/data/documentation/executive_summary.md
+        deleted:    zenodo_package/06_code/data/extracted_expanded/2_1_data/PROJECT_SUMMARY_2to1_RATIO.md
+        deleted:    zenodo_package/06_code/data/extracted_expanded/PROJECT_SUMMARY_2to1_RATIO.md
+        deleted:    zenodo_package/06_code/data/extracted_expanded/data_ratios_comparison/CSV_QUICK_REFERENCE.md
+        deleted:    zenodo_package/06_code/data/extracted_expanded/data_ratios_comparison/DELIVERY_SUMMARY.md
+        deleted:    zenodo_package/06_code/data/extracted_expanded/data_ratios_comparison/RATIO_CONFIGURATIONS_GUIDE.md
+        deleted:    zenodo_package/06_code/files-4/MASTER_INDEX.md
+        deleted:    zenodo_package/06_code/files-4/executive_summary.md
+        deleted:    zenodo_package/06_code/files-5/EXECUTIVE_BRIEFING_FINAL.md
+        deleted:    zenodo_package/06_code/files-7/IMPLEMENTATION_SUMMARY.md
+        deleted:    zenodo_package/06_code/files-7/INDEX.md
+        deleted:    zenodo_package/06_code/files-7/README_v2.md
+        deleted:    zenodo_package/06_code/files-7/chronic_NAA_underprediction_analysis.md
+        deleted:    zenodo_package/06_code/main.py
+        deleted:    zenodo_package/06_code/quantum/bayesian_optimization.py
+        deleted:    zenodo_package/06_code/quantum/bayesian_v3_6_runner.py
+        deleted:    zenodo_package/06_code/quantum/bayesian_v3_runner.py
+        deleted:    zenodo_package/06_code/quantum/model_comparison_hierarchical_v1.py
+        deleted:    zenodo_package/06_code/requirements.txt
+        deleted:    zenodo_package/06_code/results/RESULTS_ANALYSIS_AND_FIX.md
+        deleted:    zenodo_package/06_code/results/YOUR_RESULTS_ANALYSIS.md
+        deleted:    zenodo_package/06_code/results/microtubule_analysis_report.md
+        deleted:    zenodo_package/06_code/results/microtubule_simulation_acute_20251017_193126_geom_comparison.md
+        deleted:    zenodo_package/06_code/results/spatial_analysis_comprehensive_report.md
+        deleted:    zenodo_package/06_code/results/sse_mc_mc_interpretation.md
+        deleted:    zenodo_package/06_code/results/sse_phase_sweep_phase_interpretation.md
+        deleted:    zenodo_package/06_code/supplemental_methods.md
+        deleted:    zenodo_package/06_code/venv_info.txt
+        deleted:    zenodo_package/06_code/zenodo.py
+        deleted:    zenodo_package/06_code/zenodo_2.py
+        deleted:    zenodo_package/07_cross_validation/README.md
+        deleted:    zenodo_package/07_cross_validation/VALCOUR_2015_COMPLETE_EXTRACTION.md
+        deleted:    zenodo_package/07_cross_validation/VALCOUR_S1_DATASET_ANALYSIS.md
+        deleted:    zenodo_package/07_cross_validation/mgcv_cubic_splines.py
+        deleted:    zenodo_package/08_sensitivity/README.md
+        deleted:    zenodo_package/08_sensitivity/_sensitivity_analysis.py
+        deleted:    zenodo_package/08_sensitivity/test_sensitivity_analysis.py
+        deleted:    zenodo_package/09_supplementary/README.md
+        deleted:    zenodo_package/09_supplementary/supplemental_methods.md
+        deleted:    zenodo_package/10_quantum_hand/README.md
+        deleted:    zenodo_package/11_local_development/README.md
+        deleted:    zenodo_package/CHECKSUMS.sha256
+        deleted:    zenodo_package/CHECKSUMS.sha256.json
+        deleted:    zenodo_package/CITATION.cff
+        deleted:    zenodo_package/DATA_DICTIONARY.json
+        deleted:    zenodo_package/MANIFEST.json
+        deleted:    zenodo_package/README.md
+        deleted:    zenodo_package/checksums.txt
+        deleted:    zenodo_package/file_copy_report.json
+        deleted:    zenodo_package/metadata.json
+        deleted:    zenodo_package/requirements.txt
+        deleted:    zenodo_upload.zip
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+        archive/code/
+        archive/data/
+        archive/docs/
+        archive/releases/
+        archive/results/
+        figures/TEGMARK_SCALE_ANALYSIS.png
+        figures/ULTIMATE_COMPREHENSIVE_ANALYSIS.png
+        figures/cognition_correlation.png
+        figures/hiv_phase_comparison.png
+        figures/spatial_quantum_dynamics.png
+        figures/xi_dependence_NAA.png
+        quantum/legacy/build_figures_manifest.py
+        quantum/legacy/build_tables.py
+        quantum/legacy/check_downloads.py
+        quantum/legacy/cohort_reports.py
+        quantum/legacy/commit_message.py
+        quantum/legacy/figures_manifest.json
+        quantum/legacy/generate_figures.py
+        quantum/legacy/harmonize_pipeline.py
+        quantum/legacy/make_figures_from_run.py
+        quantum/legacy/organize_from_downloads_v2.py
+        quantum/legacy/organize_pipeline_data.py
+        quantum/legacy/organize_project_data.py
+        quantum/legacy/organize_project_files.py
+        quantum/legacy/plot_posteriors_multipanel.py
+        quantum/legacy/run_enzyme_v3.py
+        quantum/legacy/shims.py
+        quantum/legacy/valcour_prepare.py
+        quantum/legacy/venv_info.txt
+        quantum/legacy/verify_imports.py
+        quantum/reproduce_all.py
+        quantum/research/
+        quantum/utils/check_bayes_env.py
+        quantum/utils/check_data_paths.py
+        quantum/utils/data_loaders.py
+no changes added to commit (use "git add" and/or "git commit -a")

@@ -14,7 +14,7 @@ endif
 VENV_DIR = .venv
 VENV_PY = $(VENV_DIR)/bin/python
 
-.PHONY: help venv install clean-venv run-main run-validation run-all smoke-main smoke-validation figures report env-check
+.PHONY: help venv install clean-venv run-main run-validation run-hierarchical run-regional run-all smoke-main smoke-validation smoke-hierarchical smoke-regional figures report env-check
 
 help:
 	@echo "--- Noise-Mediated Neuroprotection Project ---"
@@ -33,10 +33,18 @@ help:
 	@echo "  make run-validation   # Run Enzyme v4 mechanistic validation"
 	@echo "  make smoke-validation # Quick test of Enzyme v4 validation"
 	@echo ""
+	@echo "Individual Patient Validation:"
+	@echo "  make run-hierarchical # Run hierarchical individual-level model"
+	@echo "  make smoke-hierarchical # Quick test of individual-level model"
+	@echo ""
+	@echo "Regional Sensitivity Mapping:"
+	@echo "  make run-regional     # Run regional hierarchical model"
+	@echo "  make smoke-regional   # Quick test of regional model"
+	@echo ""
 	@echo "Outputs & Reporting:"
 	@echo "  make figures          # Generate all manuscript figures"
 	@echo "  make report           # Summarize the project status"
-	@echo "  make run-all          # Run main analysis, validation, and figures"
+	@echo "  make run-all          # Run main, validation, hierarchical, regional, and figures"
 	@echo ""
 	@echo "Using Python: $(PY)"
 	@echo "To override: make PY=python3.9 <target>"
@@ -80,12 +88,36 @@ smoke-main:
 
 run-validation:
 	@echo "Running Enzyme v4 Mechanistic Validation..."
-	PYTHONPATH=.:quantum $(PY) models/bayesian_enzyme_v4.py
+	$(PY) -m quantum.enzyme_v4_runner --ratio 3_1_1 --era both
 	@echo "Results saved to results/enzyme_v4/"
 
 smoke-validation:
 	@echo "Running Smoke Test for Enzyme v4..."
-	PYTHONPATH=.:quantum $(PY) -c "from models.bayesian_enzyme_v4 import run_inference, analyze_results; idata=run_inference(n_samples=100, n_chains=2); analyze_results(idata)"
+	$(PY) -m quantum.enzyme_v4_runner --ratio 3_1_1 --era both --draws 100 --tune 100 --chains 2
+	@echo "Smoke test complete."
+
+# --- Individual Patient Validation ---
+
+run-hierarchical:
+	@echo "Running Hierarchical Individual-Level Analysis..."
+	$(PY) -m quantum.hierarchical_individual_v1_runner
+	@echo "Results saved to results/hierarchical_individual_v1/"
+
+smoke-hierarchical:
+	@echo "Running Smoke Test for Hierarchical Individual Model..."
+	$(PY) -m quantum.hierarchical_individual_v1_runner --draws 100 --tune 100 --chains 2
+	@echo "Smoke test complete."
+
+# --- Regional Sensitivity Mapping ---
+
+run-regional:
+	@echo "Running Regional Hierarchical Analysis..."
+	$(PY) -m quantum.regional_hierarchical_v1
+	@echo "Results saved to results/regional_hierarchical_v1/"
+
+smoke-regional:
+	@echo "Running Smoke Test for Regional Model..."
+	$(PY) -m quantum.regional_hierarchical_v1 --draws 100 --tune 100 --chains 2
 	@echo "Smoke test complete."
 
 # --- Figures ---
@@ -102,11 +134,16 @@ report:
 	@echo "Status: Analysis Complete (v3.6 Main + v4.0 Validation)"
 	@echo "Key Files:"
 	@echo "  - Main Model: quantum/bayesian_v3_6_runner.py"
-	@echo "  - Validation Model: models/bayesian_enzyme_v4.py"
+	@echo "  - Validation Model: quantum/bayesian_enzyme_v4.py"
 	@echo "  - Data Inventory: data/DATA_INVENTORY.md"
 	@echo "  - Structure: PROJECT_STRUCTURE.md"
 
 # --- Aggregates ---
 
-run-all: run-main run-validation figures
+run-all: run-main run-validation run-hierarchical run-regional figures
 	@echo "Full project workflow completed."
+
+reproduce:
+	@echo "Running full reproducibility orchestrator..."
+	$(PY) -m quantum.reproduce_all
+	@echo "Reproducibility results available in reproducibility_results/"

@@ -1,6 +1,12 @@
 # Quick Start Guide
 
-## Setup
+## Reproducibility Path
+
+### 0. Quick Reproduce (All Models)
+```bash
+make reproduce
+```
+This runs the main Bayesian analysis, enzyme validation, individual validation, and regional mapping, then aggregates all findings into `reproducibility_results/`.
 
 ### 1. Clone Repository
 ```bash
@@ -25,54 +31,55 @@ pip install -r requirements.txt  # If you create one
 
 ## Key Analyses
 
-### Main Bayesian Model (v3.6) - Already Run
+### Main Bayesian Model (v3.6)
+
 Results are in `results/bayesian_v3_6/`
+
+**To run:**
+```bash
+make run-main
+```
 
 **To view results:**
 ```bash
 # View parameter estimates
 cat results/bayesian_v3_6/summary.csv
-
-# View predictions vs observations
-cat results/bayesian_v3_6/posterior_predictive.csv
-
-# View figures
-open results/ULTIMATE_COMPREHENSIVE_ANALYSIS.png
-open results/bayesian_inference_results.png
-```
-
-**To re-run (if needed):**
-```bash
-# Original script not in repo - was run interactively
-# See results/RESULTS_ANALYSIS_AND_FIX.md for development notes
 ```
 
 ---
 
 ### External Validation (Enzyme v4)
 
-**Run external validation:**
+**To run:**
 ```bash
-cd quantum/
-python bayesian_enzyme_v4.py
+make run-validation
 ```
-
-**Outputs:**
-- `quantum/results/enzyme_v4/summary_v4.csv` - Parameter estimates
-- `quantum/results/enzyme_v4/trace_v4.nc` - MCMC chain
-- `quantum/results/enzyme_v4/v4_posteriors.pdf` - Posterior plots
-- `quantum/results/enzyme_v4/v4_pred_vs_obs.pdf` - Model fit
-
-**Expected runtime:** ~5-10 minutes on modern hardware
 
 ---
 
-### Regional Analysis (Evolutionary Protection)
+### Regional Sensitivity Mapping
 
-**Run regional analysis:**
+**To run:**
 ```bash
-cd quantum/
-python regional_bayesian_optimization_v2_final.py
+make run-regional
+```
+
+---
+
+### Individual Patient Validation (Hierarchical v1)
+
+**To run:**
+```bash
+make run-hierarchical
+```
+
+---
+
+### Generate All Figures
+
+**To run:**
+```bash
+make figures
 ```
 
 **Outputs:**
@@ -129,13 +136,13 @@ cat data/master/MASTER_HIV_MRS_DATABASE_v2.csv
 ### Main text figures
 ```bash
 # Figure 1: Comprehensive analysis
-cp results/ULTIMATE_COMPREHENSIVE_ANALYSIS.png manuscript/figures/Figure1.png
+cp figures/ULTIMATE_COMPREHENSIVE_ANALYSIS.png manuscript/figures/Figure1.png
 
 # Figure 2: Bayesian inference
 cp results/bayesian_inference_results.png manuscript/figures/Figure2.png
 
 # Figure 3: Mechanism illustration
-cp results/xi_dependence_NAA.png manuscript/figures/Figure3.png
+cp figures/xi_dependence_NAA.png manuscript/figures/Figure3.png
 
 # Figure 4: External validation
 cp quantum/results/enzyme_v4/v4_pred_vs_obs.pdf manuscript/figures/Figure4.pdf
@@ -147,10 +154,10 @@ cp quantum/results/enzyme_v4/v4_pred_vs_obs.pdf manuscript/figures/Figure4.pdf
 cp quantum/results/regional_v1/plot6_comprehensive_summary.png manuscript/figures/FigureS1.png
 
 # Supplementary Figure 2: Phase comparison
-cp results/hiv_phase_comparison.png manuscript/figures/FigureS2.png
+cp figures/hiv_phase_comparison.png manuscript/figures/FigureS2.png
 
 # Supplementary Figure 3: Spatial dynamics
-cp results/spatial_quantum_dynamics.png manuscript/figures/FigureS3.png
+cp figures/spatial_quantum_dynamics.png manuscript/figures/FigureS3.png
 ```
 
 ---
@@ -259,4 +266,4 @@ For questions about the analysis or code:
 
 ---
 
-*Last updated: November 15, 2024*
+*Last updated: January 2026*
