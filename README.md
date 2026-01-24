@@ -1,4 +1,4 @@
-# Environmental Noise Structure Predicts Neurometabolic Preservation in HIV Infection
+# Noise Decorrelation as a Hypothetical Mechanism for Phase-Specific Neurometabolic Outcomes in HIV Infection: A Computational Framework
 
 ![Python](https://img.shields.io/badge/python-3.9+-blue.svg)
 ![PyMC](https://img.shields.io/badge/PyMC-5.12-orange.svg)
@@ -120,8 +120,8 @@ All data extracted from published peer-reviewed studies:
 
 ```bibtex
 @article{demidont2025noise,
-  title={Environmental Noise Structure Predicts Neurometabolic Preservation
-         in HIV Infection},
+  title={Noise Decorrelation as a Hypothetical Mechanism for Phase-Specific
+         Neurometabolic Outcomes in HIV Infection: A Computational Framework},
   author={Demidont, A.C.},
   journal={Nature Communications},
   year={2025},

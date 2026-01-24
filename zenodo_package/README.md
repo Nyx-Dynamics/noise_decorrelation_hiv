@@ -1,8 +1,8 @@
-# Data Package: Environmental Noise Structure Predicts Neurometabolic Preservation in HIV Infection
+# Data Package: Noise Decorrelation as a Hypothetical Mechanism for Phase-Specific Neurometabolic Outcomes in HIV Infection
 
 ## Overview
 This data package contains all data, code, and outputs supporting the manuscript:
-"Environmental Noise Structure Predicts Neurometabolic Preservation in HIV Infection"
+"Noise Decorrelation as a Hypothetical Mechanism for Phase-Specific Neurometabolic Outcomes in HIV Infection: A Computational Framework"
 
 **DOI:** 10.5281/zenodo.17512732  
 **Authors:** Demidont, A.C.  
@@ -29,5 +29,5 @@ MIT
 
 ## Citation
 If you use this data, please cite:
-Demidont AC (2025). Environmental Noise Structure Predicts Neurometabolic
-Preservation in HIV Infection. Zenodo. https://doi.org/10.5281/zenodo.XXXXXXX
+Demidont AC (2025). Noise Decorrelation as a Hypothetical Mechanism for Phase-Specific
+Neurometabolic Outcomes in HIV Infection: A Computational Framework. Zenodo. https://doi.org/10.5281/zenodo.XXXXXXX
