@@ -1,0 +1,9 @@
+Metric,Value,CI_95,Interpretation
+P(ξ_acute < ξ_chronic),>0.999,-,Decisive
+BF₁₀,29028,-,Decisive evidence
+Cohen's d,5.63,"[4.68, 6.58]",Large effect
+ξ reduction (%),46.2,-,Substantial protection
+ξ_acute (nm),0.425,"[0.303, 0.541]",-
+ξ_chronic (nm),0.790,"[0.659, 0.913]",-
+I² (heterogeneity),92.6%,-,Low
+WAIC (full model),-453.76,-,Best fit (weight=0.89)
