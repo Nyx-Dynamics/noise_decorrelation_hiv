@@ -64,7 +64,7 @@ venv:
 
 install:
 	@echo "Installing dependencies..."
-	$(VENV_PY) -m pip install --upgrade pip
+	$(VENV_PY) -m pip install --upgrade pip setuptools wheel
 	$(VENV_PY) -m pip install -r requirements.txt
 	@echo "Done."
 

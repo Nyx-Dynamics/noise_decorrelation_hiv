@@ -1,0 +1,9 @@
+,mean,sd,hdi_3%,hdi_97%
+beta_xi,1.907,0.471,0.963,2.739
+xi_acute,0.0,0.0,0.0,0.0
+xi_chronic,0.0,0.0,0.0,0.0
+gamma_coh,1.561,0.468,0.6,2.358
+viral_damage_acute,0.953,0.046,0.869,1.0
+viral_damage_chronic,0.9,0.09,0.735,1.0
+membrane_acute,2.071,0.479,1.174,2.933
+membrane_chronic,1.332,0.216,1.0,1.711

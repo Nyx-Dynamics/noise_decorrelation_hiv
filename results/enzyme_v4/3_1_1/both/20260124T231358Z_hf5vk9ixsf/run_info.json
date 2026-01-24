@@ -1,0 +1,13 @@
+{
+  "ratio": "3_1_1",
+  "era": "both",
+  "xi_ref": 0.66,
+  "draws": 1000,
+  "tune": 1000,
+  "chains": 4,
+  "target_accept": 0.95,
+  "seed": 42,
+  "trace": "results/enzyme_v4/3_1_1/both/20260124T231358Z_hf5vk9ixsf/trace_enzyme_v4.nc",
+  "predictions": "results/enzyme_v4/3_1_1/both/20260124T231358Z_hf5vk9ixsf/predictions.csv",
+  "summary": "results/enzyme_v4/3_1_1/both/20260124T231358Z_hf5vk9ixsf/summary_v4.csv"
+}

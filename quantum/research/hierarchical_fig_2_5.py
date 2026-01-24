@@ -199,7 +199,7 @@ def create_figure2():
     plt.tight_layout()
 
     # Save
-    output_path = '/Users/acdmbpmax/Desktop/noise canonical/figures/Figure2_posteriors.png'
+    output_path = '/Users/acdmbpmax/PycharmProjects/noise_decorrelation_HIV/figures/Figure2_posteriors.png'
     os.makedirs(os.path.dirname(output_path), exist_ok=True)
     plt.savefig(output_path, dpi=300, bbox_inches='tight', facecolor='white')
     plt.savefig(output_path.replace('.png', '.pdf'), dpi=300, bbox_inches='tight', facecolor='white')
@@ -325,7 +325,7 @@ def create_figure3():
 
     plt.tight_layout()
 
-    output_path = '/Users/acdmbpmax/Desktop/noise canonical/figures/Figure3_model_fit.png'
+    output_path = '/Users/acdmbpmax/PycharmProjects/noise_decorrelation_HIV/figures/Figure3_model_fit.png'
     plt.savefig(output_path, dpi=300, bbox_inches='tight', facecolor='white')
     plt.savefig(output_path.replace('.png', '.pdf'), dpi=300, bbox_inches='tight', facecolor='white')
     print(f"Figure 3 saved to: {output_path}")
@@ -425,7 +425,7 @@ def create_figure4():
 
     plt.tight_layout()
 
-    output_path = '/Users/acdmbpmax/Desktop/noise canonical/figures/Figure4_protection_factor.png'
+    output_path = '/Users/acdmbpmax/PycharmProjects/noise_decorrelation_HIV/figures/Figure4_protection_factor.png'
     plt.savefig(output_path, dpi=300, bbox_inches='tight', facecolor='white')
     plt.savefig(output_path.replace('.png', '.pdf'), dpi=300, bbox_inches='tight', facecolor='white')
     print(f"Figure 4 saved to: {output_path}")
@@ -577,7 +577,7 @@ def create_figure5():
 
     plt.tight_layout()
 
-    output_path = '/Users/acdmbpmax/Desktop/noise canonical/figures/Figure5_diagnostics.png'
+    output_path = '/Users/acdmbpmax/PycharmProjects/noise_decorrelation_HIV/figures/Figure5_diagnostics.png'
     plt.savefig(output_path, dpi=300, bbox_inches='tight', facecolor='white')
     plt.savefig(output_path.replace('.png', '.pdf'), dpi=300, bbox_inches='tight', facecolor='white')
     print(f"Figure 5 saved to: {output_path}")
@@ -597,7 +597,7 @@ def main():
     print("\n" + "="*60)
     print(" ALL FIGURES GENERATED SUCCESSFULLY")
     print("="*60)
-    print("\nFigures saved to: /Users/acdmbpmax/Desktop/noise canonical/figures/")
+    print("\nFigures saved to: /Users/acdmbpmax/PycharmProjects/noise_decorrelation_HIV/figures/")
 
 
 if __name__ == '__main__':

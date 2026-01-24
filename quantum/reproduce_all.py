@@ -137,6 +137,13 @@ def collect_visuals(run_dirs):
             "--outdir", str(viz_dir)
         ])
 
+    # Generate Publication Figures (2-5)
+    print("\n>>> Generating publication-ready figures (2-5)...")
+    subprocess.run([os.sys.executable, "quantum/research/hierarchical_fig_2_5.py"])
+    # Copy generated pub figures to visualizations folder
+    for f in Path("figures").glob("Figure*.png"):
+        shutil.copy(f, viz_dir / f.name)
+
     # 2. Enzyme v4
     enz_dir = run_dirs.get("Enzyme_v4")
     if enz_dir:
@@ -149,7 +156,7 @@ def collect_visuals(run_dirs):
     for name in ["Individual_v1", "Regional_v1"]:
         d = run_dirs.get(name)
         if d:
-            for f in d.glob("*.png"):
+            for f in d.glob("fig*.png"): # Copy our new descriptive filenames
                 shutil.copy(f, viz_dir / f"{name}_{f.name}")
 
 def main():

@@ -155,6 +155,36 @@ def main():
     out_dir.mkdir(parents=True, exist_ok=True)
     az.to_netcdf(idata, str(out_dir / 'trace.nc'))
     summary.to_csv(out_dir / 'summary.csv')
+    
+    # Generate Visuals
+    print("\nGenerating regional visuals...")
+    try:
+        import matplotlib.pyplot as plt
+        
+        # Fig 1: Regional beta_xi
+        plt.figure(figsize=(10, 6))
+        az.plot_forest(idata, var_names=['beta_xi_region'], combined=True)
+        plt.axvline(1.0, color='r', linestyle='--', label='Linear')
+        plt.title('Regional Protection Exponent (beta_xi)')
+        plt.tight_layout()
+        plt.savefig(out_dir / 'fig1_regional_beta.png', dpi=200)
+        plt.close()
+        
+        # Fig 2: Regional xi_acute
+        plt.figure(figsize=(10, 6))
+        az.plot_forest(idata, var_names=['xi_acute_region'], combined=True)
+        plt.title('Regional Noise Correlation Length (xi_acute)')
+        plt.tight_layout()
+        plt.savefig(out_dir / 'fig2_regional_xi.png', dpi=200)
+        plt.close()
+
+        # Touch a dummy visuals.png for legacy compatibility
+        (out_dir / 'visuals.png').touch()
+        
+        print(f"Regional visuals saved to {out_dir}")
+    except Exception as e:
+        print(f"Error generating regional visuals: {e}")
+
     print(f"\nResults saved to {out_dir}")
     print("="*60)
 

@@ -25,12 +25,20 @@ import matplotlib.pyplot as plt
 from pathlib import Path
 
 # Import your enzyme kinetics module
-from enzyme_kinetics import (
-    EnzymeKinetics,
-    compute_protection_factor,
-    coherence_modulation,
-    ENZYME
-)
+try:
+    from .enzyme_kinetics import (
+        EnzymeKinetics,
+        compute_protection_factor,
+        coherence_modulation,
+        ENZYME
+    )
+except ImportError:
+    from enzyme_kinetics import (
+        EnzymeKinetics,
+        compute_protection_factor,
+        coherence_modulation,
+        ENZYME
+    )
 
 
 # =============================================================================

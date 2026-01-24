@@ -32,7 +32,7 @@ import pandas as pd
 import pymc as pm
 import numpy as np
 
-from quantum.data_loaders import load_bayesian_inputs
+from quantum.utils.data_loaders import load_bayesian_inputs
 from quantum.utils.run_manifest import make_run_id, base_environment, write_manifest, Manifest
 
 # Phase label normalization

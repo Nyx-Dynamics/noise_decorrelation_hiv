@@ -83,9 +83,13 @@ make figures
 ```
 
 **Outputs:**
-- `quantum/results/regional_v1/regional_summary.csv`
-- `quantum/results/regional_v1/evolutionary_stats.txt`
-- `quantum/results/regional_v1/plot*.png` (6 figures)
+Visualizations are collected in `reproducibility_results/visualizations/` including:
+- `Figure2_posteriors.png` (Posterior distributions of ξ and β_ξ)
+- `Figure3_model_fit.png` (NAA/Cr predictions vs observed)
+- `Figure4_protection_factor.png` (Π_ξ vs ξ relationship)
+- `Individual_v1_fig1_xi_posteriors.png`
+- `Regional_v1_fig1_regional_beta.png`
+- And other manuscript-supporting diagnostics.
 
 **Expected runtime:** ~10-15 minutes
 
@@ -136,28 +140,25 @@ cat data/master/MASTER_HIV_MRS_DATABASE_v2.csv
 ### Main text figures
 ```bash
 # Figure 1: Comprehensive analysis
-cp figures/ULTIMATE_COMPREHENSIVE_ANALYSIS.png manuscript/figures/Figure1.png
+# [Refer to Figure 1 generated in Figure1_paradox_overview.png if available in archive/docs]
 
-# Figure 2: Bayesian inference
-cp results/bayesian_inference_results.png manuscript/figures/Figure2.png
+# Figure 2: Bayesian inference (Posteriors)
+cp reproducibility_results/visualizations/Figure2_posteriors.png manuscript/figures/Figure2.png
 
-# Figure 3: Mechanism illustration
-cp figures/xi_dependence_NAA.png manuscript/figures/Figure3.png
+# Figure 3: Model fit
+cp reproducibility_results/visualizations/Figure3_model_fit.png manuscript/figures/Figure3.png
 
-# Figure 4: External validation
-cp quantum/results/enzyme_v4/v4_pred_vs_obs.pdf manuscript/figures/Figure4.pdf
+# Figure 4: Mechanism illustration (Protection factor)
+cp reproducibility_results/visualizations/Figure4_protection_factor.png manuscript/figures/Figure4.png
 ```
 
 ### Supplementary figures
 ```bash
 # Supplementary Figure 1: Regional analysis
-cp quantum/results/regional_v1/plot6_comprehensive_summary.png manuscript/figures/FigureS1.png
+cp reproducibility_results/visualizations/Regional_v1_fig1_regional_beta.png manuscript/figures/FigureS1.png
 
-# Supplementary Figure 2: Phase comparison
-cp figures/hiv_phase_comparison.png manuscript/figures/FigureS2.png
-
-# Supplementary Figure 3: Spatial dynamics
-cp figures/spatial_quantum_dynamics.png manuscript/figures/FigureS3.png
+# Supplementary Figure 2: Individual patient validation
+cp reproducibility_results/visualizations/Individual_v1_fig1_xi_posteriors.png manuscript/figures/FigureS2.png
 ```
 
 ---
