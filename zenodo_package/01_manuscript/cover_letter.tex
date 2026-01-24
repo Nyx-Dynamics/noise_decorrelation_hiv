@@ -1,0 +1,78 @@
+\documentclass[11pt]{letter}
+\usepackage[margin=1in]{geometry}
+\usepackage{hyperref}
+\usepackage{xcolor}
+
+\signature{A.C. Demidont, DO\\Independent Researcher\\Nyx Dynamics}
+\address{Nyx Dynamics\\268 Post Rd, Suite 200\\Fairfield, CT 06428\\\\Email: acdemidont@nyxdynamics.org\\Phone: 203.247.1177\\Fax: 203.872.1117\\Web: www.nyxdynamics.org\\ORCID: 0000-0002-9216-8569}
+
+\begin{document}
+
+\begin{letter}{Editorial Office\\Nature Communications}
+
+\opening{Dear Editors,}
+
+I am pleased to submit our manuscript entitled \textbf{``Noise Decorrelation as a Hypothetical Mechanism for Phase-Specific Neurometabolic Outcomes in HIV Infection: A Computational Framework''} for consideration as an Article in \textit{Nature Communications}.
+
+\textbf{Summary of the Work}
+
+This manuscript presents a novel computational framework proposing that environmental noise correlation length ($\xi$) may serve as a mechanistic link between systemic inflammation and neuronal metabolic outcomes in HIV infection. We address a long-standing clinical paradox: why does acute HIV infection---characterized by peak viral load and cytokine storm---paradoxically preserve neuronal N-acetylaspartate (NAA), while chronic infection with suppressed viral load shows metabolic decline?
+
+\textbf{Key Findings}
+
+Using hierarchical Bayesian inference across four independent MRS studies (N=143 participants), we demonstrate:
+
+\begin{itemize}
+    \item Acute HIV infection is associated with significantly shorter noise correlation length ($\xi_{\text{acute}} = 0.425 \pm 0.065$ nm) compared to chronic infection ($\xi_{\text{chronic}} = 0.790 \pm 0.065$ nm), with decisive Bayesian evidence (BF$_{10} > 1000$; $P(\xi_{\text{acute}} < \xi_{\text{chronic}}) > 0.999$)
+
+    \item Protection scales superlinearly with decreasing correlation length ($\beta_\xi = 2.33 \pm 0.51$), suggesting a threshold-like protective mechanism
+
+    \item Results replicate across three independent cohorts on two continents and are robust to prior specification and leave-one-study-out sensitivity analyses
+
+    \item The framework achieves 4.3\% mean prediction error across all observations
+\end{itemize}
+
+\textbf{Significance and Novelty}
+
+This work makes several important contributions:
+
+\begin{enumerate}
+    \item \textbf{Mechanistic hypothesis}: We propose the first quantitative framework linking environmental noise structure to phase-specific neuroprotection in HIV, moving beyond descriptive correlations to testable mechanistic predictions.
+
+    \item \textbf{Methodological rigor}: The hierarchical Bayesian approach properly accounts for study-level heterogeneity while enabling principled uncertainty quantification and model comparison.
+
+    \item \textbf{Therapeutic implications}: If validated experimentally, modulating noise correlation length could represent a novel therapeutic target for neuroprotection during chronic HIV infection.
+
+    \item \textbf{Broader relevance}: The framework may generalize to other neuroinflammatory conditions where phase-specific metabolic patterns are observed.
+\end{enumerate}
+
+\textbf{Appropriateness for Nature Communications}
+
+This manuscript is well-suited for \textit{Nature Communications} because it:
+\begin{itemize}
+    \item Addresses a significant clinical problem affecting millions of people living with HIV worldwide
+    \item Proposes a novel, testable mechanistic hypothesis with clear experimental predictions
+    \item Employs rigorous statistical methodology with full reproducibility (code and data available via Zenodo)
+    \item Has broad interdisciplinary appeal spanning computational neuroscience, HIV medicine, and statistical physics
+\end{itemize}
+
+\textbf{Data and Code Availability}
+
+All data, code, and analysis outputs are publicly available at:
+\begin{itemize}
+    \item GitHub: \url{https://github.com/Nyx-Dynamics/noise_decorrelation_hiv}
+    \item Zenodo: DOI 10.5281/zenodo.17512732
+\end{itemize}
+
+\textbf{Declarations}
+
+This manuscript has not been published previously and is not under consideration elsewhere. There are no conflicts of interest to declare. This work was conducted independently without external funding.
+
+We believe this computational framework will be of significant interest to the broad readership of \textit{Nature Communications}, including researchers in HIV neurology, computational biology, and statistical physics.
+
+Thank you for considering our submission. We look forward to your response.
+
+\closing{Sincerely,}
+
+\end{letter}
+\end{document}
