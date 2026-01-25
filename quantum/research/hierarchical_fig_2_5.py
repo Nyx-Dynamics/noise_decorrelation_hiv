@@ -17,6 +17,7 @@ from matplotlib.patches import Rectangle
 from matplotlib.lines import Line2D
 from scipy import stats
 import os
+from pathlib import Path
 
 # Set up publication quality
 plt.rcParams.update({
@@ -199,7 +200,12 @@ def create_figure2():
     plt.tight_layout()
 
     # Save
-    output_path = '/Users/acdmbpmax/PycharmProjects/noise_decorrelation_HIV/figures/Figure2_posteriors.png'
+    # Determine the project root from the script location
+    script_dir = Path(__file__).parent.parent.parent
+    figures_dir = script_dir / "figures"
+    figures_dir.mkdir(parents=True, exist_ok=True)
+
+    output_path = figures_dir / "Figure2_posteriors.png"
     os.makedirs(os.path.dirname(output_path), exist_ok=True)
     plt.savefig(output_path, dpi=300, bbox_inches='tight', facecolor='white')
     plt.savefig(output_path.replace('.png', '.pdf'), dpi=300, bbox_inches='tight', facecolor='white')
@@ -325,7 +331,12 @@ def create_figure3():
 
     plt.tight_layout()
 
-    output_path = '/Users/acdmbpmax/PycharmProjects/noise_decorrelation_HIV/figures/Figure3_model_fit.png'
+    # Determine the project root from the script location
+    script_dir = Path(__file__).parent.parent.parent
+    figures_dir = script_dir / "figures"
+    figures_dir.mkdir(parents=True, exist_ok=True)
+
+    output_path = str(figures_dir / "Figure3_model_fit.png")
     plt.savefig(output_path, dpi=300, bbox_inches='tight', facecolor='white')
     plt.savefig(output_path.replace('.png', '.pdf'), dpi=300, bbox_inches='tight', facecolor='white')
     print(f"Figure 3 saved to: {output_path}")
@@ -425,7 +436,12 @@ def create_figure4():
 
     plt.tight_layout()
 
-    output_path = '/Users/acdmbpmax/PycharmProjects/noise_decorrelation_HIV/figures/Figure4_protection_factor.png'
+    # Determine the project root from the script location
+    script_dir = Path(__file__).parent.parent.parent
+    figures_dir = script_dir / "figures"
+    figures_dir.mkdir(parents=True, exist_ok=True)
+
+    output_path = str(figures_dir / "Figure4_protection_factor.png")
     plt.savefig(output_path, dpi=300, bbox_inches='tight', facecolor='white')
     plt.savefig(output_path.replace('.png', '.pdf'), dpi=300, bbox_inches='tight', facecolor='white')
     print(f"Figure 4 saved to: {output_path}")
@@ -577,7 +593,12 @@ def create_figure5():
 
     plt.tight_layout()
 
-    output_path = '/Users/acdmbpmax/PycharmProjects/noise_decorrelation_HIV/figures/Figure5_diagnostics.png'
+    # Determine the project root from the script location
+    script_dir = Path(__file__).parent.parent.parent
+    figures_dir = script_dir / "figures"
+    figures_dir.mkdir(parents=True, exist_ok=True)
+
+    output_path = str(figures_dir / "Figure5_diagnostics.png")
     plt.savefig(output_path, dpi=300, bbox_inches='tight', facecolor='white')
     plt.savefig(output_path.replace('.png', '.pdf'), dpi=300, bbox_inches='tight', facecolor='white')
     print(f"Figure 5 saved to: {output_path}")
@@ -589,6 +610,10 @@ def main():
     print(" GENERATING PUBLICATION FIGURES (2-5)")
     print("="*60)
 
+    # Determine the project root from the script location
+    script_dir = Path(__file__).parent.parent.parent
+    figures_dir = script_dir / "figures"
+
     create_figure2()
     create_figure3()
     create_figure4()
@@ -597,7 +622,7 @@ def main():
     print("\n" + "="*60)
     print(" ALL FIGURES GENERATED SUCCESSFULLY")
     print("="*60)
-    print("\nFigures saved to: /Users/acdmbpmax/PycharmProjects/noise_decorrelation_HIV/figures/")
+    print(f"\nFigures saved to: {figures_dir}/")
 
 
 if __name__ == '__main__':
