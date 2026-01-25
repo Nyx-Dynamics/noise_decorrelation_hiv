@@ -10,8 +10,8 @@ This runs the main Bayesian analysis, enzyme validation, individual validation, 
 
 ### 1. Clone Repository
 ```bash
-git clone https://github.com/yourusername/noise_decorrelation_HIV.git
-cd noise_decorrelation_HIV
+git clone https://github.com/Nyx-Dynamics/hiv-noise-neuroprotection.git
+cd hiv-noise-neuroprotection
 ```
 
 ### 2. Create Virtual Environment
@@ -226,7 +226,7 @@ az.plot_trace(trace)
 ## File Organization Reference
 
 ```
-📦 noise_decorrelation_HIV/
+📦 hiv-noise-neuroprotection/
 ├── 📊 quantum/              # External validation code
 │   └── results/            # Enzyme v4, regional, model comparison
 ├── 📈 results/             # Main Bayesian v3.6 analysis

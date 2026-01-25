@@ -1,7 +1,7 @@
-# Project Structure: Noise-Mediated Neuroprotection in Acute HIV
+# Project Structure: hiv-noise-neuroprotection
 
 ## Overview
-This repository contains code, data, and results for the manuscript demonstrating quantum coherence-based mechanisms explaining the acute protective paradox in HIV-associated neurocognitive disorders.
+This repository contains code, data, and results for the manuscript demonstrating noise-mediated neuroprotection explaining the acute protective paradox in HIV-associated neurocognitive disorders.
 
 ---
 

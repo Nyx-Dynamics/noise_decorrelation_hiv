@@ -1,4 +1,4 @@
-# Noise Decorrelation as a Hypothetical Mechanism for Phase-Specific Neurometabolic Outcomes in HIV Infection: A Computational Framework
+# hiv-noise-neuroprotection
 
 ![Python](https://img.shields.io/badge/python-3.9+-blue.svg)
 ![PyMC](https://img.shields.io/badge/PyMC-5.12-orange.svg)
@@ -10,6 +10,28 @@
 ## Overview
 
 This repository contains code, data, and analyses proposing that environmental noise correlation length (ξ) may distinguish protected from vulnerable neurometabolic states in HIV infection.
+
+### The 5-Model Reproducibility Suite
+
+To verify the findings of "Noise Decorrelation as a Hypothetical Mechanism...", this repository provides a deterministic evidence chain.
+
+#### 1. Navigating the "Sheets" (Data)
+
+The numerical backbone of the manuscript is housed in the following locations:
+
+*   **The Master Statistical Sheet**: `reproducibility_results/master_summary.csv`
+    *   *Contains*: Verified HDI estimates for ξ_acute (0.425 nm) and ξ_chronic (0.790 nm).
+*   **The Individual Validator**: `results/hierarchical_individual_v1/summary.csv`
+    *   *Contains*: Validation across 44 individual trajectories with 0 divergences.
+*   **The Mechanistic Map**: `results/enzyme_v4/.../predictions.csv`
+    *   *Contains*: The 13% metabolic preservation predictions derived from enzyme kinetics.
+
+#### 2. The Tegmark-Fibonacci Loophole
+
+The simulation code is organized to show the departure from the "uncoupled" physical baseline:
+
+*   `tegmark_cat_simulations/`: Houses the baseline uncoupled models. These simulate the "Default State of Death" where regular grid geometry leads to exponential decoherence.
+*   **fibonacci_grid_simulation**: (Nested in full_fever) Demonstrates the 10^4 coherence advantage found when biology utilizes Fibonacci-scaled coupling to survive high-entropy noise.
 
 ### The Clinical Paradox
 
@@ -40,7 +62,7 @@ We propose that **noise correlation structure**, not amplitude, determines neuro
 ## Repository Structure
 
 ```
-noise_decorrelation_HIV/
+hiv-noise-neuroprotection/
 ├── quantum/                 # Analysis scripts & external validation
 │   ├── bayesian_v3_6_runner.py
 │   ├── bayesian_enzyme_v4.py
@@ -62,12 +84,14 @@ noise_decorrelation_HIV/
 │   └── documentation/       # Data extraction methodology
 │
 ├── archive/                 # Legacy materials (Structured)
+│   ├── artifacts_20260125/  # Archived run artifacts
 │   ├── code/                # Superseded experimental scripts
 │   ├── data/                # Old data snapshots
 │   ├── docs/                # Previous manuscript drafts
 │   ├── releases/            # Zenodo packages
 │   └── results/             # Archived outputs
 │
+├── reproducibility_results/ # Reproducibility suite outputs
 ├── requirements.txt
 ├── LICENSE
 └── README.md
@@ -78,8 +102,8 @@ noise_decorrelation_HIV/
 ### Installation
 
 ```bash
-git clone https://github.com/Nyx-Dynamics/noise_decorrelation_hiv.git
-cd noise_decorrelation_hiv
+git clone https://github.com/Nyx-Dynamics/hiv-noise-neuroprotection.git
+cd hiv-noise-neuroprotection
 python3 -m venv .venv
 source .venv/bin/activate
 pip install -r requirements.txt
