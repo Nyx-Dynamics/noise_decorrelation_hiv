@@ -175,27 +175,30 @@ The quantum dynamics results provide the physical baseline for the observed clin
 - **Convergence**: R̂ < 1.02, ESS 230-418, 0 divergences
 - **Validation**: 5-fold CV on held-out cohort (ELPD = 0.532 ± 0.069)
 
+
+## Citation
+'''
 cff-version: 1.2.0
 message: "If you use this software or the associated data, please cite it as below."
 authors:
   - family-names: "Demidont"
-    given-names: "A.C."
-    orcid: "https://orcid.org/0000-0000-0000-0000" # Replace with your ORCID if available
+    given-names: "A.C"
+    orcid: "https://orcid.org/0000-0002-9216-8569"
 title: "hiv-noise-neuroprotection: A Bayesian Analysis of Neurometabolic Preservation"
 version: 1.0.0
 doi: 10.5281/zenodo.17512732
 date-released: 2026-01-25
-url: "https://github.com/Nyx-Dynamics/noise_decorrelation_hiv"
+url: "https://github.com/Nyx-Dynamics/hiv-noise-neuroprotection"
 preferred-citation:
   type: article
   authors:
     - family-names: "Demidont"
-      given-names: "A.C."
+      given-names: "A.C"
   journal: "Nature Communications"
   title: "Environmental Noise Structure Predicts Neurometabolic Preservation in HIV Infection"
-  year: 2025
-  status: in-press
-```
+  year: 2026
+  status: in-review
+'''
 
 ## License
 
