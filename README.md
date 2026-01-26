@@ -180,12 +180,12 @@ message: "If you use this software or the associated data, please cite it as bel
 authors:
   - family-names: "Demidont"
     given-names: "A.C."
-    orcid: "https://orcid.org/0000-0002-9216-8569"
+    orcid: "https://orcid.org/0000-0000-0000-0000" # Replace with your ORCID if available
 title: "hiv-noise-neuroprotection: A Bayesian Analysis of Neurometabolic Preservation"
 version: 1.0.0
 doi: 10.5281/zenodo.17512732
 date-released: 2026-01-25
-url: "https://github.com/Nyx-Dynamics/hiv-noise-neuroprotection"
+url: "https://github.com/Nyx-Dynamics/noise_decorrelation_hiv"
 preferred-citation:
   type: article
   authors:
@@ -193,8 +193,8 @@ preferred-citation:
       given-names: "A.C."
   journal: "Nature Communications"
   title: "Environmental Noise Structure Predicts Neurometabolic Preservation in HIV Infection"
-  year: 2026
-  status: in-review
+  year: 2025
+  status: in-press
 ```
 
 ## License
