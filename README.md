@@ -1,215 +1,77 @@
-# hiv-noise-neuroprotection
-
-![Python](https://img.shields.io/badge/python-3.9+-blue.svg)
-![PyMC](https://img.shields.io/badge/PyMC-5.12-orange.svg)
-![License](https://img.shields.io/badge/license-MIT-green.svg)
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.XXXXXXX.svg)](https://doi.org/10.5281/zenodo.XXXXXXX)
-
-**A Bayesian Analysis of Neurometabolic Preservation in HIV Infection**
-
-## Overview
-
-This repository contains code, data, and analyses proposing that environmental noise correlation length (ξ) may distinguish protected from vulnerable neurometabolic states in HIV infection.
-
-### The 5-Model Reproducibility Suite
-
-To verify the findings of "Noise Decorrelation as a Hypothetical Mechanism...", this repository provides a deterministic evidence chain.
-
-#### 1. Navigating the "Sheets" (Data)
-
-The numerical backbone of the manuscript is housed in the following locations:
-
-*   **The Master Statistical Sheet**: `reproducibility_results/master_summary.csv`
-    *   *Contains*: Verified HDI estimates for ξ_acute (0.425 nm) and ξ_chronic (0.790 nm).
-*   **The Individual Validator**: `results/hierarchical_individual_v1/summary.csv`
-    *   *Contains*: Validation across 44 individual trajectories with 0 divergences.
-*   **The Mechanistic Map**: `results/enzyme_v4/.../predictions.csv`
-    *   *Contains*: The 13% metabolic preservation predictions derived from enzyme kinetics.
-
-#### 2. The Tegmark-Fibonacci Loophole
-
-The simulation code is organized to show the departure from the "uncoupled" physical baseline:
-
-*   `tegmark_cat_simulations/`: Houses the baseline uncoupled models. These simulate the "Default State of Death" where regular grid geometry leads to exponential decoherence.
-*   **fibonacci_grid_simulation**: (Nested in full_fever) Demonstrates the 10^4 coherence advantage found when biology utilizes Fibonacci-scaled coupling to survive high-entropy noise.
-
-### The Clinical Paradox
-
-For 40 years, HIV neuroscience has documented an unexplained paradox:
-- **Acute HIV** (peak viral load, cytokine storm): >90% maintain normal cognition with preserved NAA
-- **Chronic HIV** (suppressed virus, lower inflammation): 40-50% develop HAND
-
-We propose that **noise correlation structure**, not amplitude, determines neurometabolic outcome.
-
-### Key Findings
-
-| Analysis | Finding | Evidence |
-|----------|---------|----------|
-| **Primary Bayesian (v3.6)** | ξ_acute < ξ_chronic | P > 99.9%, Cohen's d = 5.63 |
-| **Enzyme Kinetics (v4)** | Independent confirmation | P > 99% |
-| **Individual Patients (v1)** | Pattern holds at patient level | P = 95%, n=62 |
-| **Cross-Cohort** | Replicates across 3 studies | 2 continents |
-
-### Parameter Estimates
-
-| Parameter | Estimate | 95% HDI |
-|-----------|----------|---------|
-| ξ_acute | 0.425 ± 0.065 nm | [0.303, 0.541] |
-| ξ_chronic | 0.790 ± 0.065 nm | [0.659, 0.913] |
-| ξ_healthy | 0.797 ± 0.048 nm | [0.717, 0.887] |
-| β_ξ (protection exponent) | 2.33 ± 0.51 | [1.49, 3.26] |
-
-## Repository Structure
-
-```
-hiv-noise-neuroprotection/
-├── quantum/                 # Analysis scripts & external validation
-│   ├── bayesian_v3_6_runner.py
-│   ├── bayesian_enzyme_v4.py
-│   ├── hierarchical_individual_v1_runner.py
-│   ├── regional_hierarchical_v1.py
-│   └── results/
-│       ├── enzyme_v4/       # Enzyme kinetics validation
-│       └── regional_v1/     # Regional analysis
-│
-├── results/                 # Main Bayesian inference outputs
-│   └── bayesian_v3_6/       # PRIMARY RESULTS
-│       ├── summary.csv
-│       ├── posterior_predictive.csv
-│       └── trace.nc
-│
-├── data/
-│   ├── extracted/           # Group-level MRS data (13 observations)
-│   ├── individual/          # Patient-level data (n=62)
-│   └── documentation/       # Data extraction methodology
-│
-├── archive/                 # Legacy materials (Structured)
-│   ├── artifacts_20260125/  # Archived run artifacts
-│   ├── code/                # Superseded experimental scripts
-│   ├── data/                # Old data snapshots
-│   ├── docs/                # Previous manuscript drafts
-│   ├── releases/            # Zenodo packages
-│   └── results/             # Archived outputs
-│
-├── reproducibility_results/ # Reproducibility suite outputs
-├── requirements.txt
-├── LICENSE
-└── README.md
-```
-
-## Quick Start
-
-### Installation
-
-```bash
-git clone https://github.com/Nyx-Dynamics/hiv-noise-neuroprotection.git
-cd hiv-noise-neuroprotection
-python3 -m venv .venv
-source .venv/bin/activate
-pip install -r requirements.txt
-```
-
-### View Results
-
-```bash
-# Parameter estimates
-cat results/bayesian_v3_6/summary.csv
-
-# Model predictions
-cat results/bayesian_v3_6/posterior_predictive.csv
-```
-
-### Run Analysis
-
-```bash
-cd quantum/
-python bayesian_v3_6_runner.py
-```
-
-See [QUICKSTART.md](QUICKSTART.md) for detailed reproduction instructions.
-
-## Data Sources
-
-All data extracted from published peer-reviewed studies:
-
-| Study | Year | N | Phase |
-|-------|------|---|-------|
-| Sailasuta et al. | 2012 | 36 | Acute/Chronic/Control |
-| Young et al. | 2014 | 90 | Acute/Chronic/Control |
-| Sailasuta et al. | 2016 | 59 | Longitudinal |
-| Mohamed et al. | 2010 | 35 | Chronic/Control |
-| Valcour et al. | 2015 | 62 | Acute (held-out validation) |
-
-## Technical Validation & Reproducibility
-
-To ensure the highest level of scientific transparency, this project includes a complete **Reproducibility Suite**. The following metrics validate the transition from the theoretical "Fibonacci loophole" to clinical evidence.
-
-### 1. Bayesian Inference Integrity (Model v3.6)
-
-The primary findings regarding noise correlation length ($\xi$) were derived using a hierarchical Bayesian framework implemented in PyMC.
-
-* **Zero Divergences**: The MCMC sampling for the 2026-01-25 run achieved **0 divergent transitions**, indicating that the Hamiltonian Monte Carlo (HMC) sampler effectively explored the posterior geometry.
-* **Convergence Diagnostics**: All key parameters achieved an **$\hat{R} < 1.02$**, ensuring that the four independent chains converged to a unified distribution.
-* **Sampling Efficiency**: Effective Sample Sizes (ESS) for the primary protection exponent ($\beta_{\xi}$) and correlation lengths ($\xi$) ranged from **230 to 418**, providing stable estimates for the 95% High Density Intervals (HDI).
-
-### 2. Clinical Data Provenance
-
-The "sheets" housed in this repository represent a multi-stage data lifecycle:
-
-* **Aggregate Source**: Integration of 13 group-level observations from four independent cohorts (Sailasuta, Young, Mohamed), representing approximately 220 patients.
-* **Individual Validation**: Successful mapping of the "Quantum Sanctuary" on **44 individual patient trajectories** from the Valcour 2015 cohort, confirming a **92.4% to 95.53% probability** of neuroprotection at the single-subject level.
-* **Out-of-Sample Performance**: Five-fold cross-validation on held-out data yielded a positive **Expected Log Predictive Density (ELPD)**, proving the model generalizes beyond its training set.
-
-### 3. Simulation Benchmarking (Tegmarkian Loophole)
-
-The quantum dynamics results provide the physical baseline for the observed clinical preservation.
-
-* **Coherence Advantage**: The `master_simulation_results.json` documents a **1.18x integrated coherence gain** in Fibonacci grids compared to regular grids under acute inflammatory conditions ($T = 315$ K).
-* **Resilience Scaling**: The simulation confirms a **3.76x resilience ratio** for the coupled state, supporting the superlinear protection scaling ($\beta_{\xi} \approx 2.33$) inferred from the clinical data.
-
----
-
-## Technical Details
-
-- **Bayesian Inference**: PyMC 5.12.0 with NUTS sampler
-- **Convergence**: R̂ < 1.02, ESS 230-418, 0 divergences
-- **Validation**: 5-fold CV on held-out cohort (ELPD = 0.532 ± 0.069)
+<p align="center">
+	<img alt="Screenshot of SLiMgui running on OS X." height="75%" width="75%" src="https://messerlab.files.wordpress.com/2021/12/slimgui_screenshot.jpg"/>
+</p>
 
 
-## Citation
-'''
-cff-version: 1.2.0
-message: "If you use this software or the associated data, please cite it as below."
-authors:
-  - family-names: "Demidont"
-    given-names: "A.C"
-    orcid: "https://orcid.org/0000-0002-9216-8569"
-title: "hiv-noise-neuroprotection: A Bayesian Analysis of Neurometabolic Preservation"
-version: 1.0.0
-doi: 10.5281/zenodo.17512732
-date-released: 2026-01-25
-url: "https://github.com/Nyx-Dynamics/hiv-noise-neuroprotection"
-preferred-citation:
-  type: article
-  authors:
-    - family-names: "Demidont"
-      given-names: "A.C"
-  journal: "Nature Communications"
-  title: "Environmental Noise Structure Predicts Neurometabolic Preservation in HIV Infection"
-  year: 2026
-  status: in-review
-'''
 
-## License
+<p align="justify">
+	SLiM is an evolutionary simulation framework that combines a powerful engine for population genetic simulations with the capability of modeling arbitrarily complex evolutionary scenarios. Simulations are configured via the integrated Eidos scripting language that allows interactive control over practically every aspect of the simulated scenarios. The underlying individual-based simulation engine is highly optimized to enable modeling of entire chromosomes in large populations. We also provide a graphical user interface called SLiMgui on macOS, Linux, and Windows for easy simulation set-up, interactive runtime control, and dynamic visualization of simulation output.
+</p>
 
-MIT License - See [LICENSE](LICENSE) for details.
+GitHub Actions | Fedora Copr | Conda
+---|---|---
+![SLiM on GitHub Actions:](https://github.com/MesserLab/SLiM/workflows/tests/badge.svg) | [![Copr build status](https://copr.fedorainfracloud.org/coprs/bacarson/SLiM-Selection_on_Linked_Mutations/package/SLiM/status_image/last_build.png)](https://copr.fedorainfracloud.org/coprs/bacarson/SLiM-Selection_on_Linked_Mutations/package/SLiM/) | [![Anaconda-Server Badge](https://anaconda.org/conda-forge/slim/badges/platforms.svg)](https://anaconda.org/conda-forge/slim)
 
-## Contact
+:construction: This GitHub repository hosts the <em>upstream, development head version</em> of SLiM and SLiMgui.
 
-**A.C. Demidont, DO**
-Nyx Dynamics, LLC
-Email: acdemidont@nyxdynamics.org
+:warning: <strong>End users should generally not use these sources; they may contain serious bugs, or may not even compile</strong>.
 
----
+:heavy_check_mark: The <strong><em>release</em></strong> version of SLiM and SLiMgui is available at [http://messerlab.org/slim/](http://messerlab.org/slim/).
 
-*"The data require some protective mechanism in acute phase; they do not specifically require quantum coherence. But the framework makes testable predictions."*
+
+License
+----------
+
+Copyright (c) 2016-2025 Benjamin C. Haller.  All rights reserved.
+
+SLiM is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+
+SLiM is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with SLiM.  If not, see [http://www.gnu.org/licenses/](http://www.gnu.org/licenses/).
+
+Development & Feedback
+-----------------------------------
+
+SLiM is a product of the Messer Lab, [http://messerlab.org/](http://messerlab.org/), by Benjamin C. Haller and Philipp W. Messer.  SLiM is under active development, and our goal is to make it as broadly useful as possible.  If you have feedback or feature requests, or if you are interested in contributing to SLiM, please contact Ben Haller at [bhaller@mac.com](mailto:bhaller@mac.com). Please note that Philipp is also looking for graduate students and postdocs.
+
+Installation
+------------
+<em>Looking for Binary Packages / Installers?</em>
+
+The following subsections summarize what methods for acquiring SLiM (and SLiMgui) are available.  Building from sources is also an option on all platforms; see the next section.  Chapter 2 of the SLiM manual contains much more detail on installation and building of SLiM.  The manual and other SLiM resources can be found at [http://messerlab.org/slim/](http://messerlab.org/slim/#Downloads).
+
+##### macOS
+Download and double-click the macOS Installer from the SLiM home page at https://messerlab.org/slim/#Downloads.  It will install the `slim` and `eidos` command-line tools, as well as SLiMgui.
+
+##### Linux
+###### Arch & Manjaro
+Any Arch-based distributions *which support the AUR* should be compatible.
+
+https://aur.archlinux.org/packages/slim-simulator/
+
+###### Fedora, Red Hat, openSUSE
+Derivative distributions are not guaranteed compatibility with these binary packages. Enable the repository for your operating system; you might also try using the source RPM package to rebuild the package for your system to give you an excellent integration for any RPM-based distribution.
+
+https://copr.fedorainfracloud.org/coprs/bacarson/SLiM-Selection_on_Linked_Mutations/
+
+###### Debian & Ubuntu (and any derivatives using dpkg)
+A shell script using the facilities of `dpkg` is available. It uses the CMake install target to integrate SLiMgui with the desktop environment. It has the advantage over building from source that it will check build dependencies for you, and it will automatically remove build artifacts from `/tmp`. Source the script with `curl` following the instructions in the manual.
+
+https://raw.githubusercontent.com/MesserLab/SLiM-Extras/master/installation/DebianUbuntuInstall.sh
+
+##### Windows (10 & 11)
+###### Native package (using MSYS2)
+If you have MSYS2 installed, you can do `pacman -Syu` to update its information (see the SLiM manual for further information).  You can then install SLiM and SLiMgui with:
+
+`pacman -S mingw-w64-x86_64-slim-simulator`
+
+###### WSL2 installation guide
+The SLiM manual provides detailed instructions on building and installing SLiM and SLiMgui under the WSL2.
+
+
+
+Compilation of SLiM from Source
+----------------------------------
+
+You can build both SLiM and SLiMgui from sources.  This can be useful, in particular, if you wish to run a recent development version of SLiM, rather than the last released version.  See chapter 2 of the SLiM manual for more information on building from sources on various platforms.
