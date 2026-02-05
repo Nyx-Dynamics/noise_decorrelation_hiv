@@ -58,12 +58,12 @@ The numerical backbone of the manuscript is housed in the following locations:
 - **The Mechanistic Map**: `results/enzyme_v4/.../predictions.csv`
   - *Contains*: The 13% metabolic preservation predictions derived from enzyme kinetics.
 
-### 2. The Tegmark-Fibonacci Loophole
+### 2. Decoherence Baseline Simulations
 
-The simulation code is organized to show the departure from the "uncoupled" physical baseline:
+The simulation code benchmarks coupled vs. uncoupled network geometries under physiological noise:
 
-- `tegmark_cat_simulations/`: Houses the baseline uncoupled models. These simulate the "Default State of Death" where regular grid geometry leads to exponential decoherence.
-- **fibonacci_grid_simulation**: (Nested in full_fever) Demonstrates the 10^4 coherence advantage found when biology utilizes Fibonacci-scaled coupling to survive high-entropy noise.
+- `decoherence_simulations/`: Baseline uncoupled models demonstrating exponential decoherence under regular grid geometry — the expected default outcome without biological coupling.
+- **coupled_grid_simulation**: (Nested in full_fever) Demonstrates the 10⁴ coherence advantage when biologically plausible coupling geometries are introduced under high-entropy noise conditions.
 
 ---
 
@@ -100,7 +100,7 @@ noise_decorrelation_hiv/
 │   └── results/             # Archived outputs
 │
 ├── reproducibility_results/ # Reproducibility suite outputs
-├── tegmark_cat_simulations/ # Quantum decoherence simulations
+├── decoherence_simulations/  # Decoherence baseline simulations
 ├── tests/                   # Test suite
 ├── figures/                 # Manuscript figures
 ├── requirements.txt
@@ -172,9 +172,9 @@ The primary findings regarding noise correlation length (ξ) were derived using 
 - **Individual Validation**: Successful mapping on **44 individual patient trajectories** from the Valcour 2015 cohort, confirming a **92.4% to 95.53% probability** of neuroprotection at the single-subject level.
 - **Out-of-Sample Performance**: Five-fold cross-validation on held-out data yielded a positive **Expected Log Predictive Density (ELPD)**, proving the model generalizes beyond its training set.
 
-### 3. Simulation Benchmarking (Tegmarkian Loophole)
+### 3. Decoherence Simulation Benchmarking
 
-- **Coherence Advantage**: The `master_simulation_results.json` documents a **1.18x integrated coherence gain** in Fibonacci grids compared to regular grids under acute inflammatory conditions (T = 315 K).
+- **Coherence Advantage**: The `master_simulation_results.json` documents a **1.18x integrated coherence gain** in biologically coupled grids compared to regular grids under acute inflammatory conditions (T = 315 K).
 - **Resilience Scaling**: The simulation confirms a **3.76x resilience ratio** for the coupled state, supporting the superlinear protection scaling (β_ξ ≈ 2.33) inferred from the clinical data.
 
 ---
