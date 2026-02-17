@@ -226,7 +226,7 @@ bayes-v2-run:
 	@echo " - Homeostatic NAA ceiling"
 	@echo "==================================================================="
 	@echo ""
-	$(PY) bayesian_optimization_v2.py \
+	$(PY) quantum/bayesian_optimization_v2.py \
 		--draws $(BAYES_V2_DRAWS) \
 		--tune $(BAYES_V2_TUNE) \
 		--chains $(BAYES_V2_CHAINS) \
@@ -242,7 +242,7 @@ bayes-v2-run:
 
 bayes-v2-smoke:
 	@echo "Running quick smoke test of enhanced Bayesian inference..."
-	$(PY) bayesian_optimization_v2.py \
+	$(PY) quantum/bayesian_optimization_v2.py \
 		--draws 200 \
 		--tune 200 \
 		--chains 2 \
@@ -257,7 +257,7 @@ bayes-v2-validate:
 	@echo " This will take 20-30 minutes..."
 	@echo "==================================================================="
 	@echo ""
-	$(PY) bayesian_optimization_v2.py \
+	$(PY) quantum/bayesian_optimization_v2.py \
 		--draws 5000 \
 		--tune 2000 \
 		--chains 4 \
@@ -282,7 +282,7 @@ model-v2-validate:
 	@echo " Validating Enhanced Forward Model v2.0"
 	@echo "==================================================================="
 	@echo ""
-	$(PY) -c "from final_calibrated_model_v2 import validate_model_v2; validate_model_v2()"
+	$(PY) -c "from quantum.final_calibrated_model_v2 import validate_model_v2; validate_model_v2()"
 	@echo ""
 	@echo "✓ Validation complete"
 
@@ -291,7 +291,7 @@ model-v2-viz:
 	@echo " Generating Compensation Mechanism Visualizations"
 	@echo "==================================================================="
 	@echo ""
-	$(PY) -c "from final_calibrated_model_v2 import validate_model_v2, plot_compensation_effects; validate_model_v2(); plot_compensation_effects()"
+	$(PY) -c "from quantum.final_calibrated_model_v2 import validate_model_v2, plot_compensation_effects; validate_model_v2(); plot_compensation_effects()"
 	@echo ""
 	@echo "✓ Plots saved to results/enhanced_model_compensation.png"
 
