@@ -33,6 +33,13 @@ Inflammatory noise correlation length (ξ) modulates neuronal metabolism via mic
 
 ---
 
+## Repository Information
+
+- **URL**: [https://github.com/Nyx-Dynamics/noise_decorrelation_hiv](https://github.com/Nyx-Dynamics/noise_decorrelation_hiv)
+- **Organization**: Nyx Dynamics LLC
+
+---
+
 ## Where is the code?
 
 Use these entry points depending on what you want to do:
@@ -91,9 +98,12 @@ See PROJECT_STRUCTURE.md for a complete tree and descriptions.
 See QUICKSTART.md for full reproduction steps. Short version:
 
 ```bash
+# Create and activate environment
 python3 -m venv .venv
 source .venv/bin/activate
-pip install pymc arviz numpy scipy pandas matplotlib seaborn
+
+# Install core dependencies
+pip install pymc arviz numpy scipy pandas matplotlib seaborn openpyxl
 ```
 
 View main results:
@@ -158,6 +168,20 @@ Published studies include Sailasuta 2012, Valcour 2015, Young 2014, Chang 2002, 
 ## License
 
 MIT License – see LICENSE.
+
+## Citation
+
+If you use this research or code in your work, please cite it as:
+
+```bibtex
+@software{Demidont_Noise-Mediated_Neuroprotection_in_2024,
+  author = {Demidont, A.C.},
+  title = {{Noise-Mediated Neuroprotection in Acute HIV: A Quantum Coherence Framework}},
+  url = {https://github.com/Nyx-Dynamics/noise_decorrelation_hiv},
+  version = {1.0.0},
+  year = {2024}
+}
+```
 
 ## Contact
 
