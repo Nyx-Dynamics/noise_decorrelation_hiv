@@ -1,0 +1,72 @@
+{
+  "manifest_version": "1.0.0",
+  "generated_by": "noise_decorrelation_hiv",
+  "figures": {
+    "Figure1_conceptual_overview": {
+      "filename": "Figure1_conceptual_overview.pdf",
+      "description": "Conceptual framework for noise-mediated neuroprotection in HIV infection. (A) Clinical paradox: acute vs chronic phase outcomes. (B) Proposed mechanism: noise correlation length modulates enzyme efficiency. (C) Hierarchical Bayesian model structure. (D) Phase-specific noise correlation predictions.",
+      "manuscript_reference": "Figure 1",
+      "generated_by": "quantum/bayesian_v3_6_runner.py"
+    },
+    "Figure2_posteriors": {
+      "filename": "Figure2_posteriors.pdf",
+      "description": "Posterior distributions for noise correlation length (ξ) across infection phases. (A) ξ posteriors showing non-overlapping HDIs. (B) Protection exponent β_ξ posterior. (C) Acute-chronic difference Δξ posterior.",
+      "manuscript_reference": "Figure 2",
+      "generated_by": "quantum/bayesian_v3_6_runner.py"
+    },
+    "Figure3_model_fit": {
+      "filename": "Figure3_model_fit.pdf",
+      "description": "Model fit to clinical MRS constraints across studies and brain regions.",
+      "manuscript_reference": "Figure 3",
+      "generated_by": "quantum/bayesian_v3_6_runner.py"
+    },
+    "Figure4_protection_factor": {
+      "filename": "Figure4_protection_factor.pdf",
+      "description": "Protection factor scaling with noise correlation length.",
+      "manuscript_reference": "Figure 4",
+      "generated_by": "quantum/bayesian_v3_6_runner.py"
+    },
+    "Figure5_diagnostics": {
+      "filename": "Figure5_diagnostics.pdf",
+      "description": "MCMC diagnostics: trace plots, R-hat, ESS, and posterior predictive checks.",
+      "manuscript_reference": "Figure 5",
+      "generated_by": "quantum/bayesian_v3_6_runner.py"
+    },
+    "Figure6_convergent_evidence": {
+      "filename": "Figure6_convergent_evidence_figure.pdf",
+      "description": "Convergent evidence across independent validation pathways.",
+      "manuscript_reference": "Figure 6",
+      "generated_by": "scripts/statistical_improvements.py"
+    },
+    "SuppFig1_prior_sensitivity": {
+      "filename": "SuppFig1_prior_sensitivity.pdf",
+      "description": "Prior sensitivity analysis showing robustness to prior specification.",
+      "manuscript_reference": "Supplementary Figure 1",
+      "generated_by": "quantum/bayesian_v3_6_runner.py"
+    },
+    "SuppFig2_power_analysis": {
+      "filename": "SuppFig2_power_analysis.pdf",
+      "description": "Statistical power analysis for primary and secondary endpoints.",
+      "manuscript_reference": "Supplementary Figure 2",
+      "generated_by": "scripts/statistical_improvements.py"
+    },
+    "SuppFig3_loso_analysis": {
+      "filename": "SuppFig3_loso_analysis.pdf",
+      "description": "Leave-one-study-out analysis demonstrating robustness.",
+      "manuscript_reference": "Supplementary Figure 3",
+      "generated_by": "quantum/utils/loso_ic.py"
+    },
+    "SuppFig4_subgroup_analysis": {
+      "filename": "SuppFig4_subgroup_analysis.pdf",
+      "description": "Subgroup analysis across brain regions and study populations.",
+      "manuscript_reference": "Supplementary Figure 4",
+      "generated_by": "quantum/regional_hierarchical_v1.py"
+    },
+    "SuppFig5_model_comparison": {
+      "filename": "SuppFig5_model_comparison.png",
+      "description": "5-model WAIC comparison showing full model dominance.",
+      "manuscript_reference": "Supplementary Figure 5",
+      "generated_by": "quantum/utils/waic_loo_helper.py"
+    }
+  }
+}
