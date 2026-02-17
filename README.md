@@ -1,194 +1,77 @@
-![Python](https://img.shields.io/badge/python-3.9+-blue.svg)
-![PyMC](https://img.shields.io/badge/PyMC-5.x-orange.svg)
-![License](https://img.shields.io/badge/license-MIT-green.svg)
+<p align="center">
+	<img alt="Screenshot of SLiMgui running on OS X." height="75%" width="75%" src="https://messerlab.files.wordpress.com/2021/12/slimgui_screenshot.jpg"/>
+</p>
 
-# Noise-Mediated Neuroprotection in Acute HIV
 
-Computational research suggesting a mechanistic solution for the 40-year Acute Protective Paradox in HIV neuroscience.
 
-## Overview
+<p align="justify">
+	SLiM is an evolutionary simulation framework that combines a powerful engine for population genetic simulations with the capability of modeling arbitrarily complex evolutionary scenarios. Simulations are configured via the integrated Eidos scripting language that allows interactive control over practically every aspect of the simulated scenarios. The underlying individual-based simulation engine is highly optimized to enable modeling of entire chromosomes in large populations. We also provide a graphical user interface called SLiMgui on macOS, Linux, and Windows for easy simulation set-up, interactive runtime control, and dynamic visualization of simulation output.
+</p>
 
-This repository contains code, data, and analyses demonstrating that quantum coherence mechanisms explain why 70–75% of acute HIV patients maintain normal cognition despite massive neuroinflammation, while chronic patients develop progressive cognitive decline with lower inflammation.
+GitHub Actions | Fedora Copr | Conda
+---|---|---
+![SLiM on GitHub Actions:](https://github.com/MesserLab/SLiM/workflows/tests/badge.svg) | [![Copr build status](https://copr.fedorainfracloud.org/coprs/bacarson/SLiM-Selection_on_Linked_Mutations/package/SLiM/status_image/last_build.png)](https://copr.fedorainfracloud.org/coprs/bacarson/SLiM-Selection_on_Linked_Mutations/package/SLiM/) | [![Anaconda-Server Badge](https://anaconda.org/conda-forge/slim/badges/platforms.svg)](https://anaconda.org/conda-forge/slim)
 
-### The Paradox
+:construction: This GitHub repository hosts the <em>upstream, development head version</em> of SLiM and SLiMgui.
 
-- Acute HIV (highest viral loads, peak inflammation): 70–75% maintain normal cognition
-- Chronic HIV (lower inflammation, effective treatment): Progressive cognitive decline
+:warning: <strong>End users should generally not use these sources; they may contain serious bugs, or may not even compile</strong>.
 
-### Our Solution
+:heavy_check_mark: The <strong><em>release</em></strong> version of SLiM and SLiMgui is available at [http://messerlab.org/slim/](http://messerlab.org/slim/).
 
-Inflammatory noise correlation length (ξ) modulates neuronal metabolism via microtubule quantum coherence:
-- Shorter correlation lengths (acute HIV) → neuroprotective (noise decorrelation)
-- Longer correlation lengths (chronic HIV) → metabolic vulnerability (correlated noise)
 
-### Key Findings
+License
+----------
 
-1. Main Analysis (Bayesian v3.6)
-   - P(ξ_acute < ξ_chronic) > 0.999
-   - Protection exponent β_ξ = 1.89 ± 0.25
-   - NAA error < 2%
-2. External Validation (Enzyme v4): independent enzyme kinetics approach confirms ξ
-3. Individual-Level Validation (Valcour 2015, n=62): significant acute NAA elevation
-4. Regional Analysis: evolution-consistent protection differences
+Copyright (c) 2016-2025 Benjamin C. Haller.  All rights reserved.
 
----
+SLiM is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
 
-## Repository Information
+SLiM is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
-- **URL**: [https://github.com/Nyx-Dynamics/noise_decorrelation_hiv](https://github.com/Nyx-Dynamics/noise_decorrelation_hiv)
-- **Organization**: Nyx Dynamics LLC
+You should have received a copy of the GNU General Public License along with SLiM.  If not, see [http://www.gnu.org/licenses/](http://www.gnu.org/licenses/).
 
----
+Development & Feedback
+-----------------------------------
 
-## Where is the code?
+SLiM is a product of the Messer Lab, [http://messerlab.org/](http://messerlab.org/), by Benjamin C. Haller and Philipp W. Messer.  SLiM is under active development, and our goal is to make it as broadly useful as possible.  If you have feedback or feature requests, or if you are interested in contributing to SLiM, please contact Ben Haller at [bhaller@mac.com](mailto:bhaller@mac.com). Please note that Philipp is also looking for graduate students and postdocs.
 
-Use these entry points depending on what you want to do:
+Installation
+------------
+<em>Looking for Binary Packages / Installers?</em>
 
-- Publication figures (root):
-  - gen_fig2.py – Posterior distributions (needs RUN_DATA_DIR pointing to v3.6 runs)
-  - gen_fig3.py – Model fit to group constraints (BG)
-  - gen_fig4.py – WAIC/LOO comparison from traces (auto-discovers traces)
-  - gen_fig5.py – K-fold cross-validation (auto-discovers latest Valcour CV)
+The following subsections summarize what methods for acquiring SLiM (and SLiMgui) are available.  Building from sources is also an option on all platforms; see the next section.  Chapter 2 of the SLiM manual contains much more detail on installation and building of SLiM.  The manual and other SLiM resources can be found at [http://messerlab.org/slim/](http://messerlab.org/slim/#Downloads).
 
-- Main Bayesian model (v3.6):
-  - quantum/quantum/bayesian_v3_6_corrected_local.py – primary script to reproduce results
-  - quantum/quantum/bayesian_v3_6_original.py – original BG-only variant
-  - Makefile targets: bayes-v36, bayes-v36-no-valcour, bayes-v36-regions-*, bayes-v36-loro-auto
+##### macOS
+Download and double-click the macOS Installer from the SLiM home page at https://messerlab.org/slim/#Downloads.  It will install the `slim` and `eidos` command-line tools, as well as SLiMgui.
 
-- Model comparison utilities:
-  - quick_waic.py, quick_waic_loo.py – compute WAIC/PSIS-LOO over traces
-  - inspect_waic.py – inspect WAIC/LOO interactively
+##### Linux
+###### Arch & Manjaro
+Any Arch-based distributions *which support the AUR* should be compatible.
 
-- Calibrated mechanistic models (quantum → MRS):
-  - final_calibrated_model.py (root wrapper) → quantum/final_calibrated_model.py
-    - python -m final_calibrated_model (validation + ξ dependence plot)
-  - final_calibrated_model_v2.py (root and quantum/) – enhanced with compensation
+https://aur.archlinux.org/packages/slim-simulator/
 
-- Enzyme kinetics (external validation, mechanistic):
-  - models/bayesian_enzyme_v4.py – PyMC model using enzyme_kinetics forward model
-  - enzyme_kinetics.py (root) – lightweight API used by v4
+###### Fedora, Red Hat, openSUSE
+Derivative distributions are not guaranteed compatibility with these binary packages. Enable the repository for your operating system; you might also try using the source RPM package to rebuild the package for your system to give you an excellent integration for any RPM-based distribution.
 
-  Run v4 with the larger group-level dataset (BG ratios):
+https://copr.fedorainfracloud.org/coprs/bacarson/SLiM-Selection_on_Linked_Mutations/
 
-  ```bash
-  # From repo root
-  python models/bayesian_enzyme_v4.py \
-      --use-group-data \
-      --data-csv data/extracted/CRITICAL_STUDIES_COMPLETE_DATA.csv \
-      --region Basal_Ganglia \
-      --studies Young2014_Spudich,Sailasuta2012 \
-      --samples 1000 --chains 4 --target-accept 0.99
-  ```
-  This ingests the larger dataset, builds the v4 enzyme model consistent with v2’s calibration, and saves results under results/enzyme_v4 (trace_v4_group.nc, summary_v4_group.csv). Cho is optional; if absent in the CSV, the model fits NAA-only.
+###### Debian & Ubuntu (and any derivatives using dpkg)
+A shell script using the facilities of `dpkg` is available. It uses the CMake install target to integrate SLiMgui with the desktop environment. It has the advantage over building from source that it will check build dependencies for you, and it will automatically remove build artifacts from `/tmp`. Source the script with `curl` following the instructions in the manual.
 
-- Ratios comparison pipeline (NAA/Cr, Cho/Cr):
-  - quantum/quantum/pipeline_ratio.py – loads curated ratio datasets and produces results/summary
+https://raw.githubusercontent.com/MesserLab/SLiM-Extras/master/installation/DebianUbuntuInstall.sh
 
-- Data and results locations:
-  - data/extracted, data/individual, data/raw – inputs
-  - quantum/quantum/results_v3_6 – run artifacts (traces, summaries, figures)
-  - results/bayesian_v3_6 – consolidated outputs for quick viewing
+##### Windows (10 & 11)
+###### Native package (using MSYS2)
+If you have MSYS2 installed, you can do `pacman -Syu` to update its information (see the SLiM manual for further information).  You can then install SLiM and SLiMgui with:
 
-See PROJECT_STRUCTURE.md for a complete tree and descriptions.
+`pacman -S mingw-w64-x86_64-slim-simulator`
 
----
+###### WSL2 installation guide
+The SLiM manual provides detailed instructions on building and installing SLiM and SLiMgui under the WSL2.
 
-## Quick Start
 
-See QUICKSTART.md for full reproduction steps. Short version:
 
-```bash
-# Create and activate environment
-python3 -m venv .venv
-source .venv/bin/activate
+Compilation of SLiM from Source
+----------------------------------
 
-# Install core dependencies
-pip install pymc arviz numpy scipy pandas matplotlib seaborn openpyxl
-```
-
-View main results:
-
-```bash
-cat results/bayesian_v3_6/summary.csv
-cat results/bayesian_v3_6/posterior_predictive.csv
-```
-
-Run calibrated model(s):
-
-```bash
-python -m final_calibrated_model
-python final_calibrated_model_v2.py
-```
-
-Generate figures (requires RUN_DATA_DIR for v3.6 traces unless default layout is present):
-
-```bash
-export RUN_DATA_DIR="$(pwd)/quantum/quantum/results_v3_6"
-python gen_fig2.py
-python gen_fig4.py
-python gen_fig5.py
-```
-
-v3.6 helper Make targets (run from repo root):
-
-```bash
-make bayes-v36
-make bayes-v36-no-valcour
-make bayes-v36-regions-bg
-make bayes-v36-regions-all
-make bayes-v36-loro-auto
-make bayes-v36-waic
-```
-
----
-
-## Last Successful Run (marker)
-
-The last successful v3.6 run establishing the evolutionary hypothesis as valid is:
-
-- Timestamp: 20251117_103400
-- Run name: with_valcour_BG_nopseudo
-- Marker file: quantum/quantum/results_v3_6/runs/LAST_SUCCESSFUL_RUN.json
-
-Most figure scripts will announce this marker on start when RUN_DATA_DIR points to quantum/quantum/results_v3_6 (default). If your artifacts live elsewhere, set:
-
-```bash
-export RUN_DATA_DIR="$(pwd)/quantum/quantum/results_v3_6"
-```
-
-## Data Sources
-
-Published studies include Sailasuta 2012, Valcour 2015, Young 2014, Chang 2002, and Dahmani 2021. See data/ for files and provenance.
-
-## Statistical Evidence (summary)
-
-- P(ξ_acute < ξ_chronic) > 0.999, β_ξ ≈ 1.89 ± 0.25
-- NAA error < 2%; PPC within ~94% HDI
-
-## License
-
-MIT License – see LICENSE.
-
-## Citation
-
-If you use this research or code in your work, please cite it as:
-
-```bibtex
-@software{Demidont_Noise-Mediated_Neuroprotection_in_2024,
-  author = {Demidont, A.C.},
-  title = {{Noise-Mediated Neuroprotection in Acute HIV: A Quantum Coherence Framework}},
-  url = {https://github.com/Nyx-Dynamics/noise_decorrelation_hiv},
-  version = {1.0.0},
-  year = {2024}
-}
-```
-
-## Contact
-
-A.C. Demidont, DO — Nyx Dynamics LLC
-
-Open an issue on GitHub for questions.
-
----
-
-“Chaos can protect. Evolution discovered this 500 million years ago.”
+You can build both SLiM and SLiMgui from sources.  This can be useful, in particular, if you wish to run a recent development version of SLiM, rather than the last released version.  See chapter 2 of the SLiM manual for more information on building from sources on various platforms.
