@@ -280,6 +280,11 @@ if YOUNG_FILE.exists():
 
         young_clean = pd.DataFrame(young_processed)
         print(f"✅ Loaded Young 2014: {len(young_clean)} group means")
+
+        # LOSO: exclude Young 2014 if --exclude-source matches
+        if args.exclude_source.strip() and 'young' in args.exclude_source.strip().lower():
+            print(f"   🔎 Excluding Young 2014 from model (--exclude-source '{args.exclude_source}')")
+            young_clean = pd.DataFrame()
         print(f"   Phases: {young_clean['Phase'].value_counts().to_dict()}")
         print(f"   Regions: {young_clean['Region'].value_counts().to_dict()}")
 
@@ -340,6 +345,11 @@ if SAILASUTA_FILE.exists():
 
         sailasuta_clean = pd.DataFrame(sailasuta_processed)
         print(f"✅ Loaded Sailasuta 2012: {len(sailasuta_clean)} group means")
+
+        # LOSO: exclude Sailasuta 2012 if --exclude-source matches
+        if args.exclude_source.strip() and 'sailasuta_2012' in args.exclude_source.strip().lower():
+            print(f"   🔎 Excluding Sailasuta 2012 from model (--exclude-source '{args.exclude_source}')")
+            sailasuta_clean = pd.DataFrame()
         print(f"   Phases: {sailasuta_clean['Phase'].value_counts().to_dict()}")
         print(f"   Regions: {sailasuta_clean['Region'].value_counts().to_dict()}")
 
@@ -359,6 +369,11 @@ if CHANG_FILE.exists():
     try:
         chang_df = pd.read_csv(str(CHANG_FILE))
         print(f"✅ Loaded Chang 2002: {len(chang_df)} measurements")
+
+        # LOSO: exclude Chang 2002 if --exclude-source matches
+        if args.exclude_source.strip() and 'chang' in args.exclude_source.strip().lower():
+            print(f"   🔎 Excluding Chang 2002 from model (--exclude-source '{args.exclude_source}')")
+            chang_df = pd.DataFrame()
     except Exception as e:
         print(f"⚠ Error loading Chang 2002: {e}")
         chang_df = pd.DataFrame()
