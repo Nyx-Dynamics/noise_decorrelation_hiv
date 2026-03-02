@@ -17,7 +17,7 @@ Notes:
 # Try preferred source first
 _METRICS_SOURCE = None
 try:  # Preferred cohesive implementation
-    from Legacy.Tegmarks_Cat_source_code_3.metrics import (
+    from Legacy.script.Tegmarks_Cat_source_code_3.metrics import (
         calculate_probability_density,
         calculate_coherence,
         calculate_dispersion_metrics,
