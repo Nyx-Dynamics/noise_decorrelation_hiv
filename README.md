@@ -1,77 +1,170 @@
-<p align="center">
-	<img alt="Screenshot of SLiMgui running on OS X." height="75%" width="75%" src="https://messerlab.files.wordpress.com/2021/12/slimgui_screenshot.jpg"/>
-</p>
+# Noise Correlation Length Distinguishes Neurometabolic Protection from Vulnerability Across HIV Infection Phases
 
+[![Python 3.9+](https://img.shields.io/badge/python-3.9+-blue.svg)](https://www.python.org/)
+[![PyMC 5.12](https://img.shields.io/badge/PyMC-5.12-orange.svg)](https://www.pymc.io/)
+[![License: MIT](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.18637896.svg)](https://doi.org/10.5281/zenodo.18637896)
+[![bioRxiv](https://img.shields.io/badge/bioRxiv-2026.703895-b31b1b.svg)](https://doi.org/10.1101/2026.703895)
 
+**A.C. Demidont, DO** · Nyx Dynamics, LLC · [ORCID 0000-0002-9216-8569](https://orcid.org/0000-0002-9216-8569)
 
-<p align="justify">
-	SLiM is an evolutionary simulation framework that combines a powerful engine for population genetic simulations with the capability of modeling arbitrarily complex evolutionary scenarios. Simulations are configured via the integrated Eidos scripting language that allows interactive control over practically every aspect of the simulated scenarios. The underlying individual-based simulation engine is highly optimized to enable modeling of entire chromosomes in large populations. We also provide a graphical user interface called SLiMgui on macOS, Linux, and Windows for easy simulation set-up, interactive runtime control, and dynamic visualization of simulation output.
-</p>
+---
 
-GitHub Actions | Fedora Copr | Conda
----|---|---
-![SLiM on GitHub Actions:](https://github.com/MesserLab/SLiM/workflows/tests/badge.svg) | [![Copr build status](https://copr.fedorainfracloud.org/coprs/bacarson/SLiM-Selection_on_Linked_Mutations/package/SLiM/status_image/last_build.png)](https://copr.fedorainfracloud.org/coprs/bacarson/SLiM-Selection_on_Linked_Mutations/package/SLiM/) | [![Anaconda-Server Badge](https://anaconda.org/conda-forge/slim/badges/platforms.svg)](https://anaconda.org/conda-forge/slim)
+## The Clinical Paradox
 
-:construction: This GitHub repository hosts the <em>upstream, development head version</em> of SLiM and SLiMgui.
+For 40 years, HIV neuroscience has documented an unexplained paradox affecting an estimated 16–20 million people worldwide:
 
-:warning: <strong>End users should generally not use these sources; they may contain serious bugs, or may not even compile</strong>.
+- **Acute HIV** (peak viral load, maximal neuroinflammation): 80–93% maintain normal cognition with preserved NAA
+- **Chronic HIV** (suppressed virus, reduced inflammation): 40–50% develop HIV-associated neurocognitive disorders (HAND)
 
-:heavy_check_mark: The <strong><em>release</em></strong> version of SLiM and SLiMgui is available at [http://messerlab.org/slim/](http://messerlab.org/slim/).
+No existing framework explains why neurometabolic injury *increases* as inflammation *decreases*.
 
+## What This Repository Contains
 
-License
-----------
+This repository provides the complete code, data, and reproducibility pipeline for a computational framework proposing that environmental noise **correlation length** (ξ), rather than noise amplitude, determines neurometabolic outcomes across HIV infection phases. Four architecturally independent Bayesian models converge on a single finding: shorter noise correlation in acute infection is associated with neurometabolic preservation, while longer correlation in chronic infection is associated with vulnerability.
 
-Copyright (c) 2016-2025 Benjamin C. Haller.  All rights reserved.
+### Key Results
 
-SLiM is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+| Parameter | Estimate | 95% HDI |
+|-----------|----------|---------|
+| ξ_acute | 0.425 ± 0.065 nm | [0.303, 0.541] |
+| ξ_chronic | 0.790 ± 0.065 nm | [0.659, 0.913] |
+| β_ξ (coupling exponent) | 2.33 ± 0.51 | [1.49, 3.26] |
+| P(ξ_acute < ξ_chronic) | > 0.999 | — |
+| Cohen's d | 5.63 | — |
 
-SLiM is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+### Convergent Validation
 
-You should have received a copy of the GNU General Public License along with SLiM.  If not, see [http://www.gnu.org/licenses/](http://www.gnu.org/licenses/).
+| Model | Approach | Key Finding |
+|-------|----------|-------------|
+| v3.6 (Primary) | Hierarchical Bayesian, group-level | P(ξ_acute < ξ_chronic) > 99.9% |
+| v1.0 (Individual) | Patient-level trajectories (n=62) | P = 95%, 0 divergences |
+| v2.0 (Necessity) | Mechanism necessity testing | Null model rejected (WAIC Δ > 10) |
+| v4.0 (Enzyme) | Independent enzyme kinetics | P > 99% |
 
-Development & Feedback
------------------------------------
+## Repository Structure
 
-SLiM is a product of the Messer Lab, [http://messerlab.org/](http://messerlab.org/), by Benjamin C. Haller and Philipp W. Messer.  SLiM is under active development, and our goal is to make it as broadly useful as possible.  If you have feedback or feature requests, or if you are interested in contributing to SLiM, please contact Ben Haller at [bhaller@mac.com](mailto:bhaller@mac.com). Please note that Philipp is also looking for graduate students and postdocs.
+```
+noise_decorrelation_hiv/
+│
+├── quantum/                    # Core analysis scripts
+│   ├── bayesian_v3_6_runner.py       # Primary hierarchical Bayesian model
+│   ├── bayesian_enzyme_v4.py         # Enzyme kinetics validation
+│   ├── hierarchical_individual_v1_runner.py  # Individual-level model
+│   └── regional_hierarchical_v1.py   # Regional analysis
+│
+├── data/
+│   ├── extracted/              # Group-level MRS data (13 observations, 4 cohorts)
+│   ├── individual/             # Patient-level data (n=62, Valcour 2015)
+│   └── documentation/          # Data extraction methodology
+│
+├── results/                    # Inference outputs
+│   └── bayesian_v3_6/          # PRIMARY RESULTS
+│       ├── summary.csv               # Posterior parameter estimates
+│       ├── posterior_predictive.csv   # Model predictions vs observed
+│       └── trace.nc                  # Full MCMC trace (NetCDF)
+│
+├── models/                     # Model specifications
+├── figures/                    # Publication figures
+├── sections/                   # Manuscript LaTeX sections
+│
+├── reproduce_all.py            # One-command reproduction pipeline
+├── Makefile                    # make reproduce
+├── requirements.txt            # Python dependencies
+├── CITATION.cff                # Citation metadata
+├── CHANGELOG.md                # Version history
+└── LICENSE                     # MIT
+```
 
-Installation
-------------
-<em>Looking for Binary Packages / Installers?</em>
+## Quick Start
 
-The following subsections summarize what methods for acquiring SLiM (and SLiMgui) are available.  Building from sources is also an option on all platforms; see the next section.  Chapter 2 of the SLiM manual contains much more detail on installation and building of SLiM.  The manual and other SLiM resources can be found at [http://messerlab.org/slim/](http://messerlab.org/slim/#Downloads).
+### Installation
 
-##### macOS
-Download and double-click the macOS Installer from the SLiM home page at https://messerlab.org/slim/#Downloads.  It will install the `slim` and `eidos` command-line tools, as well as SLiMgui.
+```bash
+git clone https://github.com/Nyx-Dynamics/noise_decorrelation_hiv.git
+cd noise_decorrelation_hiv
+python3 -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+```
 
-##### Linux
-###### Arch & Manjaro
-Any Arch-based distributions *which support the AUR* should be compatible.
+### Reproduce All Results
 
-https://aur.archlinux.org/packages/slim-simulator/
+```bash
+python reproduce_all.py
+# or
+make reproduce
+```
 
-###### Fedora, Red Hat, openSUSE
-Derivative distributions are not guaranteed compatibility with these binary packages. Enable the repository for your operating system; you might also try using the source RPM package to rebuild the package for your system to give you an excellent integration for any RPM-based distribution.
+### View Primary Results
 
-https://copr.fedorainfracloud.org/coprs/bacarson/SLiM-Selection_on_Linked_Mutations/
+```bash
+cat results/bayesian_v3_6/summary.csv
+cat results/bayesian_v3_6/posterior_predictive.csv
+```
 
-###### Debian & Ubuntu (and any derivatives using dpkg)
-A shell script using the facilities of `dpkg` is available. It uses the CMake install target to integrate SLiMgui with the desktop environment. It has the advantage over building from source that it will check build dependencies for you, and it will automatically remove build artifacts from `/tmp`. Source the script with `curl` following the instructions in the manual.
+### Run Individual Models
 
-https://raw.githubusercontent.com/MesserLab/SLiM-Extras/master/installation/DebianUbuntuInstall.sh
+```bash
+cd quantum/
+python bayesian_v3_6_runner.py          # Primary model (~5 min)
+python bayesian_enzyme_v4.py            # Enzyme kinetics validation
+python hierarchical_individual_v1_runner.py  # Individual-level
+```
 
-##### Windows (10 & 11)
-###### Native package (using MSYS2)
-If you have MSYS2 installed, you can do `pacman -Syu` to update its information (see the SLiM manual for further information).  You can then install SLiM and SLiMgui with:
+## Data Sources
 
-`pacman -S mingw-w64-x86_64-slim-simulator`
+All data extracted from published peer-reviewed studies. No novel clinical data were collected.
 
-###### WSL2 installation guide
-The SLiM manual provides detailed instructions on building and installing SLiM and SLiMgui under the WSL2.
+| Study | Year | N | Phase | Region |
+|-------|------|---|-------|--------|
+| Sailasuta et al. | 2012 | 36 | Acute/Chronic/Control | Basal ganglia, Frontal |
+| Young et al. | 2014 | 90 | Acute/Chronic/Control | Basal ganglia, Parietal, Frontal |
+| Sailasuta et al. | 2016 | 59 | Longitudinal | Basal ganglia, Frontal |
+| Mohamed et al. | 2010 | 35 | Chronic/Control | Frontal white matter |
+| Valcour et al. | 2015 | 62 | Acute (held-out validation) | Basal ganglia |
 
+## Technical Validation
 
+### Bayesian Inference (Model v3.6)
 
-Compilation of SLiM from Source
-----------------------------------
+- **0 divergent transitions** across all MCMC chains
+- **R̂ < 1.02** for all parameters (4 independent chains)
+- **ESS 230–418** for primary parameters (ξ, β_ξ)
+- **5-fold cross-validation**: ELPD = 0.532 ± 0.069 on held-out data
 
-You can build both SLiM and SLiMgui from sources.  This can be useful, in particular, if you wish to run a recent development version of SLiM, rather than the last released version.  See chapter 2 of the SLiM manual for more information on building from sources on various platforms.
+### Reproducibility
+
+- 12/12 automated tests passing
+- Cryptographic checksums for all data files
+- Complete `make reproduce` pipeline from raw data to figures
+- Zenodo archive: [10.5281/zenodo.18637896](https://doi.org/10.5281/zenodo.18637896)
+
+## Preprint
+
+Demidont, A.C. (2026). Noise Correlation Length Distinguishes Neurometabolic Protection from Vulnerability Across HIV Infection Phases. *bioRxiv*. [https://doi.org/10.1101/2026.703895](https://doi.org/10.1101/2026.703895)
+
+## Citation
+
+```bibtex
+@article{Demidont2026_noise_correlation,
+  author    = {Demidont, A.C.},
+  title     = {Noise Correlation Length Distinguishes Neurometabolic Protection
+               from Vulnerability Across {HIV} Infection Phases},
+  year      = {2026},
+  doi       = {10.1101/2026.703895},
+  publisher = {Cold Spring Harbor Laboratory},
+  journal   = {bioRxiv}
+}
+```
+
+## License
+
+MIT License — see [LICENSE](LICENSE) for details.
+
+## Contact
+
+**A.C. Demidont, DO**
+Nyx Dynamics, LLC
+Email: acdemidont@nyxdynamics.org
+ORCID: [0000-0002-9216-8569](https://orcid.org/0000-0002-9216-8569)
