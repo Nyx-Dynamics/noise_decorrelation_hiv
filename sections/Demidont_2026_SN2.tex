@@ -1,0 +1,318 @@
+\documentclass[11pt]{article}
+
+% Page setup
+\usepackage[margin=1in]{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath,amssymb}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{multirow}
+\usepackage{hyperref}
+\usepackage{xcolor}
+\usepackage{listings}
+\usepackage{fancyhdr}
+\usepackage{floatpag}
+\usepackage{titlesec}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{capt-of} % for \captionof (non-floating figures)
+\usepackage{float}
+\usepackage{placeins}
+
+
+% the section headers are still not on the same page as the figure itself listing style
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.97,0.97,0.97}
+
+\lstdefinestyle{pythonstyle}{
+    backgroundcolor=\color{backcolour},
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{blue},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\ttfamily\scriptsize,
+    breakatwhitespace=false,
+    breaklines=true,
+    captionpos=b,
+    keepspaces=true,
+    numbers=left,
+    numbersep=5pt,
+    showspaces=false,
+    showstringspaces=false,
+    showtabs=false,
+    tabsize=2,
+    language=Python,
+    frame=single,
+    framesep=3pt,
+    xleftmargin=15pt,
+    framexleftmargin=15pt
+}
+
+\lstset{style=pythonstyle}
+
+% Headers
+\pagestyle{fancy}
+\fancyhf{}
+% Two-line header: title on the left, Supplementary Materials on the right.
+% Add a little extra line spacing so the two header lines don't look cramped.
+\lhead{\parbox[t]{0.74\textwidth}{\small Noise Correlation Length Distinguishes Neurometabolic Protection from Vulnerability Across HIV Infection Phases}}
+\rhead{\parbox[t]{0.24\textwidth}{\raggedleft\small Supplementary Note 2}}
+\rfoot{Page \thepage}
+
+% A header-free pagestyle for full-page figure floats (avoids any header/figure collision).
+\fancypagestyle{floatpage}{%
+  \fancyhf{}%
+  \rfoot{Page \thepage}%
+  \renewcommand{\headrulewidth}{0pt}%
+}
+\floatpagestyle{floatpage}
+
+% Must be large enough for the two-line header.
+\setlength{\headheight}{34pt}
+\setlength{\headsep}{12pt}
+
+% Title formatting
+\titleformat{\section}{\Large\bfseries}{\thesection}{1em}{}
+\titleformat{\subsection}{\large\bfseries}{\thesubsection}{1em}{}
+
+\title{\textbf{Supplementary Note 2}\\[0.5em]
+\large Noise Correlation Length Distinguishes Neurometabolic Protection from Vulnerability Across HIV Infection Phases}
+
+\author{A.C. Demidont, DO\\
+Independent Researcher, Nyx Dynamics\\
+Philadelphia, Pennsylvania, USA\\
+Email: acdemidont@nyxdynamics.org\\
+ORCID: 0000-0002-9216-8569}
+
+\begin{document}
+
+% Number down to \subsubsection and include them in the ToC
+\setcounter{secnumdepth}{3}
+\setcounter{tocdepth}{3}
+
+\maketitle
+\tableofcontents
+\newpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Cross-System Validation of Noise Correlation Scales in Quantum Biology}
+\label{sec:cross_system_validation}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Motivation}
+The noise correlation length parameter $\xi$ is inferred from functional metabolite data via hierarchical Bayesian modeling. This approach is methodologically consistent with — and extends — the standard practice across all characterized quantum biological systems, none of which have achieved direct spatial measurement of $\xi$.
+
+\subsection{Three Quantum Biological Systems: A Systematic Comparison}
+
+\subsubsection{Photosynthetic Energy Transfer (FMO Complex)}
+
+The Fenna--Matthews--Olson (FMO) pigment-protein complex in green sulfur bacteria achieves near-unity 
+quantum efficiency in excitation energy transfer (EET). Seven bacteriochlorophyll \textit{a} (BChl~\textit{a}) 
+chromophores are arranged within a protein scaffold at average nearest-neighbor distances of $\sim$12~\AA\ 
+(1.2~nm) \cite{Milder2010}. The bath correlation structure of the protein environment has been 
+characterized by molecular dynamics simulations coupled with semiempirical quantum chemistry (ZINDO/S) 
+calculations of site energy fluctuations \cite{Olbrich2011}.
+
+Critically, Olbrich \textit{et al.}\ found that bath-induced fluctuations at different chromophore sites 
+are spatially \textbf{uncorrelated} at the level of site energies in the FMO complex 
+\cite{Olbrich2011}. This means the effective noise correlation length is shorter than the inter-chromophore 
+distance ($\xi_\text{eff} < 1.2$~nm). Theoretical studies confirm that when spatial correlations are 
+imposed with $\sim$30~\AA\ decay length, exciton transport rates decrease approximately threefold 
+\cite{Abramavicius2011}. The protein scaffold has evolved to maintain short bath correlations, 
+precisely the regime our model identifies as neuroprotective.
+
+Recent work using numerically exact non-perturbative simulations demonstrated that the detailed 
+structure of the phonon spectral density---not a coarse-grained approximation---is critical for 
+predicting coherence lifetimes, with excitonic coherences persisting on picosecond timescales at 
+physiological temperature \cite{Kim2025}. Environmental noise structure determines functional 
+outcomes.
+
+\textbf{Key parallel to this work}: Short bath correlation length ($< 1.2$~nm) enables efficient 
+quantum transport. No direct measurement of $\xi$ was performed; the correlation structure was 
+\textit{inferred} from MD simulations and validated against 2D electronic spectroscopy data.
+
+\subsubsection{Avian Magnetoreception (Cryptochrome 4a)}
+
+Migratory birds navigate using the Earth's magnetic field ($\sim$50~$\mu$T) via cryptochrome 
+flavoproteins in the retina. In European robin cryptochrome 4a (ErCry4a), blue-light excitation 
+generates a series of radical pairs along a tryptophan tetrad \cite{Xu2021,Wong2021}. The 
+magnetically sensitive radical pair RPC (FAD$^{\bullet-}$---TrpC$^{\bullet+}$) has an inter-radical 
+separation of $\sim$17.6~\AA\ (1.76~nm), while RPD has a separation of $\sim$21.3~\AA\ (2.13~nm) 
+\cite{Deviers2025}.
+
+A remarkable finding, directly paralleling our work, is that environmental noise can \textbf{enhance} 
+compass sensitivity. Bandyopadhyay and Bhatt demonstrated that the sensitivity of the avian compass is 
+enhanced by environmental noise, and that long coherence time is not required for navigation and may 
+even spoil it \cite{Bandyopadhyay2012}. Similarly, Kattnig showed that tightly bound radical 
+pairs---previously thought insensitive to weak fields---can respond to Earth-strength magnetic fields 
+through asymmetric recombination invoking the quantum Zeno effect \cite{Kattnig2024}. Driven radical 
+motion at nanometer scales enhances geomagnetic field sensitivity \cite{Babcock2020}.
+
+\textbf{Key parallel to this work}: Noise at specific spatial scales ($\sim$1--2~nm) enhances rather 
+than degrades quantum biological function. No direct measurement of bath $\xi$ was performed; 
+functional sensitivity was inferred from behavioral experiments and spin dynamics simulations.
+
+\subsubsection{HIV Neuronal Microtubules (This Work)}
+
+In our framework, environmental electromagnetic noise fluctuations act on neuronal microtubules, 
+where $\alpha\beta$-tubulin dimers ($\sim$8~nm longitudinal; $\sim$4~nm per monomer) form 
+protofilaments with lateral spacing of $\sim$5--6.5~nm. We infer the spatial noise correlation 
+length $\xi$ from NAA/Cr metabolite ratios measured by magnetic resonance spectroscopy (MRS) across 
+multiple international cohorts ($N \approx 220$--296 patients).
+
+Our Bayesian hierarchical model estimates $\xi_\text{acute} = 0.42 \pm 0.07$~nm and 
+$\xi_\text{chronic} = 0.81 \pm 0.06$~nm, with the posterior probability 
+$P(\xi_\text{acute} < \xi_\text{chronic}) > 0.99$. Both values fall within the sub-nanometer to 
+nanometer range where noise correlation structure modulates quantum biological function in 
+photosynthesis and magnetoreception.
+
+\textbf{Key advance over comparator systems}: This is the first inference of noise correlation 
+length in a \textit{disease context}, connecting quantum biophysical parameters to clinical 
+neurological outcomes.
+
+\subsection{Systematic Comparison Table}
+
+\begin{table}[H]
+\centering
+\caption{\textbf{Cross-system comparison of noise correlation parameters in quantum biological 
+systems.} Note that no system has achieved direct measurement of spatial noise correlation 
+length $\xi$; all characterizations are indirect. ``Functional unit'' refers to the molecular 
+structure over which quantum coherence operates. ``Noise correlation scale'' refers to the 
+spatial extent over which environmental fluctuations are correlated.}
+\label{tab:cross_system}
+\small
+\begin{tabular}{p{2.8cm}p{3.5cm}p{3.5cm}p{3.5cm}}
+\toprule
+\textbf{Property} & \textbf{FMO Photosynthesis} & \textbf{Avian Magnetoreception} & \textbf{HIV Microtubules (This Work)} \\
+\midrule
+Organism & \textit{Chlorobaculum tepidum} & \textit{Erithacus rubecula} & \textit{Homo sapiens} (neurons) \\
+Protein system & FMO pigment-protein complex & Cryptochrome 4a (ErCry4a) & $\alpha\beta$-tubulin microtubules \\
+Functional unit & BChl~\textit{a} chromophore & FAD--Trp radical pair & Tubulin monomer/dimer \\
+Functional unit size & $\sim$1.2~nm (nearest-neighbor) & $\sim$1.76~nm (RPC) & $\sim$4~nm (monomer) \\
+Noise correlation scale & $< 1.2$~nm (uncorrelated) & $\sim$1--2~nm (radical pair) & 0.42--0.81~nm (inferred) \\
+$\xi$ directly measured? & \textbf{No} & \textbf{No} & \textbf{No} \\
+Inference method & MD + QM/MM site energy correlations & Spin dynamics simulations; behavioral RF experiments & Hierarchical Bayesian from MRS data \\
+Coherence timescale & 300 fs -- 1 ps (excitonic) & $\sim$1~$\mu$s (spin) & Predicted: sub-ps to ps \\
+Temperature & 300~K & 310~K & 310~K \\
+Noise role & Decorrelated bath enables near-unity EET efficiency & Noise enhances compass sensitivity & Short $\xi$ $\to$ neuroprotection \\
+Key finding & Correlated noise \textit{reduces} transport & Long coherence may \textit{spoil} function & $\xi_\text{acute} < \xi_\text{chronic}$; decorrelation preserves NAA \\
+Functional readout & EET quantum yield & Behavioral orientation & NAA/Cr ratio (MRS) \\
+\bottomrule
+\end{tabular}
+\end{table}
+\FloatBarrier
+
+\subsection{The Epistemological Parallel}
+
+A notable observation emerges in review of published studies evaluating noise correlation in quantum biological systems, $\xi$ is inferred from functional data rather than independently measured. Specifically:
+
+\begin{itemize}
+    \item In \textbf{photosynthesis}, bath correlation properties are inferred from MD simulations and validated against spectroscopic signatures (2DES quantum beats). No experiment directly measures the spatial correlation length of protein-induced site energy fluctuations.
+    
+    \item In \textbf{avian magnetoreception}, the noise environment is characterized  through spin dynamics simulations parametrized by molecular dynamics. Behavioral experiments (RF disruption) provide indirect validation. No experiment directly measures the spatial noise correlation acting on the radical pair.
+    
+    \item In \textbf{this work}, $\xi$ is inferred from clinical metabolite data via Bayesian hierarchical modeling. The inference is indirect, but the approach is methodologically consistent with---and arguably more quantitative than---the standard in quantum biology.
+\end{itemize}
+
+Moreover, the convergence of inferred noise correlation scales across these three independent biological systems (0.3--2.1~nm) is itself a form of cross-system validation. The values are not arbitrary; they reflect the fundamental biophysical constraint that quantum effects in proteins operate at the scale of functional molecular subunits.
+
+\subsection{Testable Predictions for Direct \texorpdfstring{$\xi$}{xi} Measurement}
+
+Our framework generates specific predictions for experimental validation of $\xi$:
+
+\begin{enumerate}
+    \item \textbf{Neutron spin echo spectroscopy} on microtubules reconstituted from CSF-derived 
+    tubulin (acute vs.\ chronic HIV patients) should reveal different spatial correlation lengths 
+    of collective motions in the 0.3--1.0~nm range.
+    
+    \item \textbf{Fluorescence correlation spectroscopy} on tubulin labeled with environment-sensitive 
+    probes should show shorter correlation lengths under inflammatory cytokine conditions (mimicking 
+    acute infection) vs.\ low-grade chronic inflammatory conditions.
+    
+    \item \textbf{Molecular dynamics simulations} of tubulin dimers in explicit solvent with varying 
+    concentrations of TNF-$\alpha$, IL-6, and other HIV-associated cytokines should predict 
+    $\xi$ values consistent with our Bayesian estimates.
+    
+    \item \textbf{Analogous predictions for comparator systems}: FMO bath correlation lengths 
+    should be recoverable from site-energy spectral densities computed via QM/MM-MD; cryptochrome 
+    radical pair noise environments should be characterizable via EPR relaxation measurements.
+\end{enumerate}
+
+\subsection{References}
+
+\begin{thebibliography}{99}
+\small
+
+\bibitem{Engel2007}
+Engel GS, Calhoun TR, Read EL, et al.\ Evidence for wavelike energy transfer through quantum 
+coherence in photosynthetic systems. \textit{Nature}. 2007;446:782--786.
+
+\bibitem{Panitchayangkoon2010}
+Panitchayangkoon G, Hayes D, Fransted KA, et al.\ Long-lived quantum coherence in photosynthetic 
+complexes at physiological temperature. \textit{Proc Natl Acad Sci USA}. 2010;107:12766--12770.
+
+\bibitem{Olbrich2011}
+Olbrich C, Str\"umpfer J, Schulten K, Kleinekath\"ofer U.\ Quest for spatially correlated 
+fluctuations in the FMO light-harvesting complex. \textit{J Phys Chem B}. 2011;115:758--764.
+
+\bibitem{Abramavicius2011}
+Abramavicius D, Mukamel S.\ Exciton dynamics in chromophore aggregates with correlated 
+environment fluctuations. \textit{J Chem Phys}. 2011;134:174504.
+
+\bibitem{Milder2010}
+Milder MTW, Br\"uggemann B, van Grondelle R, Herek JL.\ Revisiting the optical properties of the 
+FMO protein. \textit{Photosynth Res}. 2010;104:257--274.
+
+\bibitem{Kim2025}
+Kim J-H, et al.\ Full microscopic simulations uncover persistent quantum effects in primary 
+photosynthesis. \textit{Sci Adv}. 2025;11:eady6751.
+
+\bibitem{Renger2006}
+Adolphs J, Renger T.\ How proteins trigger excitation energy transfer in the FMO complex of 
+green sulfur bacteria. \textit{Biophys J}. 2006;91:2778--2797.
+
+\bibitem{Xu2021}
+Xu J, Jarocha LE, Zollitsch T, et al.\ Magnetic sensitivity of cryptochrome 4 from a migratory 
+songbird. \textit{Nature}. 2021;594:535--540.
+
+\bibitem{Wong2021}
+Wong SY, Wei Y, Mouritsen H, Solov'yov IA, Hore PJ.\ Cryptochrome magnetoreception: four 
+tryptophans could be better than three. \textit{J R Soc Interface}. 2021;18:20210601.
+
+\bibitem{Deviers2025}
+Deviers J, et al.\ Electron hopping in cryptochrome: implications for radical pair magnetoreception 
+and the role of the fourth tryptophan. \textit{J Chem Phys}. 2025;163:024110.
+
+\bibitem{Bandyopadhyay2012}
+Bandyopadhyay JN, Bhatt T.\ Quantum coherence and sensitivity of avian magnetoreception. 
+\textit{Phys Rev Lett}. 2012;109:110502.
+
+\bibitem{Kattnig2024}
+Kattnig DR.\ Magnetosensitivity of tightly bound radical pairs in cryptochrome is enabled by 
+the quantum Zeno effect. \textit{Nat Commun}. 2024;15:10857.
+
+\bibitem{Babcock2020}
+Babcock NS, Kattnig DR.\ Driven radical motion enhances cryptochrome magnetoreception: toward 
+live quantum sensing. \textit{J Phys Chem Lett}. 2020;11:2414--2421.
+
+\bibitem{Hore2016}
+Hore PJ, Mouritsen H.\ The radical-pair mechanism of magnetoreception. 
+\textit{Annu Rev Biophys}. 2016;45:299--344.
+
+\bibitem{Ritz2009}
+Rodgers CT, Hore PJ.\ Chemical magnetoreception in birds: the radical pair mechanism. 
+\textit{Proc Natl Acad Sci USA}. 2009;106:353--360.
+
+\bibitem{Cao2020}
+Cao J, Cogdell RJ, Coker DF, et al.\ Quantum biology revisited. \textit{Sci Adv}. 
+2020;6:eaaz4888.
+
+\bibitem{Lambert2013}
+Lambert N, Chen Y-N, Cheng Y-C, et al.\ Quantum biology. \textit{Nat Phys}. 
+2013;9:10--18.
+
+\end{thebibliography}
+
+\end{document}
