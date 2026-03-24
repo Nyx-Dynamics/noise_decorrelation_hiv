@@ -1,4 +1,4 @@
-.PHONY: help run-local run-corr validate smoke tegmark-compare phase-sweep demo-config demo-run viz-coherence viz-summary viz-phase-sweep viz-kernel viz-latest-coherence viz-latest-summary viz-latest-kernel viz-geometry compare-geometry mc-run mc-viz interpret-run interpret-phase interpret-mc mc-smoke bayes-v2-run bayes-v2-smoke bayes-v2-validate model-v2-validate model-v2-viz bayes-v36 bayes-v36-original bayes-v36-no-valcour bayes-v36-validate bayes-v36-aux-time bayes-v36-aux-time-vl bayes-v36-aux-plasma bayes-v36-aux-csf bayes-v36-aux-both bayes-v36-overlay bayes-v36-regions-bg bayes-v36-regions-all bayes-v36-waic bayes-v36-loro-auto bayes-v36-ic-compare bayes-v36-loso bayes-v36-valcour-cv
+.PHONY: help run-local run-corr validate smoke tegmark-compare phase-sweep demo-config demo-run viz-coherence viz-summary viz-phase-sweep viz-kernel viz-latest-coherence viz-latest-summary viz-latest-kernel viz-geometry compare-geometry mc-run mc-viz interpret-run interpret-phase interpret-mc mc-smoke bayes-v2-run bayes-v2-smoke bayes-v2-validate model-v2-validate model-v2-viz bayes-v36 bayes-v36-original bayes-v36-no-valcour bayes-v36-validate bayes-v36-aux-time bayes-v36-aux-time-vl bayes-v36-aux-plasma bayes-v36-aux-csf bayes-v36-aux-both bayes-v36-overlay bayes-v36-regions-bg bayes-v36-regions-all bayes-v36-waic bayes-v36-loro-auto bayes-v36-ic-compare bayes-v36-loso bayes-v36-valcour-cv evo-plan
 
 PY=python
 
@@ -33,7 +33,9 @@ help:
 	@echo ""
 	@echo "=== ORIGINAL TARGETS ==="
 	@echo "  make venv                # Create .venv (Python virtual environment)"
+	@echo "  make recreate-venv       # Re-create .venv (clean + create + install)"
 	@echo "  make install             # Install requirements into .venv"
+	@echo "  make clean-venv          # Remove virtual environment"
 	@echo "  make run-local           # Run SSE_local with default small grid"
 	@echo "  make run-corr            # Run SSE_correlated with xi=0.8"
 	@echo "  make validate            # Run Extra/sse_validation.py"
@@ -69,7 +71,7 @@ help:
 	@echo "=== UTILITIES ==="
 	@echo "  make commit-msg         # Generate git commit message"
 	@echo "  make pip-freeze         # Export exact package versions"
-	@echo "  make clean-venv         # Remove virtual environment"
+	@echo "  make evo-plan           # Print evolutionary experiment roadmap + key commands"
 
 # =============================================================================
 # BAYESIAN v3.6 (BG RATIOS; VL-FREE PRIMARY) — NEW
@@ -444,6 +446,8 @@ venv:
 	@echo "Activate with: source $(VENV_DIR)/bin/activate (Linux/macOS)"
 	@echo "On Windows PowerShell: .\\$(VENV_DIR)\\Scripts\\Activate.ps1"
 
+recreate-venv: clean-venv venv install
+
 install: venv
 	@echo "Installing requirements into $(VENV_DIR)..."
 	$(PIP_VENV) install --upgrade pip
@@ -457,6 +461,36 @@ pip-freeze:
 clean-venv:
 	rm -rf $(VENV_DIR)
 	@echo "Removed $(VENV_DIR)"
+
+evo-plan:
+	@echo "Evolution roadmap: EXPERIMENTS_EVOLUTION.md"
+	@echo ""
+	@echo "Setup:"
+	@echo "  make venv"
+	@echo "  make install"
+	@echo "  make recreate-venv"
+	@echo "  make clean-venv"
+	@echo ""
+	@echo "Core run sequence:"
+	@echo "  make bayes-v36"
+	@echo "  make bayes-v36-no-valcour"
+	@echo "  make bayes-v36-regions-bg"
+	@echo "  make bayes-v36-regions-all"
+	@echo "  make bayes-v36-loro-auto"
+	@echo "  make bayes-v36-loso"
+	@echo "  make bayes-v36-valcour-cv K=5"
+	@echo "  make bayes-v36-waic"
+	@echo ""
+	@echo "Auxiliary ablations:"
+	@echo "  make bayes-v36-aux-time"
+	@echo "  make bayes-v36-aux-time-vl"
+	@echo "  make bayes-v36-aux-plasma"
+	@echo "  make bayes-v36-aux-csf"
+	@echo "  make bayes-v36-aux-both"
+	@echo ""
+	@echo "Diagnostics:"
+	@echo "  make bayes-v36-overlay TRACE=<path_to_reference_trace.nc>"
+	@echo "  make bayes-v36-ic-compare TRACE_WITH=<path_to_trace.nc> TRACE_NO=<path_to_trace.nc>"
 
 
 # Bayesian stack helpers (original)

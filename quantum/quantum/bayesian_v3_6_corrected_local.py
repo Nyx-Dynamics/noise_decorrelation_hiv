@@ -16,6 +16,7 @@ from scipy import stats
 import argparse
 from datetime import datetime
 import json
+import os
 import platform
 from pathlib import Path
 import warnings
@@ -35,6 +36,10 @@ print("╚" + "=" * 78 + "╝\n")
 
 # Auto-detect if we're running locally or on Claude's system
 script_dir = Path(__file__).resolve().parent
+results_override = os.environ.get("NOISE_RESULTS_V36_DIR", "").strip()
+base_results_dir = Path(results_override).expanduser().resolve() if results_override else (script_dir / "results_v3_6")
+if results_override:
+    print(f"📦 Output override enabled (NOISE_RESULTS_V36_DIR): {base_results_dir}")
 
 # Try to find the data directory
 possible_data_dirs = [
@@ -209,7 +214,6 @@ run_name = args.run_label.strip() if args.run_label.strip() else (f"run_{run_tim
 print(f"   Run identifier: {run_name}")
 
 # Prepare results directories early if running validation/figures without full inference
-base_results_dir = script_dir / "results_v3_6"
 runs_dir = base_results_dir / "runs"
 run_dir = runs_dir / run_name
 figures_dir = run_dir / "figures"
@@ -2169,7 +2173,6 @@ print("SAVING RESULTS")
 print("=" * 80)
 
 # Create output directories (base and run-specific)
-base_results_dir = script_dir / "results_v3_6"
 base_results_dir.mkdir(exist_ok=True)
 
 runs_dir = base_results_dir / "runs"

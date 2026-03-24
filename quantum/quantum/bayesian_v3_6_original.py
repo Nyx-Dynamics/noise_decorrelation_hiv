@@ -25,6 +25,7 @@ from scipy import stats
 import argparse
 from datetime import datetime
 import json
+import os
 from pathlib import Path
 import warnings
 import sys
@@ -41,6 +42,10 @@ print("╚" + "=" * 78 + "╝\n")
 # FILE PATHS
 # ============================================================================
 script_dir = Path(__file__).resolve().parent
+results_override = os.environ.get("NOISE_RESULTS_V36_DIR", "").strip()
+base_results_dir = Path(results_override).expanduser().resolve() if results_override else (script_dir / "results_v3_6")
+if results_override:
+    print(f"📦 Output override enabled (NOISE_RESULTS_V36_DIR): {base_results_dir}")
 possible_data_dirs = [
     script_dir / "data" / "curated",
     script_dir.parent / "data" / "curated",
@@ -122,7 +127,6 @@ run_name = args.run_label.strip() if args.run_label.strip() else (f"run_{run_tim
 print(f"   Run identifier: {run_name}")
 
 # Prepare result dirs
-base_results_dir = script_dir / "results_v3_6"
 runs_dir = base_results_dir / "runs"
 run_dir = runs_dir / run_name / "original"  # keep original in its own subfolder
 figures_dir = run_dir / "figures"

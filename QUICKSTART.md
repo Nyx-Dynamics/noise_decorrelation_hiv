@@ -4,8 +4,8 @@
 
 ### 1. Clone Repository
 ```bash
-git clone https://github.com/yourusername/noise_decorrelation_HIV.git
-cd noise_decorrelation_HIV
+git clone https://github.com/Nyx-Dynamics/noise_decorrelation_hiv.git
+cd noise_decorrelation_hiv
 ```
 
 ### 2. Create Virtual Environment
@@ -218,7 +218,7 @@ az.plot_trace(trace)
 ## File Organization Reference
 
 ```
-📦 noise_decorrelation_HIV/
+📦 noise_decorrelation_hiv/
 ├── 📊 quantum/              # External validation code
 │   └── results/            # Enzyme v4, regional, model comparison
 ├── 📈 results/             # Main Bayesian v3.6 analysis
