@@ -147,3 +147,7 @@ quantum/quantum/results_v3_6/posterior_predictive_comparison_ratio_20251116*.csv
 quantum/quantum/results_v3_6/results_v3_6_ratio_scale_20251116*.csv
 quantum/quantum/results_v3_6/summary_20251116*.csv
 quantum/quantum/results_v3_6/runs/run/
+EXPERIMENTS_EVOLUTION.md
+Makefile.evolution
+
+datafiles/
