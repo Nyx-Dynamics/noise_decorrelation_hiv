@@ -137,3 +137,13 @@ inspect_waic
 *_bk.py
 evolutionary_framework_repo/
 datafiles/*.csv
+
+# Generated figures directory
+figures/Figure*.png
+figures/Figure_*.png
+
+# Remaining timestamped result CSVs not caught by wildcard
+quantum/quantum/results_v3_6/posterior_predictive_comparison_ratio_20251116*.csv
+quantum/quantum/results_v3_6/results_v3_6_ratio_scale_20251116*.csv
+quantum/quantum/results_v3_6/summary_20251116*.csv
+quantum/quantum/results_v3_6/runs/run/
