@@ -1,0 +1,7 @@
+Study,Phase,Region,Metabolite,Mean,SE,n,SourceFile
+Mohamed et al. 2010,Chronic,BG,NAA/Cr,1.0,0.09,26,bg_combined_with_winston_dahmani.csv
+Mohamed et al. 2010,Control,BG,NAA/Cr,1.08,0.11,18,bg_combined_with_winston_dahmani.csv
+Sailasuta et al. 2016,Acute,BG,NAA/Cr,1.13,0.03,31,bg_combined_with_winston_dahmani.csv
+Sailasuta et al. 2016,Chronic,BG,NAA/Cr,1.0,0.03,26,bg_combined_with_winston_dahmani.csv
+Sailasuta_2012,Chronic,OGM,NAA/Cr,1.415,0.023533936216582084,26,Sailasuta_2012.csv
+Sailasuta_2012,Control,OGM,NAA/Cr,1.428,0.03794733192202055,10,Sailasuta_2012.csv

@@ -1,0 +1,5 @@
+week_label,vl_column,modality,n_raw,n_clean,n_clipped,mean_log10
+week_0,logcVL,csf,27,27,7,2.813071603307762
+week_4,logcVL,csf,0,0,0,
+week_12,logcVL,csf,0,0,0,
+week_24,logcVL,csf,16,16,15,1.0625

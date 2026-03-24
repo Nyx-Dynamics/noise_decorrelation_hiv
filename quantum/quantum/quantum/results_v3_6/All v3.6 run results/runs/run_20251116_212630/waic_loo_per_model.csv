@@ -1,0 +1,6 @@
+model,waic,p_waic,elpd_waic,loo,p_loo,elpd_loo
+trace_no_valcour_regions_bg,,,,,,
+trace_no_valcour_regions_all,,,,,,
+trace_with_valcour,,,,,,
+trace_with_valcour_1,,,,,,
+trace_regions_all,,,,,,

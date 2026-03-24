@@ -1,0 +1,22 @@
+{
+  "absolute_dir": "quantum/quantum/data/curated/absolute",
+  "columns": [
+    "study",
+    "region",
+    "group"
+  ],
+  "inputs": [
+    "/Users/acdstudpro/Documents/Github/noise_decorrelation_HIV/quantum/quantum/data/curated/absolute/CHANG_2002_EXTRACTED.csv",
+    "/Users/acdstudpro/Documents/Github/noise_decorrelation_HIV/quantum/quantum/data/curated/absolute/valcour_2015_week_0.xlsx",
+    "/Users/acdstudpro/Documents/Github/noise_decorrelation_HIV/quantum/quantum/data/curated/absolute/valcour_2015_week_12.xlsx",
+    "/Users/acdstudpro/Documents/Github/noise_decorrelation_HIV/quantum/quantum/data/curated/absolute/valcour_2015_week_24.xlsx",
+    "/Users/acdstudpro/Documents/Github/noise_decorrelation_HIV/quantum/quantum/data/curated/absolute/valcour_2015_week_4.xlsx"
+  ],
+  "pipeline": "absolute",
+  "regions": [
+    "BG"
+  ],
+  "results_dir": "quantum/quantum/results/absolute_BG_w0-4-24",
+  "row_count": 6,
+  "time_slice": "0,4,24"
+}

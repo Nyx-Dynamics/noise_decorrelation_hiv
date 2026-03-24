@@ -1,0 +1,24 @@
+Study,Phase,Region,Metabolite,Mean,SE_raw,SE_final,n,Included,Reason,SourceFile,DuplicateKey,DedupReason
+Mohamed et al. 2010,Chronic,BG,NAA/Cr,1.0,SD=0.09,0.09,26,True,,bg_combined_with_winston_dahmani.csv,,
+Mohamed et al. 2010,Control,BG,NAA/Cr,1.08,SD=0.11,0.11,18,True,,bg_combined_with_winston_dahmani.csv,,
+Sailasuta et al. 2016,Acute,BG,NAA/Cr,1.13,SE=0.03,0.03,31,True,,bg_combined_with_winston_dahmani.csv,,
+Sailasuta et al. 2016,Chronic,BG,NAA/Cr,1.0,SE=0.03,0.03,26,True,,bg_combined_with_winston_dahmani.csv,,
+Dahmani et al. 2021,Acute,BG,NAA/Cr,,,,120,False,Unsupported region/metabolite or missing mean,bg_combined_with_winston_dahmani.csv,,
+Dahmani et al. 2021,Acute,BG,Cho/Cr,,,,120,False,Unsupported region/metabolite or missing mean,bg_combined_with_winston_dahmani.csv,,
+Chelala et al. 2020,Chronic,BG,NAA/Cr,,,,20,False,Unsupported region/metabolite or missing mean,bg_combined_with_winston_dahmani.csv,,
+Chelala et al. 2020,Chronic,BG,Cho/Cr,,,,20,False,Unsupported region/metabolite or missing mean,bg_combined_with_winston_dahmani.csv,,
+Chelala et al. 2020,Chronic,BG,,,,,16,False,Unsupported region/metabolite or missing mean,bg_combined_with_winston_dahmani.csv,,
+Winston et al. 2014,Chronic,RIGHTBASALGANGLIA,NAA/Cr,0.64,SD=1.20,1.2,20,False,Unsupported region/metabolite or missing mean,bg_combined_with_winston_dahmani.csv,,
+Winston et al. 2014,Chronic,RIGHTBASALGANGLIA,NAA/Cr,-0.61,SD=1.13,1.13,20,False,Unsupported region/metabolite or missing mean,bg_combined_with_winston_dahmani.csv,,
+Winston et al. 2014,Chronic,RIGHTBASALGANGLIA,Cho/Cr,-0.17,SD=0.33,0.33,20,False,Unsupported region/metabolite or missing mean,bg_combined_with_winston_dahmani.csv,,
+Dahmani et al. Supplement,Chronic,BG,NAA/Cr,-0.18,"SMD 95% CI [-0.34, -0.03]",,943,False,Missing/invalid SE,bg_combined_with_winston_dahmani.csv,,
+Dahmani et al. Supplement,Chronic,BG,Cho/Cr,0.15,"SMD 95% CI [0.02, 0.29]",,943,False,Missing/invalid SE,bg_combined_with_winston_dahmani.csv,,
+Mohamed et al. 2010,Chronic,BG,NAA/Cr,1.0,SD=0.09,0.09,26,False,,bg_only_hiv_neurodata.csv,mohamed et al. 2010|Chronic|BG|NAA/Cr,Dropped duplicate in favor of preferred source/SE/n
+Mohamed et al. 2010,Control,BG,NAA/Cr,1.08,SD=0.11,0.11,18,False,,bg_only_hiv_neurodata.csv,mohamed et al. 2010|Control|BG|NAA/Cr,Dropped duplicate in favor of preferred source/SE/n
+Sailasuta et al. 2016,Acute,BG,NAA/Cr,1.13,SE=0.03,0.03,31,False,,bg_only_hiv_neurodata.csv,sailasuta et al. 2016|Acute|BG|NAA/Cr,Dropped duplicate in favor of preferred source/SE/n
+Sailasuta et al. 2016,Chronic,BG,NAA/Cr,1.0,SE=0.03,0.03,26,False,,bg_only_hiv_neurodata.csv,sailasuta et al. 2016|Chronic|BG|NAA/Cr,Dropped duplicate in favor of preferred source/SE/n
+Dahmani et al. 2021,Acute,BG,NAA/Cr,,,,120,False,Unsupported region/metabolite or missing mean,bg_only_hiv_neurodata.csv,,
+Dahmani et al. 2021,Acute,BG,Cho/Cr,,,,120,False,Unsupported region/metabolite or missing mean,bg_only_hiv_neurodata.csv,,
+Chelala et al. 2020,Chronic,BG,NAA/Cr,,,,20,False,Unsupported region/metabolite or missing mean,bg_only_hiv_neurodata.csv,,
+Chelala et al. 2020,Chronic,BG,Cho/Cr,,,,20,False,Unsupported region/metabolite or missing mean,bg_only_hiv_neurodata.csv,,
+Chelala et al. 2020,Chronic,BG,,,,,16,False,Unsupported region/metabolite or missing mean,bg_only_hiv_neurodata.csv,,

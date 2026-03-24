@@ -1,0 +1,5 @@
+week_label,vl_column,modality,n_raw,n_clean,n_clipped,mean_log10
+week_0,logpVL,plasma,44,44,0,5.3561985288690925
+week_4,logpVL,plasma,41,41,0,2.595374285394573
+week_12,logpVL,plasma,41,41,0,1.9500460877737151
+week_24,logpVL,plasma,42,42,0,1.7728748189425343

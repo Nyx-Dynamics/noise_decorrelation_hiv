@@ -1,0 +1,6 @@
+held_n_total,168
+folds,5
+mean_elpd_loo,12.93549830730394
+std_elpd_loo,2.0292584845598522
+mean_elpd_loo_per_obs,0.38453106444376844
+std_elpd_loo_per_obs,0.05645139177179336

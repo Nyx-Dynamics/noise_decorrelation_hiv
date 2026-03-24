@@ -51,8 +51,6 @@ import numpy as np
 # "label" is the display name for the forest plot (matches supplementary fig).
 # "flags" are the extra CLI args passed to bayesian_v3_6_corrected_local.py.
 STUDIES = [
-    {"label": "Valcour 2015",    "tag": "loso_no_valcour",       "flags": ["--exclude-valcour"]},
-    {"label": "Chang 2002",      "tag": "loso_no_chang",         "flags": ["--exclude-source", "Chang"]},
     {"label": "Mohamed 2010",    "tag": "loso_no_mohamed",       "flags": ["--exclude-source", "Mohamed"]},
     {"label": "Young 2014",      "tag": "loso_no_young",         "flags": ["--exclude-source", "Young"]},
     {"label": "Sailasuta 2016",  "tag": "loso_no_sailasuta2016", "flags": ["--exclude-source", "Sailasuta et al. 2016"]},
@@ -101,6 +99,16 @@ def resolve_output_dir(root: Path) -> Path:
     env_dir = os.environ.get("NOISE_RESULTS_V36_DIR")
     if env_dir:
         return Path(env_dir)
+
+    # Candidates for output directory (in order of preference)
+    candidates = [
+        root / "quantum" / "quantum" / "results_v3_6",
+        root / "quantum" / "results_v3_6",
+        root / "results" / "bayesian_v3_6",
+    ]
+    for c in candidates:
+        if (c / "runs").exists():
+            return c
     return root / "results" / "bayesian_v3_6"
 
 
@@ -152,44 +160,65 @@ def find_results_csv(output_dir: Path, tag: str) -> Path | None:
     Find the results_v3_6_ratio_scale_<tag>.csv file.
     Checks both the output_dir root and the latest run subdirectory.
     """
-    # Direct match in output root
-    direct = output_dir / f"results_v3_6_ratio_scale_{tag}.csv"
-    if direct.exists():
-        return direct
+    # Clean up tag: ensure it doesn't have double underscores
+    clean_tag = tag.lstrip("_")
 
-    # Search in run subdirectories (sorted newest first)
-    runs_dir = output_dir / "runs"
-    if runs_dir.exists():
-        run_dirs = sorted(runs_dir.iterdir(), reverse=True)
-        for rd in run_dirs:
-            candidate = rd / f"results_v3_6_ratio_scale_{tag}.csv"
-            if candidate.exists():
-                return candidate
+    # Possible filename patterns
+    patterns = [
+        f"results_v3_6_ratio_scale_{clean_tag}.csv",
+        f"results_v3_6_ratio_scale_{tag}.csv",
+        f"results_v3_6_ratio_scale{tag}.csv",
+    ]
+
+    for p in patterns:
+        # Direct match in output root
+        direct = output_dir / p
+        if direct.exists():
+            return direct
+
+        # Search in run subdirectories (sorted newest first)
+        runs_dir = output_dir / "runs"
+        if runs_dir.exists():
+            run_dirs = sorted(runs_dir.iterdir(), reverse=True)
+            for rd in run_dirs:
+                candidate = rd / p
+                if candidate.exists():
+                    return candidate
 
     # Also check CWD (some configs write there)
-    cwd_match = Path(f"results_v3_6_ratio_scale_{tag}.csv")
-    if cwd_match.exists():
-        return cwd_match
+    for p in patterns:
+        cwd_match = Path(p)
+        if cwd_match.exists():
+            return cwd_match
 
     return None
 
 
 def find_summary_csv(output_dir: Path, tag: str) -> Path | None:
     """Find the ArviZ summary_<tag>.csv file."""
-    direct = output_dir / f"summary_{tag}.csv"
-    if direct.exists():
-        return direct
+    clean_tag = tag.lstrip("_")
+    patterns = [
+        f"summary_{clean_tag}.csv",
+        f"summary_{tag}.csv",
+        f"summary{tag}.csv",
+    ]
 
-    runs_dir = output_dir / "runs"
-    if runs_dir.exists():
-        for rd in sorted(runs_dir.iterdir(), reverse=True):
-            candidate = rd / f"summary_{tag}.csv"
-            if candidate.exists():
-                return candidate
+    for p in patterns:
+        direct = output_dir / p
+        if direct.exists():
+            return direct
 
-    cwd_match = Path(f"summary_{tag}.csv")
-    if cwd_match.exists():
-        return cwd_match
+        runs_dir = output_dir / "runs"
+        if runs_dir.exists():
+            for rd in sorted(runs_dir.iterdir(), reverse=True):
+                candidate = rd / p
+                if candidate.exists():
+                    return candidate
+
+    for p in patterns:
+        cwd_match = Path(p)
+        if cwd_match.exists():
+            return cwd_match
 
     return None
 

@@ -1,0 +1,316 @@
+[2026-03-23 20:50:43] ============================================================
+[2026-03-23 20:50:43] NOISE DECORRELATION HIV — FULL REPRODUCTION SUITE
+[2026-03-23 20:50:43] Mode: full
+[2026-03-23 20:50:43] Python: /Users/acdmbpmax/PycharmProjects/noise_decorrelation_HIV/.venv/bin/python
+[2026-03-23 20:50:43] Working dir: /Users/acdmbpmax/PycharmProjects/noise_decorrelation_HIV
+[2026-03-23 20:50:43] ============================================================
+[2026-03-23 20:50:43] ============================================================
+[2026-03-23 20:50:43] STEP: Primary Bayesian v3.6 (with Valcour)
+[2026-03-23 20:50:43] CMD:  /Users/acdmbpmax/PycharmProjects/noise_decorrelation_HIV/.venv/bin/python quantum/quantum/bayesian_v3_6_corrected_local.py --tag with_valcour --plot-densities --plots-extended
+[2026-03-23 20:50:43] ============================================================
+[2026-03-23 20:51:15]   PASS (32.1s)
+    ✅ Saved: /Users/acdmbpmax/PycharmProjects/noise_decorrelation_HIV/quantum/quantum/results_v3_6/runs/run_20260323_205047/figures/trace_plots_with_valcour.png
+    ✅ Saved: /Users/acdmbpmax/PycharmProjects/noise_decorrelation_HIV/quantum/quantum/results_v3_6/runs/run_20260323_205047/figures/forest_hdi_with_valcour.png
+    ℹ Valcour degradation outputs not generated (no week aggregates or posterior deterministics missing).
+    🧾 Saved run metadata: /Users/acdmbpmax/PycharmProjects/noise_decorrelation_HIV/quantum/quantum/results_v3_6/runs/run_20260323_205047/run_info.json
+    
+    ================================================================================
+    ✅ ANALYSIS COMPLETE USING RATIO DATA (Valcour/Chang converted, Young/Sailasuta native)
+    ================================================================================
+    
+    🎯 FINAL SAMPLE SIZES:
+       Total acute observations: n=84
+       - Young 2014: 53
+       - Sailasuta 2012: 31
+    
+    🎯 KEY FINDING:
+       P(ξ_acute < ξ_chronic) = 0.9193
+       Δξ = 0.203 ± 0.149 nm
+       β_ξ = -2.01 ± 0.59
+    
+    ================================================================================
+[2026-03-23 20:51:15] ============================================================
+[2026-03-23 20:51:15] STEP: Enzyme kinetics v4 (independent validation)
+[2026-03-23 20:51:15] CMD:  /Users/acdmbpmax/PycharmProjects/noise_decorrelation_HIV/.venv/bin/python quantum/bayesian_enzyme_v4.py
+[2026-03-23 20:51:15] ============================================================
+[2026-03-23 20:52:25]   PASS (70.3s)
+     COMPARISON TO v3.6
+    ================================================================================
+    
+    v3.6 Results:
+      β_ξ = 1.731 (94% HDI: [0.846, 2.792])
+      Chronic NAA error: +0.4%
+    
+    v4.0 Results (Enzyme Model):
+      β_ξ = 1.451 (94% HDI: [0.635, 2.256])
+      Chronic NAA error: -1.0%
+    
+    RMS Error: 2.18%
+    
+    Figures saved to results/enzyme_v4/
+    
+    ================================================================================
+     INFERENCE COMPLETE
+    ================================================================================
+    
+    Results saved to results/enzyme_v4/
+[2026-03-23 20:52:25] ============================================================
+[2026-03-23 20:52:25] STEP: Enhanced Bayesian v2 (publication quality)
+[2026-03-23 20:52:25] CMD:  /Users/acdmbpmax/PycharmProjects/noise_decorrelation_HIV/.venv/bin/python quantum/bayesian_optimization_v2.py --draws 5000 --tune 2000 --chains 4 --target-accept 0.95 --seed 42 --plot
+[2026-03-23 20:52:25] ============================================================
+[2026-03-23 20:53:28]   PASS (62.9s)
+      condition  NAA_pred  Cho_pred  NAA_obs  Cho_obs  error_NAA_%  error_Cho_%
+        healthy  1.071644  0.230267    1.105    0.225    -3.018603     2.340751
+      acute_HIV  1.143727  0.243433    1.135    0.245     0.768931    -0.639424
+    chronic_HIV  0.939250  0.231847    1.005    0.235    -6.542289    -1.341832
+    
+    ================================================================================
+     KEY RESULTS
+    ================================================================================
+    P(ξ_acute < ξ_chronic) = 0.9991
+    
+    Astrocyte compensation factor: 1.180
+    ξ floor (acute protection): 0.42 nm
+    ξ ceiling (chronic limit): 0.81 nm
+    
+    Chronic NAA error: -6.5%
+      (Previously: -16.0%)
+    
+    
+    Results saved to: results/bayesian_v2/
+    Visualization saved to: results/bayesian_v2/compensatory_mechanisms.png
+[2026-03-23 20:53:28] ============================================================
+[2026-03-23 20:53:28] STEP: WAIC/LOO 5-model comparison
+[2026-03-23 20:53:28] CMD:  /Users/acdmbpmax/PycharmProjects/noise_decorrelation_HIV/.venv/bin/python quantum/quantum/utils/waic_loo_helper.py --auto 5
+[2026-03-23 20:53:28] ============================================================
+[2026-03-23 20:53:30]   PASS (2.1s)
+                                 rank   elpd_waic    p_waic  ...  dse  warning  scale
+    trace_loso_no_sailasuta2016     0  235.450605  3.589804  ...  0.0     True    log
+    trace_loso_no_mohamed           1  231.462175  3.577211  ...  0.0     True    log
+    trace_with_valcour              2  230.497964  3.822494  ...  0.0     True    log
+    trace_loso_no_sailasuta2012     3  148.255088  3.699887  ...  0.0     True    log
+    trace_loso_no_young             4   33.461789  3.534535  ...  0.0     True    log
+    
+    [5 rows x 9 columns]
+    
+    LOO comparison (lower is better):
+                                 rank    elpd_loo     p_loo  ...  dse  warning  scale
+    trace_loso_no_sailasuta2016     0  234.210336  4.830073  ...  0.0     True    log
+    trace_loso_no_mohamed           1  229.860908  5.178478  ...  0.0     True    log
+    trace_with_valcour              2  227.649642  6.670817  ...  0.0     True    log
+    trace_loso_no_sailasuta2012     3  147.156667  4.798309  ...  0.0     True    log
+    trace_loso_no_young             4   32.398491  4.597834  ...  0.0     True    log
+    
+    [5 rows x 9 columns]
+    
+    ✅ Saved WAIC/LOO tables under: /Users/acdmbpmax/PycharmProjects/noise_decorrelation_HIV/quantum/quantum/results_v3_6/runs/run_20260323_205047
+[2026-03-23 20:53:30] ============================================================
+[2026-03-23 20:53:30] STEP: Validation pass (p-values + Fig.2)
+[2026-03-23 20:53:30] CMD:  /Users/acdmbpmax/PycharmProjects/noise_decorrelation_HIV/.venv/bin/python quantum/quantum/bayesian_v3_6_corrected_local.py --validate-valcour --fig2 --week-pvals --tag valcour_validation
+[2026-03-23 20:53:30] ============================================================
+[2026-03-23 20:53:32]   PASS (1.2s)
+                    Study   Phase Region Metabolite  Mean     SE  n                           SourceFile
+      Mohamed et al. 2010 Chronic     BG     NAA/Cr  1.00 0.0900 26 bg_combined_with_winston_dahmani.csv
+      Mohamed et al. 2010 Control     BG     NAA/Cr  1.08 0.1100 18 bg_combined_with_winston_dahmani.csv
+    Sailasuta et al. 2016   Acute     BG     NAA/Cr  1.13 0.0300 31 bg_combined_with_winston_dahmani.csv
+    Sailasuta et al. 2016 Chronic     BG     NAA/Cr  1.00 0.0300 26 bg_combined_with_winston_dahmani.csv
+               Young_2014 Control    FWM     NAA/Cr  1.35 0.0240 19  YOUNG_2014_CROSS_SECTIONAL_DATA.csv
+               Young_2014 Control    FWM     Cho/Cr  0.30 0.0142 19  YOUNG_2014_CROSS_SECTIONAL_DATA.csv
+               Young_2014 Chronic    FWM     NAA/Cr  1.15 0.0130 18  YOUNG_2014_CROSS_SECTIONAL_DATA.csv
+               Young_2014 Chronic    FWM     Cho/Cr  0.30 0.0129 18  YOUNG_2014_CROSS_SECTIONAL_DATA.csv
+       …
+    
+    ================================================================================
+    PREPARING BASAL GANGLIA DATA (working on NAA/Cr and Cho/Cr ratios)
+    ================================================================================
+    
+    ⚠ No Valcour acute data available
+    ⚠ Validation skipped: no Valcour data loaded.
+    🧾 Saved run metadata: /Users/acdmbpmax/PycharmProjects/noise_decorrelation_HIV/quantum/quantum/results_v3_6/runs/run_20260323_205332/run_info.json
+    
+    ✅ Validation pass complete. Exiting before Bayesian inference as requested (--validate-valcour).
+[2026-03-23 20:53:32] ============================================================
+[2026-03-23 20:53:32] STEP: Ablation: exclude Valcour cohort
+[2026-03-23 20:53:32] CMD:  /Users/acdmbpmax/PycharmProjects/noise_decorrelation_HIV/.venv/bin/python quantum/quantum/bayesian_v3_6_corrected_local.py --exclude-valcour --tag no_valcour --plot-densities --plots-extended
+[2026-03-23 20:53:32] ============================================================
+[2026-03-23 20:53:59]   PASS (27.0s)
+    ✅ Saved: /Users/acdmbpmax/PycharmProjects/noise_decorrelation_HIV/quantum/quantum/results_v3_6/runs/run_20260323_205333/figures/trace_plots_no_valcour.png
+    ✅ Saved: /Users/acdmbpmax/PycharmProjects/noise_decorrelation_HIV/quantum/quantum/results_v3_6/runs/run_20260323_205333/figures/forest_hdi_no_valcour.png
+    ℹ Valcour degradation outputs not generated (no week aggregates or posterior deterministics missing).
+    🧾 Saved run metadata: /Users/acdmbpmax/PycharmProjects/noise_decorrelation_HIV/quantum/quantum/results_v3_6/runs/run_20260323_205333/run_info.json
+    
+    ================================================================================
+    ✅ ANALYSIS COMPLETE USING RATIO DATA (Valcour/Chang converted, Young/Sailasuta native)
+    ================================================================================
+    
+    🎯 FINAL SAMPLE SIZES:
+       Total acute observations: n=84
+       - Young 2014: 53
+       - Sailasuta 2012: 31
+    
+    🎯 KEY FINDING:
+       P(ξ_acute < ξ_chronic) = 0.9193
+       Δξ = 0.203 ± 0.149 nm
+       β_ξ = -2.01 ± 0.59
+    
+    ================================================================================
+[2026-03-23 20:53:59] ============================================================
+[2026-03-23 20:53:59] STEP: Region restriction: basal ganglia only
+[2026-03-23 20:53:59] CMD:  /Users/acdmbpmax/PycharmProjects/noise_decorrelation_HIV/.venv/bin/python quantum/quantum/bayesian_v3_6_corrected_local.py --regions BG --tag regions_bg --plot-densities --plots-extended
+[2026-03-23 20:53:59] ============================================================
+[2026-03-23 20:54:42]   PASS (43.2s)
+    ✅ Saved: /Users/acdmbpmax/PycharmProjects/noise_decorrelation_HIV/quantum/quantum/results_v3_6/runs/run_20260323_205400/figures/trace_plots_regions_bg.png
+    ✅ Saved: /Users/acdmbpmax/PycharmProjects/noise_decorrelation_HIV/quantum/quantum/results_v3_6/runs/run_20260323_205400/figures/forest_hdi_regions_bg.png
+    ℹ Valcour degradation outputs not generated (no week aggregates or posterior deterministics missing).
+    🧾 Saved run metadata: /Users/acdmbpmax/PycharmProjects/noise_decorrelation_HIV/quantum/quantum/results_v3_6/runs/run_20260323_205400/run_info.json
+    
+    ================================================================================
+    ✅ ANALYSIS COMPLETE USING RATIO DATA (Valcour/Chang converted, Young/Sailasuta native)
+    ================================================================================
+    
+    🎯 FINAL SAMPLE SIZES:
+       Total acute observations: n=84
+       - Young 2014: 53
+       - Sailasuta 2012: 31
+    
+    🎯 KEY FINDING:
+       P(ξ_acute < ξ_chronic) = 0.9168
+       Δξ = 0.201 ± 0.148 nm
+       β_ξ = -1.99 ± 0.60
+    
+    ================================================================================
+[2026-03-23 20:54:42] ============================================================
+[2026-03-23 20:54:42] STEP: Leave-one-region-out sweep (BG, FWM, FGM, AC)
+[2026-03-23 20:54:42] CMD:  make bayes-v36-loro-auto
+[2026-03-23 20:54:42] ============================================================
+[2026-03-23 20:56:23]   PASS (101.6s)
+    ✅ Saved: /Users/acdmbpmax/PycharmProjects/noise_decorrelation_HIV/quantum/quantum/results_v3_6/runs/run_20260323_205558/figures/trace_plots_loro_AC.png
+    ✅ Saved: /Users/acdmbpmax/PycharmProjects/noise_decorrelation_HIV/quantum/quantum/results_v3_6/runs/run_20260323_205558/figures/forest_hdi_loro_AC.png
+    ℹ Valcour degradation outputs not generated (no week aggregates or posterior deterministics missing).
+    🧾 Saved run metadata: /Users/acdmbpmax/PycharmProjects/noise_decorrelation_HIV/quantum/quantum/results_v3_6/runs/run_20260323_205558/run_info.json
+    
+    ================================================================================
+    ✅ ANALYSIS COMPLETE USING RATIO DATA (Valcour/Chang converted, Young/Sailasuta native)
+    ================================================================================
+    
+    🎯 FINAL SAMPLE SIZES:
+       Total acute observations: n=84
+       - Young 2014: 53
+       - Sailasuta 2012: 31
+    
+    🎯 KEY FINDING:
+       P(ξ_acute < ξ_chronic) = 0.9193
+       Δξ = 0.203 ± 0.149 nm
+       β_ξ = -2.01 ± 0.59
+    
+    ================================================================================
+[2026-03-23 20:56:23] ============================================================
+[2026-03-23 20:56:23] STEP: Leave-one-study-out
+[2026-03-23 20:56:23] CMD:  /Users/acdmbpmax/PycharmProjects/noise_decorrelation_HIV/.venv/bin/python quantum/quantum/utils/loso_ic.py
+[2026-03-23 20:56:23] ============================================================
+[2026-03-23 20:58:26]   PASS (122.5s)
+    
+    ============================================================
+    [5/5] Excluding: Sailasuta 2012
+    ============================================================
+      CMD: /Users/acdmbpmax/PycharmProjects/noise_decorrelation_HIV/.venv/bin/python /Users/acdmbpmax/PycharmProjects/noise_decorrelation_HIV/quantum/quantum/bayesian_v3_6_corrected_local.py --tag loso_no_sailasuta2012 --draws 1500 --tune 1000 --chains 4 --exclude-source Sailasuta_2012
+      ✅ PASS (25.3s)
+      ξ_acute = 0.608
+      ξ_chronic = 0.808
+      β_ξ = -2.004
+    
+    ✅ Saved LOSO summary: /Users/acdmbpmax/PycharmProjects/noise_decorrelation_HIV/quantum/quantum/results_v3_6/loso_summary.csv
+    
+    ✅ Saved LOSO forest plot: /Users/acdmbpmax/PycharmProjects/noise_decorrelation_HIV/quantum/quantum/results_v3_6/SuppFig_loso_analysis.png
+    
+    ============================================================
+    LOSO ANALYSIS COMPLETE
+    ============================================================
+      Studies tested: 4
+      Failures:       0
+      ✅ β_ξ < 0 in ALL leave-one-out analyses — robust.
+[2026-03-23 20:58:26] ============================================================
+[2026-03-23 20:58:26] STEP: 5-fold CV on Valcour cohort
+[2026-03-23 20:58:26] CMD:  /Users/acdmbpmax/PycharmProjects/noise_decorrelation_HIV/.venv/bin/python quantum/quantum/utils/valcour_kfold_cv.py --kfold 5 --seed 42
+[2026-03-23 20:58:26] ============================================================
+[2026-03-23 20:58:28]   PASS (1.7s)
+    Using trace: /Users/acdmbpmax/PycharmProjects/noise_decorrelation_HIV/quantum/quantum/results_v3_6/runs/run_20260323_205802/trace_loso_no_sailasuta2012.nc
+    Acute observations detected: n=53
+    [CV] Fold 1/5: held-out size = 11
+    [CV] Fold 2/5: held-out size = 11
+    [CV] Fold 3/5: held-out size = 11
+    [CV] Fold 4/5: held-out size = 10
+    [CV] Fold 5/5: held-out size = 10
+    
+    Saved per-fold summary to: /Users/acdmbpmax/PycharmProjects/noise_decorrelation_HIV/quantum/quantum/results_v3_6/runs/valcour_cv_20260323_205827/valcour_kfold_cv_summary.csv
+    Aggregate: {'held_n_total': 53, 'folds': 5, 'mean_elpd_loo': 13.321543661306595, 'std_elpd_loo': 0.634294817046223, 'mean_elpd_loo_per_obs': 1.2598371202559508, 'std_elpd_loo_per_obs': 0.09407935127533296}
+[2026-03-23 20:58:28] ============================================================
+[2026-03-23 20:58:28] STEP: Decoherence baseline (uncoupled grid)
+[2026-03-23 20:58:28] CMD:  /Users/acdmbpmax/PycharmProjects/noise_decorrelation_HIV/.venv/bin/python -m quantum.cli --mode SSE_local --hiv_phase acute --N_r 36 --N_z 36 --dt 0.01 --time_steps 120 --frames_to_save 12 --rng_seed 1234
+[2026-03-23 20:58:28] ============================================================
+[2026-03-23 20:58:28]   PASS (0.8s)
+    Step 80/120 (66.7%) - Time elapsed: 0.1s, Estimated remaining: 0.0s
+    Step 90/120 (75.0%) - Time elapsed: 0.1s, Estimated remaining: 0.0s
+    Step 100/120 (83.3%) - Time elapsed: 0.1s, Estimated remaining: 0.0s
+    Step 110/120 (91.7%) - Time elapsed: 0.1s, Estimated remaining: 0.0s
+    Step 120/120 (100.0%) - Time elapsed: 0.1s, Estimated remaining: 0.0s
+    Simulation completed in 0.12 seconds.
+    Data saved to datafiles and ~/Desktop/microtubule_simulation/datafiles/
+    Simulation finished.
+    Run ID: microtubule_simulation_acute_20260323_205828
+    Key config:
+    {
+      "dephasing_model": "SSE_local",
+      "hiv_phase": "acute",
+      "N_r": 36,
+      "N_z": 36,
+      "dt": 0.01,
+      "time_steps": 120,
+      "corr_length_xi": 0.0,
+      "rng_seed": 1234
+    }
+[2026-03-23 20:58:28] ============================================================
+[2026-03-23 20:58:28] STEP: Decoherence baseline (coupled, ξ=0.8)
+[2026-03-23 20:58:28] CMD:  /Users/acdmbpmax/PycharmProjects/noise_decorrelation_HIV/.venv/bin/python -m quantum.cli --mode SSE_correlated --xi 0.8 --hiv_phase acute --N_r 36 --N_z 36 --dt 0.01 --time_steps 120 --frames_to_save 12 --rng_seed 1234
+[2026-03-23 20:58:28] ============================================================
+[2026-03-23 20:58:29]   PASS (0.8s)
+    Step 80/120 (66.7%) - Time elapsed: 0.1s, Estimated remaining: 0.0s
+    Step 90/120 (75.0%) - Time elapsed: 0.1s, Estimated remaining: 0.0s
+    Step 100/120 (83.3%) - Time elapsed: 0.1s, Estimated remaining: 0.0s
+    Step 110/120 (91.7%) - Time elapsed: 0.1s, Estimated remaining: 0.0s
+    Step 120/120 (100.0%) - Time elapsed: 0.1s, Estimated remaining: 0.0s
+    Simulation completed in 0.13 seconds.
+    Data saved to datafiles and ~/Desktop/microtubule_simulation/datafiles/
+    Simulation finished.
+    Run ID: microtubule_simulation_acute_20260323_205829
+    Key config:
+    {
+      "dephasing_model": "SSE_correlated",
+      "hiv_phase": "acute",
+      "N_r": 36,
+      "N_z": 36,
+      "dt": 0.01,
+      "time_steps": 120,
+      "corr_length_xi": 0.8,
+      "rng_seed": 1234
+    }
+[2026-03-23 20:58:29] 
+[2026-03-23 20:58:29] ============================================================
+[2026-03-23 20:58:29] REPRODUCTION SUMMARY
+[2026-03-23 20:58:29] ============================================================
+[2026-03-23 20:58:29]   [PASS] Bayesian v3.6 (primary)
+[2026-03-23 20:58:29]   [PASS] Enzyme kinetics v4
+[2026-03-23 20:58:29]   [PASS] Bayesian v2 validate
+[2026-03-23 20:58:29]   [PASS] WAIC comparison
+[2026-03-23 20:58:29]   [PASS] Validation
+[2026-03-23 20:58:29]   [PASS] No-Valcour ablation
+[2026-03-23 20:58:29]   [PASS] BG-only
+[2026-03-23 20:58:29]   [PASS] LORO sweep
+[2026-03-23 20:58:29]   [PASS] LOSO
+[2026-03-23 20:58:29]   [PASS] Valcour 5-fold CV
+[2026-03-23 20:58:29]   [PASS] Decoherence (uncoupled)
+[2026-03-23 20:58:29]   [PASS] Decoherence (coupled)
+[2026-03-23 20:58:29] 
+[2026-03-23 20:58:29] Result: 12/12 steps passed
+[2026-03-23 20:58:29] Log:    /Users/acdmbpmax/PycharmProjects/noise_decorrelation_HIV/reproducibility_results/reproduce_all_log.txt
+[2026-03-23 20:58:29] All manuscript results reproduced successfully.

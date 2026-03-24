@@ -1,0 +1,19 @@
+Study,Phase,Region,Group,n,Metabolite,Mean,SE,p_value,Notes
+Chang2002,Control,BG,Control,25,NAA,8.4,0.16,NS,
+Chang2002,HIV+,BG,Early HIV,45,NAA,8.5,0.14,NS,
+Chang2002,Control,BG,Control,25,Cho,2.1,0.05,NS,
+Chang2002,HIV+,BG,Early HIV,45,Cho,2.2,0.06,NS,
+Chang2002,Control,BG,Control,25,mI,6.4,0.21,NS,
+Chang2002,HIV+,BG,Early HIV,45,mI,7.0,0.25,NS,
+Chang2002,Control,FWM,Control,25,NAA,7.4,0.14,NS,
+Chang2002,HIV+,FWM,Early HIV,45,NAA,7.2,0.11,NS,
+Chang2002,Control,FWM,Control,25,Cho,1.6,0.04,0.00,Elevated
+Chang2002,HIV+,FWM,Early HIV,45,Cho,1.8,0.05,0.00,Elevated
+Chang2002,Control,FWM,Control,25,mI,6.7,0.27,0.00,Elevated
+Chang2002,HIV+,FWM,Early HIV,45,mI,7.8,0.26,0.00,Elevated
+Chang2002,Control,FGM,Control,25,NAA,8.2,0.16,NS,
+Chang2002,HIV+,FGM,Early HIV,45,NAA,8.2,0.09,NS,
+Chang2002,Control,FGM,Control,25,Cho,1.9,0.05,0.04,
+Chang2002,HIV+,FGM,Early HIV,45,Cho,2.0,0.06,0.04,
+Chang2002,Control,FGM,Control,25,mI,7.0,0.18,NS,
+Chang2002,HIV+,FGM,Early HIV,45,mI,7.7,0.26,NS,

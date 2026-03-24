@@ -1,0 +1,44 @@
+2026-02-17 05:14:16,480 [INFO] ======================================================================
+2026-02-17 05:14:16,480 [INFO] REPRODUCIBILITY SUITE: PREVENTION THEOREM
+2026-02-17 05:14:16,480 [INFO] Finite Prevention Windows Under Irreversible Infection Establishment
+2026-02-17 05:14:16,480 [INFO] Timestamp: 2026-02-17T05:14:16.480355
+2026-02-17 05:14:16,480 [INFO] Root:    /Users/acdmbpmax/PycharmProjects/noise_decorrelation_HIV
+2026-02-17 05:14:16,480 [INFO] Figures: /Users/acdmbpmax/PycharmProjects/noise_decorrelation_HIV/figures
+2026-02-17 05:14:16,480 [INFO] Log:     /Users/acdmbpmax/PycharmProjects/noise_decorrelation_HIV/data/reproducibility_log.txt
+2026-02-17 05:14:16,480 [INFO] ======================================================================
+2026-02-17 05:14:16,480 [INFO] ======================================================================
+2026-02-17 05:14:16,480 [INFO] STEP 1: Prevention Theorem Figures (Fig 1 + Fig 2)
+2026-02-17 05:14:16,480 [INFO] ======================================================================
+2026-02-17 05:14:16,480 [ERROR] STEP FAILED: Prevention Theorem Figures — [Errno 2] No such file or directory: '/Users/acdmbpmax/PycharmProjects/noise_decorrelation_HIV/SRC'
+2026-02-17 05:14:16,480 [INFO] 
+2026-02-17 05:14:16,480 [INFO] ======================================================================
+2026-02-17 05:14:16,480 [INFO] STEP 2: Route-Specific Compression (JID Manuscript Figures)
+2026-02-17 05:14:16,480 [INFO] ======================================================================
+2026-02-17 05:14:16,480 [ERROR] STEP FAILED: Route Compression (JID) — [Errno 2] No such file or directory: '/Users/acdmbpmax/PycharmProjects/noise_decorrelation_HIV/SRC'
+2026-02-17 05:14:16,480 [INFO] 
+2026-02-17 05:14:16,480 [INFO] ======================================================================
+2026-02-17 05:14:16,480 [INFO] STEP 3: PEP Mucosal / Reservoir Analysis
+2026-02-17 05:14:16,480 [INFO] ======================================================================
+2026-02-17 05:14:16,480 [ERROR] STEP FAILED: PEP Mucosal Analysis — [Errno 2] No such file or directory: '/Users/acdmbpmax/PycharmProjects/noise_decorrelation_HIV/SRC'
+2026-02-17 05:14:16,480 [INFO] 
+2026-02-17 05:14:16,480 [INFO] ======================================================================
+2026-02-17 05:14:16,480 [INFO] STEP 4: Continuous Exposure Spectrum Model
+2026-02-17 05:14:16,480 [INFO] ======================================================================
+2026-02-17 05:14:16,480 [ERROR] STEP FAILED: Middle Ground Model — [Errno 2] No such file or directory: '/Users/acdmbpmax/PycharmProjects/noise_decorrelation_HIV/SRC'
+2026-02-17 05:14:16,480 [INFO] 
+2026-02-17 05:14:16,480 [INFO] ======================================================================
+2026-02-17 05:14:16,480 [INFO] REPRODUCIBILITY SUMMARY
+2026-02-17 05:14:16,480 [INFO] ======================================================================
+2026-02-17 05:14:16,480 [INFO] Validation: 0/0 checks passed
+2026-02-17 05:14:16,480 [INFO] Failures:   4 step(s) failed
+2026-02-17 05:14:16,480 [INFO] Elapsed:    0.0s
+2026-02-17 05:14:16,481 [INFO]   ✗ Prevention Theorem Figures: [Errno 2] No such file or directory: '/Users/acdmbpmax/PycharmProjects/noise_decorrelation_HIV/SRC'
+2026-02-17 05:14:16,481 [INFO]   ✗ Route Compression (JID): [Errno 2] No such file or directory: '/Users/acdmbpmax/PycharmProjects/noise_decorrelation_HIV/SRC'
+2026-02-17 05:14:16,481 [INFO]   ✗ PEP Mucosal Analysis: [Errno 2] No such file or directory: '/Users/acdmbpmax/PycharmProjects/noise_decorrelation_HIV/SRC'
+2026-02-17 05:14:16,481 [INFO]   ✗ Middle Ground Model: [Errno 2] No such file or directory: '/Users/acdmbpmax/PycharmProjects/noise_decorrelation_HIV/SRC'
+2026-02-17 05:14:16,481 [INFO] 
+Generated files (2):
+2026-02-17 05:14:16,481 [INFO]   ULTIMATE_COMPREHENSIVE_ANALYSIS.png           (1475 KB)
+2026-02-17 05:14:16,481 [INFO]   figures                                       (0 KB)
+2026-02-17 05:14:16,481 [INFO] 
+⚠ SOME CHECKS FAILED — review above

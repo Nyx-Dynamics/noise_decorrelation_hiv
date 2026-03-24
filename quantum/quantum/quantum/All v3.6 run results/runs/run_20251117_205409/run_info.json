@@ -1,0 +1,9 @@
+{
+  "timestamp": "20251117_205409",
+  "run_name": "run_20251117_205409",
+  "tag": "valcour_validation",
+  "validate_only": true,
+  "data_counts": {
+    "valcour_rows": 364
+  }
+}

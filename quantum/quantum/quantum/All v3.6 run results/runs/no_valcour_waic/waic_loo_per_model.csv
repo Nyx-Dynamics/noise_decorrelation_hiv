@@ -1,0 +1,3 @@
+model,waic,p_waic,elpd_waic,loo,p_loo,elpd_loo
+trace_with_valcour,,,,,,
+trace_no_valcour,,,,,,

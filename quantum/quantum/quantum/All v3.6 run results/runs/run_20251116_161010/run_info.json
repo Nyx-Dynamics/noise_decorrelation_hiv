@@ -1,0 +1,43 @@
+{
+  "timestamp": "20251116_161010",
+  "run_name": "run_20251116_161010",
+  "tag": "with_valcour",
+  "exclude_valcour": false,
+  "versions": {
+    "python": "3.9.6",
+    "platform": "macOS-15.7.1-arm64-arm-64bit",
+    "pymc": "5.12.0",
+    "arviz": "0.17.1",
+    "numpy": "1.26.4",
+    "pandas": "2.3.3"
+  },
+  "data_counts": {
+    "n_acute_total": 252,
+    "n_valcour": 168,
+    "n_young_acute": 53,
+    "n_sailasuta_acute": 31,
+    "n_chronic_points": 2,
+    "n_control_points": 1
+  },
+  "paths": {
+    "base_results_dir": "/Users/acdstudpro/Documents/Github/noise_decorrelation_HIV/quantum/quantum/results_v3_6",
+    "run_dir": "/Users/acdstudpro/Documents/Github/noise_decorrelation_HIV/quantum/quantum/results_v3_6/runs/run_20251116_161010",
+    "figures_dir": "/Users/acdstudpro/Documents/Github/noise_decorrelation_HIV/quantum/quantum/results_v3_6/runs/run_20251116_161010/figures"
+  },
+  "cli": {
+    "exclude_valcour": false,
+    "tag": "with_valcour",
+    "run_label": "",
+    "no_timestamp": false,
+    "no_save_trace": false,
+    "save_posterior_csv": false,
+    "plot_densities": true,
+    "plots_extended": true,
+    "plots_extra": false,
+    "compare_trace": "",
+    "validate_valcour": false,
+    "fig2": false,
+    "week_pvals": false,
+    "valcour_aux": "off"
+  }
+}

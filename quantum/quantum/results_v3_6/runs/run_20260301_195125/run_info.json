@@ -1,0 +1,47 @@
+{
+  "timestamp": "20260301_195125",
+  "run_name": "run_20260301_195125",
+  "tag": "loso_no_sailasuta2016",
+  "exclude_valcour": false,
+  "versions": {
+    "python": "3.12.12 | packaged by conda-forge |",
+    "platform": "macOS-26.2-arm64-arm-64bit",
+    "pymc": "5.25.1",
+    "arviz": "0.23.4",
+    "numpy": "1.26.4",
+    "pandas": "3.0.0"
+  },
+  "data_counts": {
+    "n_acute_total": 84,
+    "n_valcour": 0,
+    "n_young_acute": 53,
+    "n_sailasuta_acute": 31,
+    "n_chronic_points": 2,
+    "n_control_points": 1
+  },
+  "paths": {
+    "base_results_dir": "/Users/acdmbpmax/PycharmProjects/noise_decorrelation_HIV/quantum/quantum/results_v3_6",
+    "run_dir": "/Users/acdmbpmax/PycharmProjects/noise_decorrelation_HIV/quantum/quantum/results_v3_6/runs/run_20260301_195125",
+    "figures_dir": "/Users/acdmbpmax/PycharmProjects/noise_decorrelation_HIV/quantum/quantum/results_v3_6/runs/run_20260301_195125/figures"
+  },
+  "cli": {
+    "exclude_valcour": false,
+    "tag": "loso_no_sailasuta2016",
+    "run_label": "",
+    "no_timestamp": false,
+    "no_save_trace": false,
+    "save_posterior_csv": false,
+    "plot_densities": false,
+    "plots_extended": false,
+    "plots_extra": false,
+    "compare_trace": "",
+    "validate_valcour": false,
+    "fig2": false,
+    "week_pvals": false,
+    "valcour_aux": "off",
+    "regions": "all",
+    "exclude_region": "",
+    "no_acute_pseudo": false,
+    "exclude_source": "Sailasuta et al. 2016"
+  }
+}

@@ -1,0 +1,4 @@
+condition,NAA/Cr_pred,NAA/Cr_obs,n_obs
+Acute,1.1465759319439388,,0
+Chronic,1.1237304586811738,1.025,2
+Control,1.3103524087028569,1.05,1
